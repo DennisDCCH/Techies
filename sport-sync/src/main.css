@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    background-image: url("./images/basketball-background.png");
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 25px;
+    background-color: #37822B; 
+    height: 120px;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center; 
+    gap: 24px;
+}
+
+.nav-logo_name {
+    color: #FFFFFF;
+    font-size: 85px;
+    text-shadow: 7px 7px 5px #2c2c2c;
+    font-family: 'Source Serif Pro';
+    font-weight: 700;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+
+
+.nav-button-login, .nav-button-register {
+    width: 142px; 
+    height: 65px; 
+    font-size: 32px;
+    font-family: 'Source Serif Pro';
+    border: none;
+    text-align: center;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.nav-button-register {
+    background-color: #4FA94D;
+    color: white;  
+}
+
+.nav-button-login {
+    background-color: #FFFFFF;
+    color: #4FA94D;   
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 25px;
+    margin-left: 116px;
+}
+
+.main-title {
+    color: #000000;
+    font-size: 64px;
+    font-family: 'Source Serif Pro';
+    font-weight: 700;
+}
+
+.main-description {
+    color: #37822B;
+    font-size: 30px;
+    font-family: 'Source Serif Pro';
+    font-weight: 700;
+}
+
+.main-explore {
+    color: #FFFFFF;
+    font-size: 80px;
+    font-family: 'Source Serif Pro';
+    text-shadow: 7px 7px 5px #2c2c2c;
+    font-weight: 700;
+}
+
+.main-right-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.main-right-bottom-taxi,
+.main-right-bottom-coach {
+    margin-top: 50px;
+    margin-left: 70px;
+    color: #FFFFFF;
+    font-size: 32px;
+    font-family: 'Source Serif Pro';
+    font-weight: 600;
+    align-items: center;
+    text-align: center;
+}
+
+footer {
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 25px;
+    background-color: #37822B; 
+    height: 15px;
+    align-items: center;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+    gap: 20px; 
+
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family: 'Palanquin';
+    font-weight: 700;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    margin-right: 60px;
+    gap: 20px; 
+}
