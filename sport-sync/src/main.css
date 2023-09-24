@@ -76,6 +76,7 @@ nav {
     font-size: 30px;
     font-family: 'Source Serif Pro';
     font-weight: 700;
+    max-width: 550px;
 }
 
 .main-explore {

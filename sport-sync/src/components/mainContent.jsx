@@ -9,14 +9,14 @@ export default function MainContent() {
             <div className = "main-left">
                 <h2 className = "main-title">GET IN THE GAME</h2>
                 <h3 className = "main-description">
-                    With SportSync, coaches can set up <br />
-                    training sessions that other users <br />
-                    athletes can book, while athletes can <br />
-                    search for training opportunities. <br /><br />
+                    With SportSync, coaches can set up
+                    training sessions that other users
+                    athletes can book, while athletes can
+                    search for training opportunities.<br /><br />
 
-                    By checking out the available training <br />
-                    sessions, amateur athletes can choose <br />
-                    to develop their game sense for that <br />
+                    By checking out the available training
+                    sessions, amateur athletes can choose
+                    to develop their game sense for that
                     respective sport.
                 </h3>
                 <h1 className = "main-explore">Explore Now:</h1>
