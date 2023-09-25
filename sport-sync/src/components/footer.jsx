@@ -2,6 +2,7 @@ import React from "react"
 import FACEBOOKLOGO from "../images/facebook-logo.png"
 import INSTAGRAMLOGO from "../images/instagram-logo.png"
 import TLOGO from "../images/t-logo.png"
+import "./footer.css"
 
 export default function Footer() {
     return (

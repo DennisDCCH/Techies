@@ -1,0 +1,59 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 25px;
+    background-color: #37822B; 
+    height: 120px;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center; 
+    gap: 24px;
+}
+
+.nav-logo_name {
+    color: #FFFFFF;
+    font-size: 85px;
+    text-shadow: 7px 7px 5px #2c2c2c;
+    font-family: 'Source Serif Pro';
+    font-weight: 700;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+
+
+.nav-button-login, .nav-button-register {
+    width: 142px; 
+    height: 65px; 
+    font-size: 32px;
+    font-family: 'Source Serif Pro';
+    border: none;
+    text-align: center;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.nav-button-register {
+    background-color: #4FA94D;
+}
+
+.nav-button-register-link{
+    color: white;  
+    text-decoration: none;
+}
+
+.nav-button-login {
+    background-color: #FFFFFF;
+    color: #4FA94D;   
+}
+
+.nav-button-register-login{
+    color: #4FA94D;  
+    text-decoration: none;
+}

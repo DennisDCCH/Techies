@@ -1,0 +1,29 @@
+footer {
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 25px;
+    background-color: #37822B; 
+    height: 15px;
+    align-items: center;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+    gap: 20px; 
+
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family: 'Palanquin';
+    font-weight: 700;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    margin-right: 60px;
+    gap: 20px; 
+}

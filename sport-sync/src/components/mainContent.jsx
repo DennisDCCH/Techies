@@ -2,6 +2,7 @@ import React from "react"
 import SPORTS from "../images/sports.png"
 import TAXILOGO from "../images/taxi-logo.png"
 import COACHLOGO from "../images/coach-logo.png"
+import "./mainContent.css"
 
 export default function MainContent() {
     return (
