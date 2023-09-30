@@ -13,17 +13,20 @@ export default function loginUI() {
     }
 
     return (
-        <div>
-            <form onSubmit = {handleSubmit}>
-                <label htmlFor = "username">Username</label>
-                <input value = {username} onChange = {(e) => setUsername(e.target.value)} type = "username" placeholder = "Username" />
-                <label htmlFor = "password">Password</label>
-                <input value = {password} onChange = {(e) => setPassword(e.target.value)} type = "password" placeholder = "Password" />
-                <button type = "submit">Log In</button>
+        <div className = "loginUI">
+            <form className = "login-form" onSubmit = {handleSubmit}>
+                <h1 className = "login-form-text">Log-in</h1>
+                <div className = "login-form-username">
+                    <label className = "login-form-username-text" htmlFor = "username">Username</label>
+                    <input className = "login-form-username-box" value = {username} onChange = {(e) => setUsername(e.target.value)} type = "username" />
+                </div>
+                <div className = "login-form-password">
+                    <label className = "login-form-password-text" htmlFor = "password">Password</label>
+                    <input className = "login-form-password-box" value = {password} onChange = {(e) => setPassword(e.target.value)} type = "password" />
+                </div>
+                <Link className = "login-to-register" to = "/registration">Don't have an account? Register here!</Link>
+                <button className = "login-button" type = "submit">Log in</button>
             </form>
-            <button>
-                <Link to = "/register">Don't have an account? Register here!</Link>
-            </button>
         </div>
   )
 }

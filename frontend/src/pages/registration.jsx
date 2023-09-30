@@ -1,7 +1,10 @@
 import React from "react"
+import RegisterUI from "../components/registerUI"
 
 export default function Registration() {
     return (
-        <h1>Registration Page</h1>
+        <div>
+            <RegisterUI />
+        </div>
     )
 }
