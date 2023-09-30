@@ -1,0 +1,100 @@
+.registerUI {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    width: 903px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form-text {
+    color: #37822B;
+    font-family: 'Source Serif Pro';
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+.register-form-name, .register-form-miscellaneous {
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-form-firstname, 
+.register-form-lastname,
+.register-form-email,
+.register-form-username,
+.register-form-password,
+.register-form-password2,
+.register-form-gender,
+.register-form-age {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.register-form-firstname, .register-form-gender {
+    margin-right: 10px;
+}
+
+.register-form-firstname-box, 
+.register-form-lastname-box, 
+.register-form-gender-option, 
+.register-form-age-box {
+    width: 283px;
+    height: 51px;
+    border: solid #9D8D8D;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.register-form-email-box, 
+.register-form-username-box, 
+.register-form-password-box, 
+.register-form-password2-box {
+    width: 608px;
+    height: 51px;
+    border: solid #9D8D8D;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.register-form-firstname-text,
+.register-form-lastname-text,
+.register-form-email-text,
+.register-form-username-text,
+.register-form-password-text,
+.register-form-password2-text,
+.register-form-gender-text,
+.register-form-age-text {
+    color: #9D8D8D;
+    font-family: 'Source Serif Pro';
+    font-size: 20px;
+}
+
+.register-to-login {
+    color: #37822B;
+    font-family: 'Source Serif Pro';
+    font-size: 20px;
+    text-decoration: none;
+    margin-top: 30px;
+}
+
+.register-button {
+    width: 608px;
+    height: 51px;
+    border: none;
+    background: #37822B;
+    border-radius: 10px;
+    font-family: 'Source Serif Pro';
+    color: white;
+    font-size: 20px;
+}
