@@ -1,6 +1,11 @@
+.login-background {
+    height: 100%;
+}
+
 .loginUI {
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
+    background-color: white;
     width: 903px;
     position: fixed;
     top: 0;
@@ -55,6 +60,7 @@
     font-family: 'Source Serif Pro';
     font-size: 20px;
     text-decoration: none;
+    margin-bottom: 10px;
 }
 
 .login-button {
@@ -65,5 +71,6 @@
     border-radius: 10px;
     font-family: 'Source Serif Pro';
     color: white;
-    font-size: 20px;
+    font-size: 28px;
+    font-weight: 600;
 }
