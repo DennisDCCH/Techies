@@ -54,8 +54,8 @@ export default function RegisterUI() {
                         <input className = "register-form-password-box" value = {password} onChange = {(e) => setPassword(e.target.value)} type = "password" />
                     </div>
                     <div className = "register-form-password2">
-                        <label className = "register-form-password2-text" htmlFor = "password2">Re-enter Password</label>
-                        <input className = "register-form-password2-box" value = {password2} onChange = {(e) => setPassword2(e.target.value)} type = "password2" />
+                        <label className = "register-form-password2-text" htmlFor = "password">Re-enter Password</label>
+                        <input className = "register-form-password2-box" value = {password2} onChange = {(e) => setPassword2(e.target.value)} type = "password" />
                     </div>
                     <div className = "register-form-miscellaneous">
                         <div className = "register-form-gender">
