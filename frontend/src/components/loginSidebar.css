@@ -11,10 +11,11 @@
     font-family: Cookie;
     color: white;
     font-size: 60px;
-    margin-left: 200px;
+    margin-left: 20px;
 }
 
 .login-sidebar-image {
-    margin-top: 58px;
-    margin-left: 100px;
+    margin-top: 40px;
+    margin-left: 0px;
+    padding-left: 0px;
 }
