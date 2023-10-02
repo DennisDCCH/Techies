@@ -33,14 +33,14 @@ export default function RegisterUI() {
                     <h1 className = "register-form-text">Register</h1>
                     <div className = "register-form-name">
                         <div className = "register-form-firstname">
-                                <label className = "register-form-firstname-text" htmlFor = "firstname">Firstname</label>
+                                <label className = "register-form-firstname-text" htmlFor = "firstname">First Name</label>
                                 <input className = "register-form-firstname-box" value = {firstname} onChange = {(e) => setFirstname(e.target.value)} type = "firstname" />
                         </div>
                         <div className = "register-form-lastname">
-                                <label className = "register-form-lastname-text" htmlFor = "lastname">Lastname</label>
+                                <label className = "register-form-lastname-text" htmlFor = "lastname">Last Name</label>
                                 <input className = "register-form-lastname-box" value = {lastname} onChange = {(e) => setLastname(e.target.value)} type = "lastname" />
                         </div>
-                    </div> 
+                    </div>
                     <div className = "register-form-email">
                         <label className = "register-form-email-text" htmlFor = "email">Email</label>
                         <input className = "register-form-email-box" value = {email} onChange = {(e) => setEmail(e.target.value)} type = "email" />
@@ -70,13 +70,13 @@ export default function RegisterUI() {
                         <div className = "register-form-age">
                             <label className = "register-form-age-text" htmlFor = "age">Age</label>
                             <input className = "register-form-age-box" value = {age} onChange = {(e) => setAge(e.target.value)} type = "age" />
-                        </div> 
+                        </div>
                     </div>
                     <Link className = "register-to-login" to = "/login">Already have an account? Login here!</Link>
                     <button className = "register-button" type = "submit">Register New Account</button>
                 </form>
             </div>
         </div>
-        
+
   )
 }
