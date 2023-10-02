@@ -4,13 +4,13 @@
     background-color: #37822B;
     background-image: url("../images/Vector.png");
     background-size: cover;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-attachment: fixed;
     bottom: 0;
 }
 
 .register-feature {
-    margin-left: 100px;
+    margin-left: 0px;
     align-items: center;
 }
 
@@ -18,10 +18,11 @@
     font-family: Cookie;
     color: white;
     font-size: 60px;
-    margin-left: 100px;
+    margin-left: 15px; 
 }
 
 .register-sidebar-image {
-    width: 653px;
-    height: 586px;
+    width: 50%;
+    height: 100%;
+    margin-left: 0px;
 }
