@@ -26,7 +26,7 @@ export default function RegisterUI() {
     }
 
     return (
-        <div>
+        <div className = "register-background">
             <RegisterSidebar />
             <div className = "registerUI">
                 <form className = "register-form" onSubmit = {handleSubmit}>

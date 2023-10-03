@@ -1,12 +1,6 @@
 .register-sidebar {
     padding-top: 30px;
     padding-left: 30px;
-    background-color: #37822B;
-    background-image: url("../images/Vector.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    bottom: 0;
 }
 
 .register-feature {

@@ -1,5 +1,9 @@
 .login-background {
-    height: 100%;
+    min-height: 100vh;
+    background-color: #37822B;
+    background-image: url("../images/Vector.png"); 
+    background-repeat: repeat-y; 
+    background-size: cover; 
 }
 
 .loginUI {
