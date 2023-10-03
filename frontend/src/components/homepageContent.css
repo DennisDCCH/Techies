@@ -47,7 +47,8 @@ body {
     margin-right: 175px;
 }
 
-.main-right-bottom-taxi,
+.main-right-bottom-map,
+.main-right-bottom-chat,
 .main-right-bottom-coach {
     margin-top: 50px;
     margin-left: 70px;
@@ -56,5 +57,5 @@ body {
     font-family: 'Source Serif Pro';
     font-weight: 600;
     align-items: center;
-    text-align: center;
+    text-align: center;    
 }

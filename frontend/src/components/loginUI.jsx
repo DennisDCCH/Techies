@@ -28,7 +28,9 @@ export default function loginUI() {
                         <input className = "login-form-password-box" value = {password} onChange = {(e) => setPassword(e.target.value)} type = "password" />
                     </div>
                     <Link className = "login-to-register" to = "/registration">Don't have an account? Register here!</Link>
-                    <button className = "login-button" type = "submit">Log in</button>
+                    <button className = "login-button" type = "submit">
+                        <Link className = "login-link" to = "/homepage">Log in</Link>
+                    </button>
                 </form>
             </div>
         </div> 

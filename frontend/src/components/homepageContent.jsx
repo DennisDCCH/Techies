@@ -1,7 +1,8 @@
 import React from "react"
 import SPORTS from "../images/sports.png"
-import TAXILOGO from "../images/taxi-logo.png"
 import COACHLOGO from "../images/coach-logo.png"
+import CHATLOGO from "../images/chat-logo.png"
+import MAPLOGO from "../images/map-logo.png"
 import "./homepageContent.css"
 
 export default function HomepageContent() {
@@ -27,13 +28,17 @@ export default function HomepageContent() {
                     <img src = {SPORTS} width = "751px" height = "445px" />
                 </div>
                 <div className = "main-right-bottom">
-                    <div className = "main-right-bottom-taxi">
-                        <img src = {TAXILOGO} width = "150px" height = "150px" />
-                        <p>Taxi</p>
-                    </div>
                     <div className = "main-right-bottom-coach">
                         <img src = {COACHLOGO} width = "150px" height = "150px" />
                         <p>Coaches</p>
+                    </div>
+                    <div className = "main-right-bottom-map">
+                        <img src = {MAPLOGO} width = "150px" height = "150px" />
+                        <p>Taxi</p>
+                    </div>
+                    <div className = "main-right-bottom-chat">
+                        <img src = {CHATLOGO} width = "150px" height = "150px" />
+                        <p>Taxi</p>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,11 @@
+.login-link {
+    text-decoration: none;
+    font-family: 'Source Serif Pro';
+    color: white;
+    font-size: 28px;
+    font-weight: 600;
+}
+
 .login-background {
     min-height: 100vh;
     background-color: #37822B;
@@ -73,8 +81,4 @@
     border: none;
     background: #37822B;
     border-radius: 10px;
-    font-family: 'Source Serif Pro';
-    color: white;
-    font-size: 28px;
-    font-weight: 600;
 }

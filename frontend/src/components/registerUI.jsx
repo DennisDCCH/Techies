@@ -72,8 +72,10 @@ export default function RegisterUI() {
                             <input className = "register-form-age-box" value = {age} onChange = {(e) => setAge(e.target.value)} type = "age" />
                         </div>
                     </div>
-                    <Link className = "register-to-login" to = "/login">Already have an account? Login here!</Link>
-                    <button className = "register-button" type = "submit">Register New Account</button>
+                    <Link className = "register-to-login" to = "/">Already have an account? Login here!</Link>
+                    <button className = "register-button" type = "submit">
+                        <Link className = "register-link" to = "/">Register New Account</Link>
+                    </button>
                 </form>
             </div>
         </div>
