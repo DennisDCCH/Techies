@@ -1,0 +1,55 @@
+.accountinfo{
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    width: 1026px;
+    padding-left: 180px;
+    padding-top: 163px;
+    font-family: "Source Serif Pro";
+}
+
+.accountinfo-title {
+    font-size: 36px;
+    margin-bottom: 79px; 
+}
+
+.accountinfo-username,
+.accountinfo-email,
+.accountinfo-dob {
+    margin-bottom: 44px;
+    font-size: 20px;
+    color: #9D8D8D;
+}
+.accountinfo-username p,
+.accountinfo-email p,
+.accountinfo-dob p{
+    margin: 0;
+}
+
+.accountinfo-user-username,
+.accountinfo-user-email,
+.accountinfo-user-dob {
+    display: inline-block;
+    width: 608px;
+    height: 51px;
+    padding-left: 10px;
+    line-height: 51px; /* Center the text vertically */
+    border: 2px solid #9D8D8D;
+    border-radius: 10px;
+}
+
+.accountinfo-editprofile-button {
+    width: 200px;
+    height: 51px;
+    background-color: #4FA94D;
+    border: none;
+    border-radius: 10px;
+}
+
+.accountinfo-editprofile-link {
+    text-decoration: none;
+    font-family: "Source Serif Pro";
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+}
