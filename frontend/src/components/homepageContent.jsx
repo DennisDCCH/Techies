@@ -34,11 +34,11 @@ export default function HomepageContent() {
                     </div>
                     <div className = "main-right-bottom-map">
                         <img src = {MAPLOGO} width = "150px" height = "150px" />
-                        <p>Taxi</p>
+                        <p>Map</p>
                     </div>
                     <div className = "main-right-bottom-chat">
                         <img src = {CHATLOGO} width = "150px" height = "150px" />
-                        <p>Taxi</p>
+                        <p>Chat</p>
                     </div>
                 </div>
             </div>
