@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import SPORTS from "../images/sports.png"
 import COACHLOGO from "../images/coach-logo.png"
 import CHATLOGO from "../images/chat-logo.png"
@@ -29,15 +30,21 @@ export default function HomepageContent() {
                 </div>
                 <div className = "main-right-bottom">
                     <div className = "main-right-bottom-coach">
-                        <img src = {COACHLOGO} width = "150px" height = "150px" />
-                        <p>Coaches</p>
+                        <Link to = "/marketplace">
+                            <img src = {COACHLOGO} width = "150px" height = "150px" />
+                        </Link>
+                        <p>Activities</p>
                     </div>
                     <div className = "main-right-bottom-map">
-                        <img src = {MAPLOGO} width = "150px" height = "150px" />
+                        <Link to = "/map">
+                            <img src = {MAPLOGO} width = "150px" height = "150px" />
+                        </Link>
                         <p>Map</p>
                     </div>
                     <div className = "main-right-bottom-chat">
-                        <img src = {CHATLOGO} width = "150px" height = "150px" />
+                        <Link to = "/chat">
+                            <img src = {CHATLOGO} width = "150px" height = "150px" />
+                        </Link>                        
                         <p>Chat</p>
                     </div>
                 </div>

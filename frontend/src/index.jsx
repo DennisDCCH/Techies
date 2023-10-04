@@ -10,13 +10,12 @@ import {
 import Homepage from "./pages/homepage"
 import Registration from "./pages/registration"
 import Login from "./pages/login"
-
+import Profile from "./pages/profile"
+import Marketplace from "./pages/marketplace"
+import Map from "./pages/map"
+import Chat from "./pages/chat"
 
 const router = createBrowserRouter([
-    {
-        path: "/homepage",
-        element: <Homepage />
-    },
     {
         path: "/registration",
         element: <Registration />
@@ -24,7 +23,28 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Login />
+    },
+    {
+        path: "/homepage",
+        element: <Homepage />
+    },
+    {
+        path: "/profile",
+        element: <Profile />
+    },
+    {
+        path: "/marketplace",
+        element: <Marketplace />
+    },
+    {
+        path: "/map",
+        element: <Map />
+    },
+    {
+        path: "/chat",
+        element: <Chat />
     }
+    
 ])
 
 const root = ReactDOM.createRoot(document.getElementById("root"))

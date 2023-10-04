@@ -5,7 +5,7 @@ nav {
     background-color: #37822B; 
     height: 120px;
     align-items: center;
-    width: 100%;
+    max-width: 100%;
 }
 
 .nav-left {

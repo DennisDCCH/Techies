@@ -11,7 +11,7 @@ export default function RegisterUI() {
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [gender, setGender] = useState('')
-    const [age, setAge] = useState('')
+    const [dob, setDob] = useState('')
 
     const handleSubmit = () => {
         e.preventDefault();
@@ -22,7 +22,7 @@ export default function RegisterUI() {
         console.log(password)
         console.log(password2)
         console.log(gender)
-        console.log(age)
+        console.log(dob)
     }
 
     return (
@@ -68,8 +68,8 @@ export default function RegisterUI() {
                             </select>
                         </div>
                         <div className = "register-form-age">
-                            <label className = "register-form-age-text" htmlFor = "age">Age</label>
-                            <input className = "register-form-age-box" value = {age} onChange = {(e) => setAge(e.target.value)} type = "age" />
+                            <label className = "register-form-age-text" htmlFor = "dob">Date of Birth</label>
+                            <input className = "register-form-age-box" value = {dob} onChange = {(e) => setDob(e.target.value)} type = "date"/>
                         </div>
                     </div>
                     <Link className = "register-to-login" to = "/">Already have an account? Login here!</Link>

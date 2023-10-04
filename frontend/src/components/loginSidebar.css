@@ -15,4 +15,6 @@
     margin-top: 40px;
     margin-left: 0px;
     padding-left: 0px;
+    position: relative;
+    z-index: 1;
 }

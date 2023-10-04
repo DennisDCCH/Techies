@@ -14,7 +14,9 @@ export default function Navbar() {
               <h3 className="nav-logo_name">SportSync</h3>
             </div>
             <div className="nav-right">
-                <img src={HUMANLOGO} alt = "human-logo" width = "98px" height = "97px" />
+                <Link className = "nav-profile" to = "/profile">
+                    <img src={HUMANLOGO} alt = "human-logo" width = "98px" height = "97px" />
+                </Link>
                 <button type="button" className="nav-button-logout">
                     <Link className = "nav-button-logout-link" to = "/">Logout</Link>
                 </button>
