@@ -1,6 +1,7 @@
 export default 
     {
         id: 1,
+        userImg: "muchacho.png",
         firstname: "Dennis",
         lastname: "Chen",
         email: "d220005@gmail.com",

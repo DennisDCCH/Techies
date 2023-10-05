@@ -8,13 +8,11 @@
     width: 414px;
     padding-left: 45px;
     padding-top: 88px;
-    padding-bottom: 126px;
-    min-height: 100vh;
+    height: 100vh;
     align-items: flex-start;
     font-family: "Source Serif Pro";
     color: white;
     justify-content: flex-start;
-    overflow-y: hidden;
 }
 
 .sidebar-user-info {
@@ -24,9 +22,11 @@
     margin-bottom: 108px;
 }
 
-.sidebar-user-info-image {
+.sidebar-user-info-pic {
     width: 98px;
     height: 97px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .sidebar-user-info-username {
@@ -51,6 +51,7 @@
 .sidebar-savedlisting,
 .sidebar-bookedlisting,
 .sidebar-logout {
+    margin: 0;
     color: white;
     font-size: 28px;
     text-decoration: none;

@@ -1,4 +1,5 @@
 import React from "react"
+import EMAILLOGO from "../images/email-logo.png"
 import FACEBOOKLOGO from "../images/facebook-logo.png"
 import INSTAGRAMLOGO from "../images/instagram-logo.png"
 import TLOGO from "../images/t-logo.png"
@@ -8,6 +9,7 @@ export default function Footer() {
     return (
         <footer>
             <div className = "footer-left">
+                <img src = {EMAILLOGO} alt = "Email-logo" />
                 <small>sportsync@gmail.com</small>
             </div>
             <div className = "footer-right">

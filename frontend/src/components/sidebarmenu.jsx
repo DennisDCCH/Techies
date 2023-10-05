@@ -6,8 +6,13 @@ export default function Sidebar(props) {
     return (
         <div className = "sidebar-background">
             <div className = "sidebar-user-info"> 
-                {/* Eventually can put images/${props.img}*/}
-                <img className = "sidebar-user-info-pic" src= "images/human-logo.png" alt="Logo" />
+                
+                {/*
+                If can figure out how to upload image
+
+                <img className = "sidebar-user-info-pic" src= {`images/${props.item.userImg}`} alt="Logo" />
+                */}
+                <img className = "sidebar-user-info-pic" src= {`images/human-logo.png`} alt="Logo" />
                 <h1 className = "sidebar-user-info-username">{props.item.username}</h1>
             </div>
             <div className = "sidebar-listing">
