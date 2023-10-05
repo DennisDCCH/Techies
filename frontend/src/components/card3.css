@@ -6,7 +6,7 @@
 
 .card3-title {
     display: flex;
-    width: 627px;
+    width: 461px;
     height: 51px;
     border: 1px solid #37822B;
     border-radius: 10px;
@@ -15,7 +15,24 @@
     font-weight: 600;
     align-items: center;
     padding-left: 12px;
-    margin-right: 43px;
+    margin-right: 72px;
+}
+
+.card3-select-button {
+    width: 120px;
+    height: 51px;
+    background-color: #4FA94D;
+    border: none;
+    border-radius: 10px;
+    font-family: "Source Serif Pro";
+    font-size: 28px;
+    font-weight: 600;
+    margin-right: 37px;
+}
+
+.card3-select-link {
+    color: white;
+    text-decoration: none;
 }
 
 .card3-delete-button {
