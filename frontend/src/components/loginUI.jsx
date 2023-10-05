@@ -12,11 +12,11 @@ export default function loginUI() {
                     <h1 className = "login-form-text">Log-in</h1>
                     <div className = "login-form-username">
                         <label className = "login-form-username-text">Username</label>
-                        <input className = "login-form-username-box" type = "username" name = "username"/>
+                        <input className = "login-form-username-box" type = "username" name = "username" required/>
                     </div>
                     <div className = "login-form-password"> 
                         <label className = "login-form-password-text">Password</label>
-                        <input className = "login-form-password-box" type = "password" name = "password"/>
+                        <input className = "login-form-password-box" type = "password" name = "password" required/>
                     </div>
                     <Link className = "login-to-register" to = "/registration">Don't have an account? Register here!</Link>
                     <button className = "login-button" type = "submit">Log in</button>
