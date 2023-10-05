@@ -1,14 +1,24 @@
 .accountinfo{
     height: 100vh;
     padding-top: 163px;
-    font-family: "Source Serif Pro";
+    /*
+    position: fixed;
+    width: 200px;
+    margin-left: 560px;
+    margin-top: 90px;
+    right: 0; 
     align-items: center;
+    */
+    height: 100vh;
+    font-family: "Source Serif Pro";
+
     padding-left: 180px;
 }
 
 .accountinfo-title {
     font-size: 36px;
-    margin-bottom: 79px; 
+    margin-bottom: 79px;
+    width: 500px;
 }
 
 .accountinfo-username,
