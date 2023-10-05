@@ -1,5 +1,4 @@
 .sidebar-background {
-    position: fixed;
     display: flex;
     flex-direction: column;
     background: #37822B;
@@ -15,6 +14,7 @@
     font-family: "Source Serif Pro";
     color: white;
     justify-content: flex-start;
+    overflow-y: hidden;
 }
 
 .sidebar-user-info {

@@ -1,11 +1,9 @@
 .accountinfo{
-    position: fixed;
-    right: 0;
     height: 100vh;
-    width: 1026px;
-    padding-left: 180px;
     padding-top: 163px;
     font-family: "Source Serif Pro";
+    align-items: center;
+    padding-left: 180px;
 }
 
 .accountinfo-title {
