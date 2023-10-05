@@ -11,12 +11,15 @@ export default function Sidebar(props) {
                 <h1 className = "sidebar-user-info-username">{props.item.username}</h1>
             </div>
             <div className = "sidebar-listing">
-                <Link className = "sidebar-account">Account information</Link>
-                <Link className = "sidebar-mylisting">My Listing</Link>
-                <Link className = "sidebar-savedlisting">Saved Listing</Link>
-                <Link className = "sidebar-bookedlisting">Booked Listing</Link>
+                <Link className = "sidebar-home" to = "/homepage">Home</Link>
+                <Link className = "sidebar-account" to = "/profile">Account information</Link>
+                <Link className = "sidebar-mylisting" to = "/mylisting">My Listing</Link>
+                <Link className = "sidebar-savedlisting" to = "/savedlisting">Saved Listing</Link>
+                <Link className = "sidebar-bookedlisting" to = "/bookedlisting">Booked Listing</Link>
             </div>
-            <Link className = "sidebar-logout" to = "/"><i>Log Out</i></Link>
+            <div className = "sidebar-logout-button">
+                <Link className = "sidebar-logout" to = "/"><i>Log Out</i></Link>
+            </div>
         </div>
     )
 }

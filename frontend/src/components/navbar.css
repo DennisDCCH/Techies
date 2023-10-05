@@ -3,6 +3,9 @@ nav {
     justify-content: space-between;
     padding: 30px 25px;
     background-color: #37822B; 
+    background-image: url(../images/Vector3.png);
+    background-repeat: repeat-x; 
+    background-size: cover; 
     height: 120px;
     align-items: center;
     max-width: 100%;

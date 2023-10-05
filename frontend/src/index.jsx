@@ -14,6 +14,9 @@ import Profile from "./pages/profile"
 import Marketplace from "./pages/marketplace"
 import Map from "./pages/map"
 import Chat from "./pages/chat"
+import MyListing from "./pages/userlisting"
+import SavedListing from "./pages/usersavedlisting"
+import BookedListing from "./pages/userbookedlisting"
 
 const router = createBrowserRouter([
     {
@@ -43,8 +46,19 @@ const router = createBrowserRouter([
     {
         path: "/chat",
         element: <Chat />
+    },
+    {
+        path: "/mylisting",
+        element: <MyListing />
+    },
+    {
+        path: "/savedlisting",
+        element: <SavedListing />
+    },
+    {
+        path: "/bookedlisting",
+        element: <BookedListing />
     }
-    
 ])
 
 const root = ReactDOM.createRoot(document.getElementById("root"))

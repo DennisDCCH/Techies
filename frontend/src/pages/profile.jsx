@@ -1,4 +1,5 @@
 import React from "react"
+/* temp data */
 import data from "../data/user.js"
 import Sidebar from "../components/sidebarmenu.jsx"
 import AccountInfo from "../components/accountinfo.jsx"

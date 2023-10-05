@@ -10,8 +10,10 @@ export default function Navbar() {
     return (
         <nav>
             <div className="nav-left">
-              <img src={SPORTSYNCLOGO} alt = "sportsync-logo" width = "141px" />
-              <h3 className="nav-logo_name">SportSync</h3>
+                <Link className = "nav-home" to = "/homepage">
+                    <img src={SPORTSYNCLOGO} alt = "sportsync-logo" width = "141px" />
+                </Link>
+                <h3 className="nav-logo_name">SportSync</h3>
             </div>
             <div className="nav-right">
                 <Link className = "nav-profile" to = "/profile">

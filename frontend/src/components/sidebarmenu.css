@@ -43,6 +43,12 @@
     gap: 25px;
 }
 
+.sidebar-listing a:hover,
+.sidebar-logout-button a:hover {
+    color: black;
+}
+
+.sidebar-home,
 .sidebar-account,
 .sidebar-mylisting,
 .sidebar-savedlisting,
@@ -52,4 +58,6 @@
     font-size: 28px;
     text-decoration: none;
 }
+
+
 
