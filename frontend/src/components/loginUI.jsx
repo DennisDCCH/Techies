@@ -1,38 +1,40 @@
-import React , { useState } from "react"
-import { Link } from "react-router-dom"
+import React from "react"
+import { Link, Form, redirect } from "react-router-dom"
 import LoginSidebar from "./loginSidebar"
 import "./loginUI.css"
 
 export default function loginUI() {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-
-    const handleSubmit = () => {
-        e.preventDefault();
-        console.log(username)
-        console.log(password)
-    }
-
     return (
         <div className = "login-background"> 
-            <LoginSidebar />
+            <LoginSidebar /> 
             <div className = "loginUI">
-                <form className = "login-form" onSubmit = {handleSubmit}>
+                <Form className = "login-form" method = "post" action = "/">
                     <h1 className = "login-form-text">Log-in</h1>
                     <div className = "login-form-username">
-                        <label className = "login-form-username-text" htmlFor = "username">Username</label>
-                        <input className = "login-form-username-box" value = {username} onChange = {(e) => setUsername(e.target.value)} type = "username" />
+                        <label className = "login-form-username-text">Username</label>
+                        <input className = "login-form-username-box" type = "username" name = "username"/>
                     </div>
-                    <div className = "login-form-password">
-                        <label className = "login-form-password-text" htmlFor = "password">Password</label>
-                        <input className = "login-form-password-box" value = {password} onChange = {(e) => setPassword(e.target.value)} type = "password" />
+                    <div className = "login-form-password"> 
+                        <label className = "login-form-password-text">Password</label>
+                        <input className = "login-form-password-box" type = "password" name = "password"/>
                     </div>
                     <Link className = "login-to-register" to = "/registration">Don't have an account? Register here!</Link>
-                    <button className = "login-button" type = "submit">
-                        <Link className = "login-link" to = "/homepage">Log in</Link>
-                    </button>
-                </form>
+                    <button className = "login-button" type = "submit">Log in</button>
+                </Form>
             </div>
         </div> 
   )
+}
+
+export const loginAction = async ({ request }) => {
+    const data = await request.formData()
+
+    const submission = {
+        username: data.get("username"),
+        password: data.get("password")
+    }
+
+    // send to backend submission to check username and password
+
+    return redirect("/homepage")
 }

@@ -18,6 +18,9 @@ import MyListing from "./pages/userlisting"
 import SavedListing from "./pages/usersavedlisting"
 import BookedListing from "./pages/userbookedlisting"
 
+//function
+import { loginAction } from "./components/loginUI"
+
 const router = createBrowserRouter([
     {
         path: "/registration",
@@ -25,7 +28,8 @@ const router = createBrowserRouter([
     },
     {
         path: "/",
-        element: <Login />
+        element: <Login />,
+        action: loginAction,
     },
     {
         path: "/homepage",
