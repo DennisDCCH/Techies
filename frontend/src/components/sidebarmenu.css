@@ -1,7 +1,4 @@
 .sidebar-background {
-    /*
-    position: fixed;
-    */
     display: flex;
     flex-direction: column;
     background: #37822B;
