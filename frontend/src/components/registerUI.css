@@ -104,13 +104,16 @@
     border: none;
     background: #37822B;
     border-radius: 10px;
-    
-}
-
-.register-link {
     font-family: 'Source Serif Pro';
     color: white;
     font-size: 28px;
     font-weight: 600;
     text-decoration: none;
+}
+
+.register-error{
+    font-family: 'Source Serif Pro';
+    font-size: 28px;
+    font-weight: bold;
+    color: red;
 }

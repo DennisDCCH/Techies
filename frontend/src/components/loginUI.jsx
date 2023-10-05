@@ -34,6 +34,8 @@ export const loginAction = async ({ request }) => {
         password: data.get("password")
     }
 
+    console.log(submission)
+
     // send to backend submission to check username and password
 
     return redirect("/homepage")

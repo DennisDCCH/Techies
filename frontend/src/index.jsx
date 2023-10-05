@@ -18,13 +18,15 @@ import MyListing from "./pages/userlisting"
 import SavedListing from "./pages/usersavedlisting"
 import BookedListing from "./pages/userbookedlisting"
 
-//function
+//actions
 import { loginAction } from "./components/loginUI"
+import { registerAction } from "./components/registerUI"
 
 const router = createBrowserRouter([
     {
         path: "/registration",
-        element: <Registration />
+        element: <Registration />,
+        action: registerAction,
     },
     {
         path: "/",
