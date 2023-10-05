@@ -1,3 +1,22 @@
 .bookedlisting-container{
     display: flex;
 }
+
+.bookedlisting {
+    padding-top: 114px;
+    padding-left: 155px;
+}
+
+.bookedlisting-title {
+    margin: 0;
+    font-family: "Source Serif Pro";
+    font-size: 40px;
+    font-weight: 600;
+    color: #37822B;
+}
+
+.bookedlisting-list {
+    height: 500px;
+    overflow-y: auto;
+    margin-bottom: 93px;
+}

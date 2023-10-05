@@ -59,6 +59,7 @@ export default function RegisterUI() {
                     {data && data.error && <p className = "register-error">{data.error}</p>}
 
                     {/* To do for fun if got time -Dennis
+                    https://www.youtube.com/watch?v=AF6vGYIyV8M&ab_channel=GreatStack
                     {data && data.error && <Popup message = {data.error}/>}
                     */}
                 </Form>

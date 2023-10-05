@@ -17,6 +17,7 @@ import Chat from "./pages/chat"
 import MyListing from "./pages/userlisting"
 import SavedListing from "./pages/usersavedlisting"
 import BookedListing from "./pages/userbookedlisting"
+import Listing from "./pages/listing"
 
 //actions
 import { loginAction } from "./components/loginUI"
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
     {
         path: "/bookedlisting",
         element: <BookedListing />
+    },
+    {
+        path: "/listing",
+        element: <Listing />
     }
 ])
 

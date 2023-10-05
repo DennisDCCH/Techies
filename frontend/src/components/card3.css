@@ -1,0 +1,33 @@
+.card3{
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.card3-title {
+    display: flex;
+    width: 627px;
+    height: 51px;
+    border: 1px solid #37822B;
+    border-radius: 10px;
+    font-family: "Source Serif Pro";
+    font-size: 32px;
+    font-weight: 600;
+    align-items: center;
+    padding-left: 12px;
+    margin-right: 43px;
+}
+
+.card3-delete-button {
+    width: 120px;
+    height: 51px;
+    background-color: #4FA94D;
+    border: none;
+    border-radius: 10px;
+    font-family: "Source Serif Pro";
+    font-size: 28px;
+    font-weight: 600;
+    margin-right: 37px;
+    color: white;
+    text-decoration: none;
+}
