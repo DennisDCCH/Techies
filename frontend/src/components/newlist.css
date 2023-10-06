@@ -5,8 +5,21 @@
     color: #37822B;
 }
 
+.create-form-info {
+    display: flex;
+    gap: 28px;
+}
+
 .create-form-price,
-.create-form-location,
+.create-form-location {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 38px;
+    color: #9D8D8D;
+    font-family: 'Source Serif Pro';
+    font-size: 20px;
+}
+
 .create-form-datetime,
 .create-form-sport,
 .create-form-proficiency,
@@ -20,7 +33,15 @@
 }
 
 .create-form-price-input,
-.create-form-location-input,
+.create-form-location-input {
+    width: 276px;
+    height: 51px;
+    border: solid #9D8D8D;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
 .create-form-sport-input,
 .create-form-datetime-input {
     width: 598px;
@@ -49,6 +70,48 @@
     vertical-align: top;
     white-space: pre-line;
     padding-left: 10px;
+}
+
+.create-form-text {
+    margin: 0;
+    color: #9D8D8D;
+    font-family: 'Source Serif Pro';
+    font-size: 20px;
+    margin-bottom: -10px;
+}
+
+.create-form-file {
+    margin-top: 24px;
+    margin-bottom: 65px;
+}
+
+.create-form-file-text {
+    margin-left: 17px;
+    margin-right: 14px;
+    margin-bottom: 38px;
+    color: #9D8D8D;
+    font-family: 'Source Serif Pro';
+    font-size: 20px;
+}
+
+.create-form-file-label{
+    width: 120px;
+    height: 30px;
+    display: inline-block;
+    background-color: white;
+    border-radius: 10px;
+    color: #4FA94D;
+    font-family: 'Source Serif Pro';
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    box-shadow: 0px 2px 5px #5A5A5A;
+    padding-top: 5px;
+}
+
+input[type = "file"] {
+    display: none;
 }
 
 .create-form-button {

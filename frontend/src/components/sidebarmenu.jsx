@@ -21,6 +21,7 @@ export default function Sidebar(props) {
                 <Link className = "sidebar-mylisting" to = "/mylisting">My Listing</Link>
                 <Link className = "sidebar-savedlisting" to = "/savedlisting">Saved Listing</Link>
                 <Link className = "sidebar-bookedlisting" to = "/bookedlisting">Booked Listing</Link>
+                <Link className = "sidebar-changepw" to = "/">Change Password</Link>
             </div>
             <div className = "sidebar-logout-button">
                 <Link className = "sidebar-logout" to = "/"><i>Log Out</i></Link>

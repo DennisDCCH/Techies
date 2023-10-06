@@ -37,7 +37,7 @@
 .sidebar-listing {
     display: flex;
     flex-direction: column;
-    margin-bottom: 300px;
+    margin-bottom: 200px;
     gap: 25px;
 }
 
@@ -51,6 +51,7 @@
 .sidebar-mylisting,
 .sidebar-savedlisting,
 .sidebar-bookedlisting,
+.sidebar-changepw,
 .sidebar-logout {
     margin: 0;
     color: white;

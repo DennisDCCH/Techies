@@ -11,7 +11,9 @@ export const registerAction = async ({ request }) => {
         password: data.get("password"),
         password2: data.get("password2"),
         gender: data.get("gender"),
-        dob: data.get("dob")
+        dob: data.get("dob"),
+        userImg: undefined,
+        description: undefined,
     }
 
     //password checker function can be done here or call another function
@@ -22,5 +24,5 @@ export const registerAction = async ({ request }) => {
 
     console.log(submission)
 
-    return {success: "Your have successfully registered. Thank!" && redirect("/")}
+    return  redirect("/")
 }

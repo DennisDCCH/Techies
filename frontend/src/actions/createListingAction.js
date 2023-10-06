@@ -9,7 +9,8 @@ export const createListingAction = async ({ request }) => {
         datetime: data.get("datetime"),
         sport: data.get("sport"),
         proficiency: data.get("proficiency"),
-        description: data.get("description")
+        description: data.get("description"),
+        coverImg: data.get("file")
     }
 
     //submit new listing to backend
