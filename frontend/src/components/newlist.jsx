@@ -10,7 +10,7 @@ export default function NewListing() {
                 <section className = "create-form-inputs">
                     <div className = "create-form-price">
                         <label className = "create-form-price-label">Price</label>
-                        <input className = "create-form-price-input" type = "text" name = "price" required/>
+                        <input className = "create-form-price-input" type = "text" name = "price" placeholder = "$50/hr" required/>
                     </div>
                     <div className = "create-form-location">
                         <label className = "create-form-location-label">Location</label>
@@ -18,7 +18,7 @@ export default function NewListing() {
                     </div>
                     <div className = "create-form-datetime">
                         <label className = "create-form-datetime-label">Date and Time</label>
-                        <input className = "create-form-datetime-input" type = "datetime-local" name = "datetime" required/>
+                        <input className = "create-form-datetime-input" type = "text" name = "datetime" placeholder = "Tuesday, 5-7pm" required/>
                     </div>
                     <div className = "create-form-sport">
                         <label className = "create-form-sport-label">Sport</label>

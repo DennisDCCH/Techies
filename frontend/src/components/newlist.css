@@ -21,28 +21,23 @@
 
 .create-form-price-input,
 .create-form-location-input,
-.create-form-sport-input {
+.create-form-sport-input,
+.create-form-datetime-input {
     width: 598px;
     height: 51px;
     border: solid #9D8D8D;
     border-radius: 10px;
     font-size: 20px;
-}
-
-.create-form-datetime-input {
-    width: 601px;
-    height: 51px;
-    border: solid #9D8D8D;
-    border-radius: 10px;
-    font-size: 20px;
+    padding-left: 10px;
 }
 
 .create-form-proficiency-option {
-    width: 608px;
+    width: 615px;
     height: 51px;
     border: solid #9D8D8D;
     border-radius: 10px;
     font-size: 20px;
+    padding-left: 10px;
 }
 
 .create-form-description-input {
@@ -53,6 +48,7 @@
     font-size: 20px;
     vertical-align: top;
     white-space: pre-line;
+    padding-left: 10px;
 }
 
 .create-form-button {
