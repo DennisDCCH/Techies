@@ -10,7 +10,7 @@ export default function Marketplace() {
     const cards = data.map (item => {
         return (
             <Card
-                id = {item.id}
+                key = {item.id}
                 item = {item}
             />
         )

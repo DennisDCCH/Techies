@@ -9,11 +9,11 @@ export default function Profile() {
     return (
         <div className = "profile-container">
             <Sidebar 
-                id = {data.id}
+                key = {data.id}
                 item = {data}
             />
             <AccountInfo
-                id = {data.id}
+                key = {data.id}
                 item = {data}
             />
         </div>

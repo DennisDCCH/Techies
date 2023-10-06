@@ -17,7 +17,7 @@ export default function MyListing() {
     const cards = listing.map (item => {
         return (
             <Card2
-                id = {item.id}
+                key = {item.id}
                 item = {item}
             />
         )
@@ -35,7 +35,7 @@ export default function MyListing() {
                     {cards}
                 </section>
                 <button className = "mylisting-newlist-button">
-                    <Link className = "mylisting-newlist-link" to = "/">Create New Listing</Link>
+                    <Link className = "mylisting-newlist-link" to = "/create">Create New Listing</Link>
                 </button>
             </div>
         </div>

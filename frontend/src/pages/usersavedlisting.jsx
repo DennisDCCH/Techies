@@ -15,7 +15,7 @@ export default function SavedListing() {
     const cards = listing.map (item => {
         return (
             <Card3
-                id = {item.id}
+                key = {item.id}
                 item = {item}
             />
         )

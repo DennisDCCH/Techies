@@ -1,0 +1,68 @@
+.create-form-title {
+    font-family: "Source Serif Pro";
+    font-size: 40px;
+    font-weight: 600;
+    color: #37822B;
+}
+
+.create-form-price,
+.create-form-location,
+.create-form-datetime,
+.create-form-sport,
+.create-form-proficiency,
+.create-form-description {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 38px;
+    color: #9D8D8D;
+    font-family: 'Source Serif Pro';
+    font-size: 20px;
+}
+
+.create-form-price-input,
+.create-form-location-input,
+.create-form-sport-input {
+    width: 598px;
+    height: 51px;
+    border: solid #9D8D8D;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.create-form-datetime-input {
+    width: 601px;
+    height: 51px;
+    border: solid #9D8D8D;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.create-form-proficiency-option {
+    width: 608px;
+    height: 51px;
+    border: solid #9D8D8D;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.create-form-description-input {
+    width: 598px;
+    height: 129px;
+    border: solid #9D8D8D;
+    border-radius: 10px;
+    font-size: 20px;
+    vertical-align: top;
+    white-space: pre-line;
+}
+
+.create-form-button {
+    width: 608px;
+    height: 51px;
+    background-color: #4FA94D;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Source Serif Pro';
+    font-size: 28px;
+    font-weight: 600;
+}

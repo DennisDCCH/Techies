@@ -3,8 +3,8 @@
 }
 
 .bookedlisting {
-    padding-top: 114px;
-    padding-left: 155px;
+    margin-top: 110px;
+    margin-left: 569px;
 }
 
 .bookedlisting-title {
@@ -19,4 +19,8 @@
     height: 500px;
     overflow-y: auto;
     margin-bottom: 93px;
+}
+
+.bookedlisting-list::-webkit-scrollbar{
+    display: none;
 }

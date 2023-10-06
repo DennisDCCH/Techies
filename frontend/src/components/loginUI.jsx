@@ -12,7 +12,7 @@ export default function loginUI() {
                     <h1 className = "login-form-text">Log-in</h1>
                     <div className = "login-form-username">
                         <label className = "login-form-username-text">Username</label>
-                        <input className = "login-form-username-box" type = "username" name = "username" required/>
+                        <input className = "login-form-username-box" type = "text" name = "username" required/>
                     </div>
                     <div className = "login-form-password"> 
                         <label className = "login-form-password-text">Password</label>
@@ -24,19 +24,4 @@ export default function loginUI() {
             </div>
         </div> 
   )
-}
-
-export const loginAction = async ({ request }) => {
-    const data = await request.formData()
-
-    const submission = {
-        username: data.get("username"),
-        password: data.get("password")
-    }
-
-    console.log(submission)
-
-    // send to backend submission to check username and password
-
-    return redirect("/homepage")
 }

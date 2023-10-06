@@ -15,11 +15,11 @@ export default function RegisterUI() {
                     <div className = "register-form-name">
                         <div className = "register-form-firstname">
                                 <label className = "register-form-firstname-text">First Name</label>
-                                <input className = "register-form-firstname-box" type = "firstname" name = "firstname" required/>
+                                <input className = "register-form-firstname-box" type = "text" name = "firstname" required/>
                         </div>
                         <div className = "register-form-lastname">
                                 <label className = "register-form-lastname-text">Last Name</label>
-                                <input className = "register-form-lastname-box" type = "lastname" name = "lastname" required/>
+                                <input className = "register-form-lastname-box" type = "text" name = "lastname" required/>
                         </div>
                     </div>
                     <div className = "register-form-email">
@@ -28,7 +28,7 @@ export default function RegisterUI() {
                     </div>
                     <div className = "register-form-username">
                         <label className = "register-form-username-text">Username</label>
-                        <input className = "register-form-username-box" type = "username" name = "username" required/>
+                        <input className = "register-form-username-box" type = "text" name = "username" required/>
                     </div>
                     <div className = "register-form-password">
                         <label className = "register-form-password-text">Password</label>
@@ -67,29 +67,4 @@ export default function RegisterUI() {
         </div>
 
   )
-}
-
-export const registerAction = async ({ request }) => {
-    const data = await request.formData()
-
-    const submission = {
-        firstname: data.get("firstname"),
-        lastname: data.get("lastname"),
-        email: data.get("email"),
-        username: data.get("username"),
-        password: data.get("password"),
-        password2: data.get("password2"),
-        gender: data.get("gender"),
-        dob: data.get("dob")
-    }
-
-    //password checker function can be done here or call another function
-
-    if(submission.password != submission.password2){
-        return {error: "ERROR: Password is not the same"}
-    }
-
-    console.log(submission)
-
-    return {success: "Your have successfully registered. Thank!" && redirect("/")}
 }
