@@ -1,10 +1,12 @@
-import React from "react"
-import { GoogleMap, useLoadScript } from "@react-google-maps/api"
+import React, { useMemo } from "react"
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
+
+import data from "../data/user"
+
+import MapSidebar from "../components/mapSidebar"
 import "./map.css"
 
-const center = {
-    lat: 1.342792,
-    lng: 103.682346}
+const center = {lat: 1.3521,lng: 103.8198}
 
 export default function Map() {
     const { isLoaded } = useLoadScript({
@@ -14,15 +16,19 @@ export default function Map() {
     if (!isLoaded) return <div>Loading...</div>
 
     return (
-        <div>
-            <h1>Loaded</h1>
-            <GoogleMap
-                zoom = {20}
-                center = {center}
-                mapContainerClassName="map-container"
-            >
-
-            </GoogleMap>
+        <div className = "map-page-container">
+            <MapSidebar
+                item = {data}
+            />
+            <div className = "map-container">
+                <GoogleMap
+                    zoom = {15}
+                    center = {center}
+                    mapContainerClassName="map-size"
+                >
+                    <Marker position = {center}/>
+                </GoogleMap>
+            </div>
         </div>
     )
 }
