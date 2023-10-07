@@ -21,6 +21,7 @@ import Listing from "./pages/listing"
 import CreateListing from "./pages/createlisting"
 import ChangePassword from "./pages/changepassword"
 import EditProfile from "./pages/editprofile"
+import EditListing from "./pages/editlisting"
 
 //actions
 import { loginAction } from "./actions/loginAction"
@@ -28,8 +29,7 @@ import { registerAction } from "./actions/registerAction"
 import { createListingAction } from "./actions/createListingAction"
 import { changePwAction } from "./actions/changePwAction"
 import { editProfileAction } from "./actions/editProfileAction"
-
-
+import { editListAction } from "./actions/editListAction"
 
 const router = createBrowserRouter([
     {
@@ -92,6 +92,11 @@ const router = createBrowserRouter([
         path: "/edit-profile",
         element: <EditProfile />,
         action: editProfileAction,
+    },
+    {
+        path: "/edit-listing",
+        element: <EditListing />,
+        action: editListAction,
     }
 ])
 

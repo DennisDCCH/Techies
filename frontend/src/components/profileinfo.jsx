@@ -15,7 +15,7 @@ export default function ProfileInfo(props) {
                 </div>
                 <div className = "profileinfo-form-email">
                     <label className = "profileinfo-form-email-label">Email</label>
-                    <input className = "profileinfo-form-email-input" type = "text" name = "email" defaultValue = {props.item.email} />
+                    <input className = "profileinfo-form-email-input" type = "email" name = "email" defaultValue = {props.item.email} />
                 </div>
                 <div className = "profileinfo-form-dob">
                     <label className = "profileinfo-form-dob-label">Date of Birth</label>
