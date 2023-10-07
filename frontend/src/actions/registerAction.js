@@ -16,11 +16,24 @@ export const registerAction = async ({ request }) => {
         bio: undefined,
     }
 
-    //password checker function can be done here or call another function
+    //username checker function
+    function checkUsernameExist(){
 
-    if(submission.password != submission.password2){
-        return {error: "ERROR: Password is not the same"}
     }
+
+    //password checker function 
+    function checkPassRequirement(pass1, pass2){
+        if (pass1 != pass2)
+            console.log("ERROR: Password is not the same")
+        else if (pass1.length < 8 || 
+                !(/\d/.test(pass1)) || 
+                !(/[A-Z]/.test(pass1)) || 
+                !(/[a-z]/.test(pass1)) || 
+                !(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(pass1)))
+            console.log("ERROR: Password must be at least 8 characters long and a combination of uppercase letters, lowercase letters, numbers, and special charcters")
+    }
+
+    checkPassRequirement(submission.password, submission.password2);
 
     console.log(submission)
 
