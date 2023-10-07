@@ -20,12 +20,15 @@ import BookedListing from "./pages/userbookedlisting"
 import Listing from "./pages/listing"
 import CreateListing from "./pages/createlisting"
 import ChangePassword from "./pages/changepassword"
+import EditProfile from "./pages/editprofile"
 
 //actions
 import { loginAction } from "./actions/loginAction"
 import { registerAction } from "./actions/registerAction"
 import { createListingAction } from "./actions/createListingAction"
 import { changePwAction } from "./actions/changePwAction"
+import { editProfileAction } from "./actions/editProfileAction"
+
 
 
 const router = createBrowserRouter([
@@ -84,6 +87,11 @@ const router = createBrowserRouter([
         path: "/change-password",
         element: <ChangePassword />,
         action: changePwAction
+    },
+    {
+        path: "/edit-profile",
+        element: <EditProfile />,
+        action: editProfileAction,
     }
 ])
 

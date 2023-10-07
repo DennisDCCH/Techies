@@ -13,7 +13,7 @@ export const registerAction = async ({ request }) => {
         gender: data.get("gender"),
         dob: data.get("dob"),
         userImg: undefined,
-        description: undefined,
+        bio: undefined,
     }
 
     //password checker function can be done here or call another function

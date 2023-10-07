@@ -8,7 +8,7 @@ export default function AccountInfo(props) {
             <div className = "accountinfo-head">
                 <h1 className = "accountinfo-title">Account Information</h1>
                 <button className = "accountinfo-editprofile-button">
-                    <Link className = "accountinfo-editprofile-link">Edit Profile</Link>
+                    <Link className = "accountinfo-editprofile-link" to = "/edit-profile">Edit Profile</Link>
                 </button>
             </div>
             <div className = "accountinfo-username">

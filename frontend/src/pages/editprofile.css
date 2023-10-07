@@ -1,0 +1,9 @@
+.editprofile-container {
+    display: flex;
+}
+
+.editprofile-form-container {
+    margin-top: 88px;
+    margin-left: 569px;
+    padding-bottom: 88px;
+}
