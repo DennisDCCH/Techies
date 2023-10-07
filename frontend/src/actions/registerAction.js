@@ -24,5 +24,5 @@ export const registerAction = async ({ request }) => {
 
     console.log(submission)
 
-    return  redirect("/")
+    return redirect("/")
 }

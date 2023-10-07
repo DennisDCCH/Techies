@@ -4,23 +4,29 @@ import "./accountinfo.css"
 
 export default function AccountInfo(props) {
     return (
-        <div className = "accountinfo"> 
-            <h1 className = "accountinfo-title">Account Information</h1>
+        <div className = "accountinfo">
+            <div className = "accountinfo-head">
+                <h1 className = "accountinfo-title">Account Information</h1>
+                <button className = "accountinfo-editprofile-button">
+                    <Link className = "accountinfo-editprofile-link">Edit Profile</Link>
+                </button>
+            </div>
             <div className = "accountinfo-username">
-                <p>Username</p>
-                <p className = "accountinfo-user-username">{props.item.username}</p>
+                <span>Username</span>
+                <span className = "accountinfo-user-username">{props.item.username}</span>
             </div>
             <div className = "accountinfo-email">
-                <p>Email</p>
-                <p className = "accountinfo-user-email">{props.item.email}</p>
+                <span>Email</span>
+                <span className = "accountinfo-user-email">{props.item.email}</span>
             </div>
             <div className = "accountinfo-dob">
-                <p>Date of Birth</p>
-                <p className = "accountinfo-user-dob">{props.item.dob}</p>
+                <span>Date of Birth</span>
+                <span className = "accountinfo-user-dob">{props.item.dob}</span>
             </div>
-            <button className = "accountinfo-editprofile-button">
-                <Link className = "accountinfo-editprofile-link">Edit Profile</Link>
-            </button>
+            <div className = "accountinfo-bio">
+                <span>Bio</span>
+                <span className = "accountinfo-user-bio">{props.item.bio}</span>
+            </div>
         </div>
     )
 }

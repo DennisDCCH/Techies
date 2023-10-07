@@ -11,6 +11,7 @@ export default
         dob: "12-06-2001",
         dateJoined: "10-04-2023",
         averageRating : 5.0,
+        bio: undefined,
         reviews: [
             {
                 id: 1,

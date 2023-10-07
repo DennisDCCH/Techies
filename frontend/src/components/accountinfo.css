@@ -1,29 +1,32 @@
 .accountinfo{
     height: 100vh;
     position: fixed;
-    width: 200px;
     margin-left: 560px;
     margin-top: 90px;
     font-family: "Source Serif Pro";
 }
 
+.accountinfo-head {
+    display: flex;
+    width: 622px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .accountinfo-title {
     font-size: 36px;
-    margin-bottom: 100px;
     width: 500px;
 }
 
 .accountinfo-username,
 .accountinfo-email,
-.accountinfo-dob {
-    margin-bottom: 44px;
+.accountinfo-dob,
+.accountinfo-bio {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 34px;
     font-size: 20px;
     color: #9D8D8D;
-}
-.accountinfo-username p,
-.accountinfo-email p,
-.accountinfo-dob p{
-    margin: 0;
 }
 
 .accountinfo-user-username,
@@ -33,7 +36,17 @@
     width: 608px;
     height: 51px;
     padding-left: 10px;
-    line-height: 51px; /* Center the text vertically */
+    line-height: 51px;
+    border: 2px solid #9D8D8D;
+    border-radius: 10px;
+}
+
+.accountinfo-user-bio {
+    display: inline-block;
+    width: 608px;
+    height: 153px;
+    padding-left: 10px;
+    line-height: 51px;
     border: 2px solid #9D8D8D;
     border-radius: 10px;
 }
