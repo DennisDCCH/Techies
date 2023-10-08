@@ -20,21 +20,34 @@ export const registerAction = async ({ request }) => {
     
 
     //password checker function 
-    function checkPassRequirement(pass1, pass2){
-        if (pass1 != pass2)
-            console.log("ERROR: Password is not the same")
-        else if (pass1.length < 8 || 
-                !(/\d/.test(pass1)) || 
-                !(/[A-Z]/.test(pass1)) || 
-                !(/[a-z]/.test(pass1)) || 
-                !(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(pass1)))
-            console.log("ERROR: Password must be at least 8 characters long and a combination of uppercase letters, lowercase letters, numbers, and special charcters")
-    }
+    // function checkPassRequirement(pass1, pass2){
+    //     if (pass1 != pass2)
+    //         console.log("ERROR: Password is not the same")
+    //     else if (pass1.length < 8 || 
+    //             !(/\d/.test(pass1)) || 
+    //             !(/[A-Z]/.test(pass1)) || 
+    //             !(/[a-z]/.test(pass1)) || 
+    //             !(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(pass1)))
+    //         console.log("ERROR: Password must be at least 8 characters long and a combination of uppercase letters, lowercase letters, numbers, and special charcters")
+    // }
 
-    checkPassRequirement(submission.password, submission.password2);
+    // checkPassRequirement(submission.password, submission.password2);
 
-    console.log(submission)
+    // password checker function 
+    if (submission.password != submission.password2)
+        return {error: "ERROR: Password is not the same"};
+    if (submission.password.length < 8)
+        return {error: "ERROR: Password must at least 8 characters long"};
+    if (!(/\d/.test(submission.password)) )
+        return {error: "ERROR: Password must have at least 1 number"};
+    if (!(/[A-Z]/.test(submission.password)))
+        return {error: "ERROR: Password must have at least 1 upper case"};
+    if (!(/[a-z]/.test(submission.password)))
+        return {error: "ERROR: Password must have at least 1 lower case"};
+    if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(submission.password)))
+        return {error: "ERROR: Password must have at least 1 special character"};
+
+    console.log(submission);
 
     return redirect("/")
-        
 }

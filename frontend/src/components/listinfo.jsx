@@ -5,7 +5,7 @@ import "./listinfo.css"
 export default function ListInfo(props) {
     return (
         <div className = "listinfo-container">
-            <Form className = "listinfo-form" method = "post" action = "/edit-listing">
+            <Form className = "listinfo-form" method = "post" action = "">
                 <h1 className = "listinfo-form-title">Edit Listing</h1>
                 <div className = "listinfo-form-info">
                     <div className = "listinfo-form-price">

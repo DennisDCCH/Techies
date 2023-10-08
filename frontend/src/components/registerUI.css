@@ -4,8 +4,6 @@
     background-image: url("../images/Vector.png"); 
     background-repeat: repeat-y; 
     background-size: cover; 
-    display: flex;
-    justify-content: space-between;
 }
 
 .registerUI {
@@ -13,6 +11,7 @@
     border-bottom-left-radius: 50px;
     background-color: white;
     width: 903px;
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
@@ -113,8 +112,6 @@
 }
 
 .register-error{
-    width: 608px;
-    text-align: justify;
     font-family: 'Source Serif Pro';
     font-size: 28px;
     font-weight: bold;
