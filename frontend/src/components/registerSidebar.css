@@ -16,9 +16,8 @@
 }
 
 .register-sidebar-image {
-    width: 50%;
-    height: 100%;
-    margin-left: 0px;
+    width: 638px;
+    height: 586px;
     z-index: 1;
     position: relative;
 }
