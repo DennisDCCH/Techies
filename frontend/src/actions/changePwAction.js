@@ -9,11 +9,19 @@ export const changePwAction = async ({ request }) => {
         newpw2: data.get("newpw2")
     }
 
-    //password checker function can be done here or call another function
-
-    if(submission.newpw != submission.newpw2){
-        return {error: "ERROR: Password is not the same"}
-    }
+    // password checker function 
+    if (submission.password != submission.password2)
+        return {error: "Password is not the same"};
+    if (submission.password.length < 8)
+        return {error: "Password must at least 8 characters long"};
+    if (!(/\d/.test(submission.password)) )
+        return {error: "Password must have at least 1 number"};
+    if (!(/[A-Z]/.test(submission.password)))
+        return {error: "Password must have at least 1 upper case"};
+    if (!(/[a-z]/.test(submission.password)))
+        return {error: "Password must have at least 1 lower case"};
+    if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(submission.password)))
+        return {error: "Password must have at least 1 special character"};
 
     console.log(submission)
 
