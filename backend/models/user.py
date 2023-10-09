@@ -19,10 +19,10 @@ class UserModel(db.Model):
     #One to many relationships
     listings = db.relationship("CoachingServiceModel", back_populates="coach", lazy="dynamic")
     
-    sentMsgs = db.relationship("MessageModel", back_populates="sender")
+    # sentMsgs = db.relationship("MessageModel", back_populates="sender")
     # receivedMsgs = db.relationship("MessageModel", back_populates="receiver")
     
-    athlete_chats = db.relationship("ChatModel", back_populates="athlete")
+    # athlete_chats = db.relationship("ChatModel", back_populates="athlete")
     # coach_chats = db.relationship("ChatModel", back_populates="coach")
 
     

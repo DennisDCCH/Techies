@@ -6,19 +6,12 @@ class ChatModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    #many to one relation
+    # #many to one relation
     # athlete_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     # athlete = db.relationship("UserModel", foreign_keys=[athlete_id], back_populates="athlete_chats")
     
     # coach_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     # coach = db.relationship("UserModel", foreign_keys=[coach_id], back_populates="coach_chats")
 
-
-    athlete_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    athlete = db.relationship("UserModel", foreign_keys=[athlete_id])
-    
-    # coach_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    # coach = db.relationship("UserModel", foreign_keys=[coach_id])
-
-    #one to many relation
-    messages = db.relationship("MessageModel", back_populates="chat", lazy="dynamic")
+    # #one to many relation
+    # messages = db.relationship("MessageModel", back_populates="chat", lazy="dynamic")
