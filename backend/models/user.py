@@ -19,6 +19,8 @@ class UserModel(db.Model):
     #One to many relationships
     listings = db.relationship("CoachingServiceModel", back_populates="coach", lazy="dynamic")
     
+    reviews = db.relationship("ReviewModel", back_populates="reviewer", lazy="dynamic")
+    
     # sentMsgs = db.relationship("MessageModel", back_populates="sender")
     # receivedMsgs = db.relationship("MessageModel", back_populates="receiver")
     
@@ -26,5 +28,5 @@ class UserModel(db.Model):
     # coach_chats = db.relationship("ChatModel", back_populates="coach")
 
     
-    reviews = db.relationship("ReviewModel", back_populates="reviewer", lazy="dynamic")
+    
     

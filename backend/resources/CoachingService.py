@@ -43,8 +43,6 @@ class Services(MethodView):
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
         return coaching_service
     
-
-    
     def delete(self, listing_id):
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
         db.session.delete(coaching_service)
@@ -72,35 +70,30 @@ class Services(MethodView):
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
         user = UserModel.query.get_or_404(user_id)
         
-        # TO DO Add service into specific user
+        if user is None or coaching_service is None:
+            return {'message': 'User or service not found'}, 404
+        
+        if coaching_service in user.bookings:
+            return {'message': 'You have already booked this service'}, 400
+        user.bookings.append(coaching_service)
+        db.session.commit()
 
-        try:
-            db.session.add()
-            db.session.commit()
-        except IntegrityError:
-            abort(
-                400,
-                message="The service is already booked.",
-            )
-        except SQLAlchemyError:
-            abort(500, message="An error occurred creating the store.")
-
-        return {"message": "NOT IMPLEMENTED"}, 200
+        return {'message': 'Service booked successfully'}, 200
 
 
     def delete(self, listing_id, user_id):
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
         user = UserModel.query.get_or_404(user_id)
 
-        # TO DO cancel a service from the users booking list
-        try:
-            db.session.delete()
-            db.session.commit()
+        if user is None or coaching_service is None:
+            return {'message': 'User or service not found'}, 404
 
-        except SQLAlchemyError:
-            abort(500, message="An error occurred cancelling the service.")
+        if coaching_service not in user.bookings:
+            return {'message': 'You have not booked this service yet'}, 400
+        user.bookings.remove(coaching_service)
+        db.session.commit()
 
-        return {"message": "NOT IMPLEMENTED"}, 200
+        return {'message': 'Service removed successfully from bookings'}
 
 
     

@@ -5,7 +5,7 @@ from passlib.hash import pbkdf2_sha256
 
 from db import db
 from models import UserModel
-from schemas import UserSchema, LoginSchema
+from schemas import UserSchema, LoginSchema, CoachingServiceSchema
 
 
 blp = Blueprint("Users", "users", description="Operations on users")
@@ -47,12 +47,6 @@ class UserLogin(MethodView):
 
 @blp.route("/user/<int:user_id>")
 class User(MethodView):
-    """
-    This resource can be useful when testing our Flask app.
-    We may not want to expose it to public users, but for the
-    sake of demonstration in this course, it can be useful
-    when we are manipulating data regarding the users.
-    """
 
     @blp.response(200, UserSchema)
     def get(self, user_id):
@@ -64,3 +58,17 @@ class User(MethodView):
         db.session.delete(user)
         db.session.commit()
         return {"message": "User deleted."}, 200
+
+@blp.route("/user/<int:user_id>/booked")
+class ViewBooked(MethodView):
+    @blp.response(200, CoachingServiceSchema(many = True))
+    def get(self, user_id):
+        user = UserModel.query.get_or_404(user_id)
+        return user.bookings
+
+
+# @blp.route("/user/<int:user_id>/saved")
+# class ViewSaved(MethodView):
+#     def get(self, user_id):
+#         user = UserModel.query.get_or_404(user_id)
+#         return user.savings

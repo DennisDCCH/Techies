@@ -13,7 +13,6 @@ class ReviewModel(db.Model):
     service_id = db.Column(db.Integer, db.ForeignKey('coaching_service.id'), nullable=False)
     service = db.relationship("CoachingServiceModel", back_populates="reviews")
 
-    #one to one relationships
-
+    #many to one relationships
     reviewer_id = db.Column(db.Integer, db.ForeignKey("user.id"), unique=False, nullable=False)
     reviewer = db.relationship("UserModel", back_populates = "reviews")
