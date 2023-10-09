@@ -1,6 +1,9 @@
 from db import db
 
 class ReviewModel(db.Model):
+    
+    __tablename__ = "review"
+
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.String(255))

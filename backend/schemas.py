@@ -7,6 +7,10 @@ class UserSchema(Schema):
     gender = fields.Str(required=True)
     profile_picture = fields.Str(required=True)
 
+class LoginSchema(Schema):
+    username = fields.Str(required=True)
+    password = fields.Str(load_only=True)
+
 class CoachingServiceSchema(Schema):
     id = fields.Int(dump_only=True)
     coach_id = fields.Int(required=True)

@@ -20,4 +20,4 @@ class CoachingServiceModel(db.Model):
     coach = db.relationship("UserModel", back_populates="listings")
     
     #one to many relation
-    reviews = db.relationship("ReviewModel", back_populates="service", lazy="dynamic")
+    reviews = db.relationship("ReviewModel", back_populates="service", lazy="dynamic", cascade="all, delete")
