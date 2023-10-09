@@ -6,7 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from db import db
 from models import CoachingServiceModel
 from models import UserModel
-from schemas import CoachingServiceSchema
+from schemas import CoachingServiceSchema, CoachingServiceUpdateSchema
 
 blp = Blueprint("Coaching Service", "coachingservice", description="Operations on CoachingService")
 
@@ -50,15 +50,19 @@ class Services(MethodView):
 
         return {"message": "Item deleted."}
 
-    @blp.arguments(CoachingServiceSchema)
+    @blp.response(200, CoachingServiceSchema)
+    @blp.arguments(CoachingServiceUpdateSchema)
     def put(self,coaching_service_data, listing_id):
-        coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
+        coaching_service = CoachingServiceModel.query.get(listing_id)
 
-        coaching_service.sport = coaching_service_data["sport"]
-        coaching_service.location = coaching_service_data["location"]
-        coaching_service.price = coaching_service_data["price"]
-        coaching_service.availability = coaching_service_data["availability"]
-        coaching_service.description = coaching_service_data["description"]
+        if coaching_service:
+            coaching_service.sport = coaching_service_data["sport"]
+            coaching_service.location = coaching_service_data["location"]
+            coaching_service.price = coaching_service_data["price"]
+            coaching_service.availability = coaching_service_data["availability"]
+            coaching_service.description = coaching_service_data["description"]
+        else:
+            coaching_service = CoachingServiceModel(id = listing_id, **coaching_service_data)
 
         db.session.commit()
         return {"message": "Service Edited"}, 200
@@ -97,7 +101,7 @@ class Services(MethodView):
 
 
     
-@blp.route("/savebooking/<string:listing_id>/<string:user_id>")
+@blp.route("/save/<string:listing_id>/<string:user_id>")
 class Services(MethodView):
     
     def post(self, listing_id, user_id):

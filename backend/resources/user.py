@@ -5,7 +5,7 @@ from passlib.hash import pbkdf2_sha256
 
 from db import db
 from models import UserModel
-from schemas import UserSchema, LoginSchema, CoachingServiceSchema
+from schemas import UserSchema, UserUpdateSchema, LoginSchema, CoachingServiceSchema
 
 
 blp = Blueprint("Users", "users", description="Operations on users")
@@ -29,7 +29,6 @@ class UserRegister(MethodView):
 
         return {"message": "User created successfully."}, 201
 
-
 @blp.route("/login")
 class UserLogin(MethodView):
     @blp.arguments(LoginSchema)
@@ -52,6 +51,21 @@ class User(MethodView):
     def get(self, user_id):
         user = UserModel.query.get_or_404(user_id)
         return user
+
+    @blp.arguments(UserUpdateSchema)
+    @blp.response(200, UserSchema)
+    def put(self, user_data, user_id):
+        if UserModel.query.filter(UserModel.username == user_data["username"]).first():
+            abort(409, message="A user with that username already exists.")
+
+        user = UserModel.query.get(user_id)
+        user.username = user_data["username"]
+        user.password = user_data["password"]
+        user.gender = user_data["gender"]
+        user.profile_picture = user_data["profile_picture"]
+        db.session.commit()
+
+        return user, 201
 
     def delete(self, user_id):
         user = UserModel.query.get_or_404(user_id)

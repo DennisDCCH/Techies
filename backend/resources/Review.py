@@ -12,10 +12,14 @@ blp = Blueprint("Review", "review", description="Operations on Review")
 @blp.route("/reviews")
 class CreateReview(MethodView):
     @blp.arguments(ReviewSchema)
+    def get():
+        pass
 
 
 
 
-@blp.route("/reviews/")
+@blp.route("/reviews")
 class GetReview(MethodView):
     @blp.arguments(ReviewSchema)
+    def get():
+        pass

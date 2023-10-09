@@ -7,6 +7,12 @@ class UserSchema(Schema):
     gender = fields.Str(required=True)
     profile_picture = fields.Str(required=True)
 
+class UserUpdateSchema(Schema):
+    username = fields.Str()
+    password = fields.Str(load_only=True)
+    gender = fields.Str()
+    profile_picture = fields.Str()
+
 class LoginSchema(Schema):
     username = fields.Str(required=True)
     password = fields.Str(load_only=True)
@@ -20,7 +26,12 @@ class CoachingServiceSchema(Schema):
     availability = fields.Str(required=True)
     description = fields.Str(required=True)
 
-#add in coachingserviceUpdateschema
+class CoachingServiceUpdateSchema(Schema):
+    sport = fields.Str()
+    location = fields.Str()
+    price = fields.Float()
+    availability = fields.Str()
+    description = fields.Str()
 
 class ReviewSchema(Schema):
     id = fields.Int(dump_only=True)
