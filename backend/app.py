@@ -5,6 +5,7 @@ from flask_jwt_extended import JWTManager
 from db import db
 
 from resources.user import blp as UserBlueprint
+from resources.CoachingService import blp as CoachingServiceBlueprint
 
 
 def create_app(db_url=None):
@@ -72,5 +73,6 @@ def create_app(db_url=None):
         db.create_all()
 
     api.register_blueprint(UserBlueprint)
+    api.register_blueprint(CoachingServiceBlueprint)
 
     return app

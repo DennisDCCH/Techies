@@ -2,15 +2,23 @@ from db import db
 
 class ChatModel(db.Model):
 
-    __tablename__ = "Chats"
+    __tablename__ = "chat"
 
     id = db.Column(db.Integer, primary_key=True)
 
     #many to one relation
-    user1_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    user1 = db.relationship("UserModel", back_populates="chats")
-    user2_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    user2 = db.relationship("UserModel", back_populates="chats")
+    # athlete_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    # athlete = db.relationship("UserModel", foreign_keys=[athlete_id], back_populates="athlete_chats")
+    
+    # coach_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    # coach = db.relationship("UserModel", foreign_keys=[coach_id], back_populates="coach_chats")
+
+
+    athlete_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    athlete = db.relationship("UserModel", foreign_keys=[athlete_id])
+    
+    # coach_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    # coach = db.relationship("UserModel", foreign_keys=[coach_id])
 
     #one to many relation
-    messages = db.relationship("MessageModel", back_populates="chats", lazy="dynamic")
+    messages = db.relationship("MessageModel", back_populates="chat", lazy="dynamic")
