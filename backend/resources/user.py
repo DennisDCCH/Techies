@@ -122,4 +122,4 @@ class ViewSaved(MethodView):
         if saved:
             return user.saved
         else:
-            return jsonify({"message": "You have not booked any services"}), 200
+            return jsonify({"message": "You have not saved any services"}), 200
