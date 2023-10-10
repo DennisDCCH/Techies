@@ -1,22 +1,88 @@
-import React from "react"
-import { Link, Form, redirect } from "react-router-dom"
+import React, { useRef, useState, useEffect } from "react"
+import { Link, Form, redirect, useNavigate, useLocation } from "react-router-dom"
 import LoginSidebar from "./loginSidebar"
 import "./loginUI.css"
 
+import useAuth from '../hooks/useAuth'
+import axios from '../api/axios'
+const LOGIN_URL = '/auth'
+
 export default function loginUI() {
+    const { setAuth } = useAuth();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/"
+
+    const userRef = useRef();
+    const errRef = useRef();
+
+    const [user, setUser] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [errMsg, setErrMsg] = useState('');
+
+    useEffect(() => {
+        userRef.current.focus();
+    }, [])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [user, pwd])
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post(LOGIN_URL, 
+                JSON.stringify({ user, pwd }),
+                {
+                    headers: { 'Content-Type:': 'application/json '},
+                    withCredentials: true
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            const accessToken = response?.data?.accessToken;
+            const roles = response?.data?.roles;
+            setAuth({ user, pwd, roles, accessToken });
+            setUser('');
+            setPwd('');
+            navigate(from, { replace: true });
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('NoServerResponse');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg('Login Failed');
+            }
+            errRef.current.focus();
+        }
+    }
+
     return (
         <div className = "login-background"> 
             <LoginSidebar /> 
             <div className = "loginUI">
-                <Form className = "login-form" method = "post" action = "/">
+                <Form onLogin={handleLogin} className = "login-form" method = "post" action = "/">
                     <h1 className = "login-form-text">Log-in</h1>
                     <div className = "login-form-username">
                         <label className = "login-form-username-text">Username</label>
-                        <input className = "login-form-username-box" type = "text" name = "username" required/>
+                        <input 
+                            className = "login-form-username-box" 
+                            type = "text" 
+                            name = "username" 
+                            ref={userRef}
+                            required/>
                     </div>
                     <div className = "login-form-password"> 
                         <label className = "login-form-password-text">Password</label>
-                        <input className = "login-form-password-box" type = "password" name = "password" required/>
+                        <input 
+                            className = "login-form-password-box" 
+                            type = "password" 
+                            name = "password" 
+                            required/>
                     </div>
                     <Link className = "login-to-register" to = "/registration">Don't have an account? Register here!</Link>
                     <button className = "login-button" type = "submit">Log in</button>
