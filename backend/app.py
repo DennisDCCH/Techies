@@ -1,6 +1,10 @@
 from flask import Flask, jsonify
 from flask_smorest import Api
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, set_access_cookies, get_jwt
+
+from datetime import datetime
+from datetime import timedelta
+from datetime import timezone
 
 from db import db
 
@@ -23,11 +27,32 @@ def create_app(db_url=None):
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url or "sqlite:///data.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["PROPAGATE_EXCEPTIONS"] = True
+    
+
     db.init_app(app)
     api = Api(app)
 
     app.config["JWT_SECRET_KEY"] = "Techies"
+    app.config["JWT_COOKIE_SECURE"] = False
+    app.config['JWT_COOKIE_CSRF_PROTECT'] = False
+    app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(seconds=10)
     jwt = JWTManager(app)
+
+
+    @app.after_request
+    def refresh_expiring_jwts(response):
+        try:
+            exp_timestamp = get_jwt()["exp"]
+            now = datetime.now(timezone.utc)
+            target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+            if target_timestamp > exp_timestamp:
+                access_token = create_access_token(identity=get_jwt_identity())
+                set_access_cookies(response, access_token)
+            return response
+        except (RuntimeError, KeyError):
+            # Case where there is not a valid JWT. Just return the original response
+            return response
 
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
