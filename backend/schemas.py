@@ -19,9 +19,9 @@ class UserSchema(PlainUserSchema):
     gender = fields.Str(required=True)
     profile_picture = fields.Str(required=True)
 
-    
-    savedListings = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
     bookings = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
+    #savedListings = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
+    
 
 class CoachingServiceSchema(PlainCoachingServiceSchema):
     athletes = fields.List(fields.Nested(PlainUserSchema()), dump_only=True)
