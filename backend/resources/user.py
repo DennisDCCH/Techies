@@ -1,6 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask_jwt_extended import create_access_token
+from flask_jwt_extended import jwt_required
 from passlib.hash import pbkdf2_sha256
 
 from db import db
@@ -78,9 +79,9 @@ class ViewBooked(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self, user_id):
         user = UserModel.query.get_or_404(user_id)
-        bookings = user.bookings
+        bookings = user.booked
         if bookings:
-            return user.bookings
+            return user.booked
         else:
             return {"message": "You have not booked any services"}, 200
 
@@ -91,8 +92,8 @@ class ViewSaved(MethodView):
     def get(self, user_id):
         user = UserModel.query.get_or_404(user_id)
 
-        savedListings = user.savedListings
+        savedListings = user.saved
         if savedListings:
-            return user.savedListings
+            return user.saved
         else:
             return {"message": "You have no saved listings"}, 200

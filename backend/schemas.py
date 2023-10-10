@@ -7,7 +7,8 @@ class PlainUserSchema(Schema):
 
 class PlainCoachingServiceSchema(Schema):
     id = fields.Int(dump_only=True)
-    coach_id = fields.Int(required=True)
+    coach_id = fields.Int(dump_only=True)
+    coach = fields.Nested(PlainUserSchema())
     sport = fields.Str(required=True)
     location = fields.Str(required=True)
     price = fields.Float(required=True)
@@ -19,8 +20,8 @@ class UserSchema(PlainUserSchema):
     gender = fields.Str(required=True)
     profile_picture = fields.Str(required=True)
 
-    bookings = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
-    #savedListings = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
+    booked = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
+    #saved = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
     
 
 class CoachingServiceSchema(PlainCoachingServiceSchema):

@@ -14,9 +14,9 @@ class UserModel(db.Model):
 
 
     #many to many relationships
-    bookings = db.relationship("CoachingServiceModel", back_populates="athletes", secondary="athlete_service")
+    booked = db.relationship("CoachingServiceModel", back_populates="athletes", secondary="athlete_service")
 
-    savedListings = db.relationship("CoachingServiceModel", secondary="athlete_saved")
+    saved = db.relationship("CoachingServiceModel", secondary="athlete_saved")
     
     #One to many relationships
     listings = db.relationship("CoachingServiceModel", back_populates="coach", lazy="dynamic")
