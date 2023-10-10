@@ -80,6 +80,7 @@ class Services(MethodView):
         if coaching_service in user.bookings:
             return {'message': 'You have already booked this service'}, 400
         user.bookings.append(coaching_service)
+        coaching_service.athletes.append(user)
         db.session.commit()
 
         return {'message': 'Service booked successfully'}, 200
@@ -104,21 +105,16 @@ class Services(MethodView):
 @blp.route("/save/<string:listing_id>/<string:user_id>")
 class Services(MethodView):
     
-    def post(self, listing_id, user_id):
+     def post(self, listing_id, user_id):
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
         user = UserModel.query.get_or_404(user_id)
         
-        # TO DO Add service into specific user
+        if user is None or coaching_service is None:
+            return {'message': 'User or service not found'}, 404
+        
+        if coaching_service in user.savedListings:
+            return {'message': 'You have already saved this service'}, 400
+        user.savedListings.append(coaching_service)
+        db.session.commit()
 
-        try:
-            db.session.add()
-            db.session.commit()
-        except IntegrityError:
-            abort(
-                400,
-                message="The service is already booked.",
-            )
-        except SQLAlchemyError:
-            abort(500, message="An error occurred creating the store.")
-
-        return {"message": "NOT IMPLEMENTED"}, 200
+        return {'message': 'Service saved successfully'}, 200

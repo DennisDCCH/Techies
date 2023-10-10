@@ -78,11 +78,21 @@ class ViewBooked(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self, user_id):
         user = UserModel.query.get_or_404(user_id)
-        return user.bookings
+        bookings = user.bookings
+        if bookings:
+            return user.bookings
+        else:
+            return {"message": "You have not booked any services"}, 200
 
 
-# @blp.route("/user/<int:user_id>/saved")
-# class ViewSaved(MethodView):
-#     def get(self, user_id):
-#         user = UserModel.query.get_or_404(user_id)
-#         return user.savings
+@blp.route("/user/<int:user_id>/saved")
+class ViewSaved(MethodView):
+    @blp.response(200, CoachingServiceSchema(many = True))
+    def get(self, user_id):
+        user = UserModel.query.get_or_404(user_id)
+
+        savedListings = user.savedListings
+        if savedListings:
+            return user.savedListings
+        else:
+            return {"message": "You have no saved listings"}, 200
