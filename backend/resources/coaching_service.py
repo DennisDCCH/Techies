@@ -1,6 +1,6 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from flask_jwt_extended import jwt_required, decode_token, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask import request
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
@@ -8,7 +8,7 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from db import db
 from models import CoachingServiceModel
 from models import UserModel
-from schemas import CoachingServiceSchema, CoachingServiceUpdateSchema, PlainCoachingServiceSchema
+from schemas import CoachingServiceSchema, CoachingServiceUpdateSchema
 
 blp = Blueprint("Coaching Service", "coachingservice", description="Operations on CoachingService")
 
@@ -19,7 +19,7 @@ class CoachingServiceList(MethodView):
         return CoachingServiceModel.query.all()
     
     
-    @blp.arguments(PlainCoachingServiceSchema)
+    @blp.arguments(CoachingServiceSchema)
     @blp.response(201, CoachingServiceSchema)
     @jwt_required()
     def post(self, coaching_service_data):
@@ -32,7 +32,7 @@ class CoachingServiceList(MethodView):
         except IntegrityError:
             abort(
                 400,
-                message="A service with that name already exists.",
+                message="A service with that time and location already exists.",
             )
         except SQLAlchemyError:
             abort(500, message="An error occurred creating the service.")
