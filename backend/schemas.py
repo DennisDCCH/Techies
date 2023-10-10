@@ -7,7 +7,7 @@ class PlainUserSchema(Schema):
 
 class PlainCoachingServiceSchema(Schema):
     id = fields.Int(dump_only=True)
-    coach_id = fields.Int(dump_only=True)
+    coach_id = fields.Int(load_only=True)
     coach = fields.Nested(PlainUserSchema())
     sport = fields.Str(required=True)
     location = fields.Str(required=True)

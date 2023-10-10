@@ -1,6 +1,6 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from flask_jwt_extended import jwt_required, decode_token
+from flask_jwt_extended import jwt_required, decode_token, get_jwt_identity
 from flask import request
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
@@ -24,15 +24,8 @@ class CoachingServiceList(MethodView):
     @jwt_required()
     def post(self, coaching_service_data):
 
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
-
-        coach = UserModel.query.get(user_id)
+        user_id = get_jwt_identity()
         coaching_service = CoachingServiceModel(**coaching_service_data, coach_id = user_id)
-        coaching_service.coach = coach
         try:
             db.session.add(coaching_service)
             db.session.commit()
@@ -58,11 +51,7 @@ class Services(MethodView):
     @jwt_required()
     def delete(self, listing_id):
 
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
 
@@ -76,11 +65,8 @@ class Services(MethodView):
     @jwt_required()
     @blp.arguments(CoachingServiceUpdateSchema)
     def put(self,coaching_service_data, listing_id):
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
         
@@ -105,11 +91,7 @@ class Booking(MethodView):
     @jwt_required()
     def post(self, listing_id):
         
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get(listing_id)
         
@@ -127,11 +109,7 @@ class Booking(MethodView):
     @jwt_required()
     def delete(self, listing_id):
         
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get(listing_id)
 
@@ -153,11 +131,7 @@ class Saving(MethodView):
     @jwt_required()
     def post(self, listing_id):
         
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get(listing_id)
         
@@ -174,11 +148,7 @@ class Saving(MethodView):
     @jwt_required()
     def delete(self, listing_id):
         
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get(listing_id)
 

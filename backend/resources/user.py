@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import jwt_required, decode_token
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask import request, jsonify
 from passlib.hash import pbkdf2_sha256
 
@@ -17,6 +17,9 @@ blp = Blueprint("Users", "users", description="Operations on users")
 class UserRegister(MethodView): 
     @blp.arguments(UserSchema)
     def post(self, user_data):
+        """ Registers a user given a JSON input of their details"""
+        # NEED TO CHECK THAT PASSWORD FULFILLS REQUIREMENTS
+        
         if UserModel.query.filter(UserModel.username == user_data["username"]).first():
             abort(409, message="A user with that username already exists.")
 
@@ -35,10 +38,13 @@ class UserRegister(MethodView):
 class UserLogin(MethodView):
     @blp.arguments(LoginSchema)
     def post(self, user_data):
+        """ Authenticates a user via username and password with the database, grants them an access token and a refresh token"""
+        
         user = UserModel.query.filter(
             UserModel.username == user_data["username"]
         ).first()
 
+        # Give user a refresh token
         if user and pbkdf2_sha256.verify(user_data["password"], user.password):
             access_token = create_access_token(identity=user.id)
             return {"access_token": access_token}, 200
@@ -52,24 +58,14 @@ class User(MethodView):
     @blp.response(200, UserSchema)
     @jwt_required()
     def get(self):
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
-
         return user
 
     @blp.arguments(UserUpdateSchema)
     @blp.response(200, UserSchema)
     def put(self, user_data):
-        
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
 
         if UserModel.query.filter(UserModel.username == user_data["username"]).first():
@@ -93,11 +89,7 @@ class User(MethodView):
 class ViewBooked(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self):
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
 
         bookings = user.booked
@@ -111,13 +103,8 @@ class ViewBooked(MethodView):
 class ViewSaved(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self):
-        # Access the JWT from the request headers and get the user_id
-        authorization_header = request.headers.get('Authorization')
-        jwt_token = authorization_header[len('Bearer '):]
-        decoded_token = decode_token(jwt_token)
-        user_id = decoded_token['sub']
+        user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
-
         saved = user.saved
         if saved:
             return user.saved
