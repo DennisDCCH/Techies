@@ -21,7 +21,7 @@ class UserSchema(PlainUserSchema):
     profile_picture = fields.Str(required=True)
 
     booked = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
-    #saved = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
+    saved = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
     
 
 class CoachingServiceSchema(PlainCoachingServiceSchema):

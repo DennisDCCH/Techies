@@ -1,7 +1,8 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, decode_token
+from flask import request, jsonify
 from passlib.hash import pbkdf2_sha256
 
 from db import db
@@ -45,21 +46,35 @@ class UserLogin(MethodView):
         abort(401, message="Invalid credentials.")
 
 
-@blp.route("/user/<int:user_id>")
+@blp.route("/user")
 class User(MethodView):
 
     @blp.response(200, UserSchema)
-    def get(self, user_id):
-        user = UserModel.query.get_or_404(user_id)
+    @jwt_required()
+    def get(self):
+        # Access the JWT from the request headers and get the user_id
+        authorization_header = request.headers.get('Authorization')
+        jwt_token = authorization_header[len('Bearer '):]
+        decoded_token = decode_token(jwt_token)
+        user_id = decoded_token['sub']
+        user = UserModel.query.get(user_id)
+
         return user
 
     @blp.arguments(UserUpdateSchema)
     @blp.response(200, UserSchema)
-    def put(self, user_data, user_id):
+    def put(self, user_data):
+        
+        # Access the JWT from the request headers and get the user_id
+        authorization_header = request.headers.get('Authorization')
+        jwt_token = authorization_header[len('Bearer '):]
+        decoded_token = decode_token(jwt_token)
+        user_id = decoded_token['sub']
+        user = UserModel.query.get(user_id)
+
         if UserModel.query.filter(UserModel.username == user_data["username"]).first():
             abort(409, message="A user with that username already exists.")
 
-        user = UserModel.query.get(user_id)
         user.username = user_data["username"]
         user.password = user_data["password"]
         user.gender = user_data["gender"]
@@ -68,32 +83,43 @@ class User(MethodView):
 
         return user, 201
 
-    def delete(self, user_id):
-        user = UserModel.query.get_or_404(user_id)
-        db.session.delete(user)
-        db.session.commit()
-        return {"message": "User deleted."}, 200
+    # def delete(self, user_id):
+    #     user = UserModel.query.get_or_404(user_id)
+    #     db.session.delete(user)
+    #     db.session.commit()
+    #     return {"message": "User deleted."}, 200
 
-@blp.route("/user/<int:user_id>/booked")
+@blp.route("/user/booked")
 class ViewBooked(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
-    def get(self, user_id):
-        user = UserModel.query.get_or_404(user_id)
+    def get(self):
+        # Access the JWT from the request headers and get the user_id
+        authorization_header = request.headers.get('Authorization')
+        jwt_token = authorization_header[len('Bearer '):]
+        decoded_token = decode_token(jwt_token)
+        user_id = decoded_token['sub']
+        user = UserModel.query.get(user_id)
+
         bookings = user.booked
         if bookings:
             return user.booked
         else:
-            return {"message": "You have not booked any services"}, 200
+            return jsonify({"message": "You have not booked any services"}), 200
 
 
-@blp.route("/user/<int:user_id>/saved")
+@blp.route("/user/saved")
 class ViewSaved(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
-    def get(self, user_id):
-        user = UserModel.query.get_or_404(user_id)
+    def get(self):
+        # Access the JWT from the request headers and get the user_id
+        authorization_header = request.headers.get('Authorization')
+        jwt_token = authorization_header[len('Bearer '):]
+        decoded_token = decode_token(jwt_token)
+        user_id = decoded_token['sub']
+        user = UserModel.query.get(user_id)
 
-        savedListings = user.saved
-        if savedListings:
+        saved = user.saved
+        if saved:
             return user.saved
         else:
-            return {"message": "You have no saved listings"}, 200
+            return jsonify({"message": "You have not booked any services"}), 200

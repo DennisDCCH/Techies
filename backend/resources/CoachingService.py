@@ -165,7 +165,7 @@ class Saving(MethodView):
             return {'message': 'User or service not found'}, 404
         
         if coaching_service in user.saved:
-            return {'message': 'You have already booked this service'}, 400
+            return {'message': 'You have already saved this service'}, 400
         user.saved.append(coaching_service)
         db.session.commit()
 
