@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useState, useEffect, useContext } from "react"
 import { Link, Form, redirect, useNavigate, useLocation } from "react-router-dom"
 import LoginSidebar from "./loginSidebar"
 import "./loginUI.css"
 
-import useAuth from '../hooks/useAuth'
+import useAuth from '../hooks/useAuth' // global state with a useContext
 import axios from '../api/axios'
 const LOGIN_URL = '/auth'
 
@@ -29,24 +29,24 @@ export default function loginUI() {
         setErrMsg('');
     }, [user, pwd])
 
-    // 
     const handleLogin = async (e) => {
         e.preventDefault(); // use event to prevent default: reload the page
 
         try {
-            const response = await axios.post(LOGIN_URL, 
-                JSON.stringify({ user, pwd }),
+            const response = await axios.post(LOGIN_URL, // attaches itself to the baseUrl that we alr defined in the api directory
+                JSON.stringify({ user, pwd }),           // sends the user's credentials (user and pwd) to the login URL
                 {
                     headers: { 'Content-Type:': 'application/json '},
                     withCredentials: true
+                    // ensures that any cookies set by the server during this request are saved 
+                    // and sent with subsequent requests, which is crucial for session-based authentication or when using HTTP-only cookies.
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            // store token in memory
+            console.log(JSON.stringify(response?.data));  // store token in memory
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
-            setUser('');
+            setAuth({ user, pwd, roles, accessToken });  // update local state
+            setUser('');                                 // reset input fields
             setPwd('');
             navigate(from, { replace: true });
         } catch (err) {
