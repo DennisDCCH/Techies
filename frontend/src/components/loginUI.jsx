@@ -34,19 +34,19 @@ export default function loginUI() {
 
         try {
             const response = await axios.post(LOGIN_URL, // attaches itself to the baseUrl that we alr defined in the api directory
-                JSON.stringify({ user, pwd }), // api expects
+                JSON.stringify({ user, pwd }),           // sends the user's credentials (user and pwd) to the login URL
                 {
                     headers: { 'Content-Type:': 'application/json '},
                     withCredentials: true
-                    //XMLHttpRequest responses from a different domain cannot set cookie values for their own domain unless withCredentials is set to true before making the request.
+                    // ensures that any cookies set by the server during this request are saved 
+                    // and sent with subsequent requests, which is crucial for session-based authentication or when using HTTP-only cookies.
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            // store token in memory
+            console.log(JSON.stringify(response?.data));  // store token in memory
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
-            setUser('');
+            setAuth({ user, pwd, roles, accessToken });  // update local state
+            setUser('');                                 // reset input fields
             setPwd('');
             navigate(from, { replace: true });
         } catch (err) {
