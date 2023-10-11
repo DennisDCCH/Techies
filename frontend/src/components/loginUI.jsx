@@ -1,14 +1,14 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useState, useEffect, useContext } from "react"
 import { Link, Form, redirect, useNavigate, useLocation } from "react-router-dom"
 import LoginSidebar from "./loginSidebar"
 import "./loginUI.css"
 
-import useAuth from '../hooks/useAuth'
+import useAuth from '../hooks/useAuth' // global state with a useContext
 import axios from '../api/axios'
 const LOGIN_URL = '/auth'
 
 export default function loginUI() {
-    const { setAuth } = useAuth();
+    const { setAuth } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -29,16 +29,16 @@ export default function loginUI() {
         setErrMsg('');
     }, [user, pwd])
 
-    // 
     const handleLogin = async (e) => {
         e.preventDefault(); // use event to prevent default: reload the page
 
         try {
-            const response = await axios.post(LOGIN_URL, 
-                JSON.stringify({ user, pwd }),
+            const response = await axios.post(LOGIN_URL, // attaches itself to the baseUrl that we alr defined in the api directory
+                JSON.stringify({ user, pwd }), // api expects
                 {
                     headers: { 'Content-Type:': 'application/json '},
                     withCredentials: true
+                    //XMLHttpRequest responses from a different domain cannot set cookie values for their own domain unless withCredentials is set to true before making the request.
                 }
             );
             console.log(JSON.stringify(response?.data));
