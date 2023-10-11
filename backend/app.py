@@ -36,7 +36,7 @@ def create_app(db_url=None):
     app.config["JWT_COOKIE_SECURE"] = False
     app.config['JWT_COOKIE_CSRF_PROTECT'] = False
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(seconds=10)
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=10)
     jwt = JWTManager(app)
 
 
@@ -56,40 +56,19 @@ def create_app(db_url=None):
 
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
-        return (
-            jsonify({"message": "The token has expired.", "error": "token_expired"}),
-            401,
-        )
+        return (jsonify({"message": "The token has expired.", "error": "token_expired"}),401,)
 
     @jwt.invalid_token_loader
     def invalid_token_callback(error):
-        return (
-            jsonify(
-                {"message": "Signature verification failed.", "error": "invalid_token"}
-            ),
-            401,
-        )
+        return (jsonify({"message": "Signature verification failed.", "error": "invalid_token"}),401,)
 
     @jwt.unauthorized_loader
     def missing_token_callback(error):
-        return (
-            jsonify(
-                {
-                    "description": "Request does not contain an access token.",
-                    "error": "authorization_required",
-                }
-            ),
-            401,
-        )
+        return (jsonify({"description": "Request does not contain an access token.","error": "authorization_required",}),401,)
 
     @jwt.revoked_token_loader
     def revoked_token_callback(jwt_header, jwt_payload):
-        return (
-            jsonify(
-                {"description": "The token has been revoked.", "error": "token_revoked"}
-            ),
-            401,
-        )
+        return (jsonify({"description": "The token has been revoked.", "error": "token_revoked"}),401,)
 
     # JWT configuration ends
 

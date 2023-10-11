@@ -19,7 +19,7 @@ class UserModel(db.Model):
     saved = db.relationship("CoachingServiceModel", secondary="athlete_saved")
     
     #One to many relationships
-    listings = db.relationship("CoachingServiceModel", back_populates="coach", lazy="dynamic")
+    listings = db.relationship("CoachingServiceModel", back_populates="coach", lazy="dynamic", cascade="all, delete")
     
     reviews = db.relationship("ReviewModel", back_populates="reviewer", lazy="dynamic")
     

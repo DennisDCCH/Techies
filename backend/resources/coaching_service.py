@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from flask import request
+from flask import request, jsonify
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
 
@@ -161,3 +161,19 @@ class Saving(MethodView):
         db.session.commit()
 
         return {'message': 'Service removed successfully from saved listings'}
+
+
+"""THIS IS ALL THE ADMIN STUFF, EASIER FOR DEVELOPMENT ONLY! DO NOT USE IN PRODUCTION"""
+@blp.route("/services/godmode")
+class GodMode(MethodView):
+    @blp.response(200, CoachingServiceSchema(many = True))
+    def get(self):
+        services = CoachingServiceModel.query.all()
+        return services, 200
+    
+    def delete(self):
+        services = CoachingServiceModel.query.all()
+        for service in services:
+            db.session.delete(service)
+        db.session.commit()
+        return jsonify({"message":"all services deleted"})
