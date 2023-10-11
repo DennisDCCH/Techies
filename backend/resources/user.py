@@ -112,3 +112,20 @@ class ViewSaved(MethodView):
             return user.saved
         else:
             return jsonify({"message": "You have not saved any services"}), 200
+
+
+
+"""THIS IS ALL THE ADMIN STUFF, EASIER FOR DEVELOPMENT ONLY! DO NOT USE IN PRODUCTION"""
+@blp.route("/user/godmode")
+class GodMode(MethodView):
+    @blp.response(200, UserSchema(many = True))
+    def get(self):
+        users = UserModel.query.all()
+        return users, 200
+    
+    def delete(self):
+        users = UserModel.query.all()
+        for user in users:
+            db.session.delete(user)
+        db.session.commit()
+        return jsonify({"message":"all users deleted"})

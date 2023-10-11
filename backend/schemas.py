@@ -11,6 +11,12 @@ class PlainCoachingServiceSchema(Schema):
     coach = fields.Nested(PlainUserSchema())
     sport = fields.Str(required=True)
     time = fields.Str(required=True)
+
+class PlainReviewSchema(Schema):
+    id = fields.Int(dump_only=True)
+    rating = fields.Int(required=True)
+    comment = fields.Str(required=True)
+    reviewer = fields.Nested(PlainUserSchema())
     
 
 class UserSchema(PlainUserSchema):
@@ -24,6 +30,7 @@ class UserSchema(PlainUserSchema):
 
 class CoachingServiceSchema(PlainCoachingServiceSchema):
     athletes = fields.List(fields.Nested(PlainUserSchema()), dump_only=True)
+    reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only=True)
     location = fields.Str(required=True)
     price = fields.Float(required=True)
     availability = fields.Str(required=True)
@@ -46,15 +53,11 @@ class CoachingServiceUpdateSchema(Schema):
     availability = fields.Str()
     description = fields.Str()
 
-class ReviewSchema(Schema):
-    id = fields.Int(dump_only=True)
+class ReviewSchema(PlainReviewSchema):
     service_id = fields.Int(load_only=True)
     service = fields.Nested(PlainCoachingServiceSchema())
     reviewer_id = fields.Int(load_only=True)
-    reviewer = fields.Nested(PlainUserSchema())
-    rating = fields.Int(required=True)
-    comment = fields.Str(required=True)
-
+    
 
 
  
