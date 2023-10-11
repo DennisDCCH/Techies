@@ -60,6 +60,7 @@ class User(MethodView):
     @blp.response(200, UserSchema)
     @jwt_required()
     def get(self):
+        """ Retrieve user id """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         return user
@@ -67,6 +68,7 @@ class User(MethodView):
     @blp.arguments(UserUpdateSchema)
     @blp.response(200, UserSchema)
     def put(self, user_data):
+        """ Edit user profile """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
 
@@ -91,6 +93,7 @@ class User(MethodView):
 class ViewBooked(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self):
+        """ Retrieve User's booking services """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
 
@@ -105,6 +108,7 @@ class ViewBooked(MethodView):
 class ViewSaved(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self):
+        """ Retrieve user's saved coaching services """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         saved = user.saved
