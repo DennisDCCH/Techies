@@ -16,7 +16,6 @@ class Review(MethodView):
     
     @blp.response(201, ReviewSchema(many = True))
     def get(self, listing_id):
-        """Retrieve all reviews of a specific coaching service"""
         coaching_service = CoachingServiceModel.query.get(listing_id)
         reviewList = coaching_service.reviews
         if reviewList:
@@ -28,7 +27,7 @@ class Review(MethodView):
     @blp.arguments(ReviewSchema)
     @blp.response(201, ReviewSchema)
     def post(self, review_data, listing_id):
-        """Post a reviews of a specific coaching service"""
+        
         user_id = get_jwt_identity()
         coaching_service = CoachingServiceModel.query.get(listing_id)
         reviewList = coaching_service.reviews
