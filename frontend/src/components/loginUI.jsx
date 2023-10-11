@@ -8,7 +8,7 @@ import axios from '../api/axios'
 const LOGIN_URL = '/auth'
 
 export default function loginUI() {
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
