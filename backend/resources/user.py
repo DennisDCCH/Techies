@@ -60,6 +60,7 @@ class User(MethodView):
     @blp.response(200, UserSchema)
     @jwt_required()
     def get(self):
+        """Retrieve info of user that is logged in via the info from user's access token"""
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         return user
@@ -67,6 +68,7 @@ class User(MethodView):
     @blp.arguments(UserUpdateSchema)
     @blp.response(200, UserSchema)
     def put(self, user_data):
+        """Edit user data via JSON input"""
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
 
@@ -81,16 +83,11 @@ class User(MethodView):
 
         return user, 201
 
-    # def delete(self, user_id):
-    #     user = UserModel.query.get_or_404(user_id)
-    #     db.session.delete(user)
-    #     db.session.commit()
-    #     return {"message": "User deleted."}, 200
-
 @blp.route("/user/booked")
 class ViewBooked(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self):
+        """Retrieve booked listings of a user that is logged in"""
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
 
@@ -105,6 +102,7 @@ class ViewBooked(MethodView):
 class ViewSaved(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self):
+        """Retrieve saved listings of a user that is logged in"""
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         saved = user.saved
@@ -120,10 +118,12 @@ class ViewSaved(MethodView):
 class GodMode(MethodView):
     @blp.response(200, UserSchema(many = True))
     def get(self):
+        """Retrieve all user data"""
         users = UserModel.query.all()
         return users, 200
     
     def delete(self):
+        """Delete all user data"""
         users = UserModel.query.all()
         for user in users:
             db.session.delete(user)
