@@ -29,8 +29,9 @@ export default function loginUI() {
         setErrMsg('');
     }, [user, pwd])
 
+    // 
     const handleLogin = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // use event to prevent default: reload the page
 
         try {
             const response = await axios.post(LOGIN_URL, 
@@ -41,6 +42,7 @@ export default function loginUI() {
                 }
             );
             console.log(JSON.stringify(response?.data));
+            // store token in memory
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ user, pwd, roles, accessToken });
@@ -73,8 +75,11 @@ export default function loginUI() {
                             className = "login-form-username-box" 
                             type = "text" 
                             name = "username" 
-                            ref={userRef}
-                            required/>
+                            ref = {userRef}
+                            onChange = {(e) => setUser(e.target.value)}
+                            value = {user}
+                            required
+                        />
                     </div>
                     <div className = "login-form-password"> 
                         <label className = "login-form-password-text">Password</label>
@@ -82,7 +87,10 @@ export default function loginUI() {
                             className = "login-form-password-box" 
                             type = "password" 
                             name = "password" 
-                            required/>
+                            onChange = {(e) => setPwd(e.target.value)}
+                            value = {pwd}
+                            required
+                        />
                     </div>
                     <Link className = "login-to-register" to = "/registration">Don't have an account? Register here!</Link>
                     <button className = "login-button" type = "submit">Log in</button>
