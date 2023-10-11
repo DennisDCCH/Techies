@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, set_access_cookies, set_refresh_cookies
 from flask import request, jsonify
 from passlib.hash import pbkdf2_sha256
 
@@ -44,10 +44,12 @@ class UserLogin(MethodView):
             UserModel.username == user_data["username"]
         ).first()
 
-        # Give user a refresh token
+        # Havent Give user a refresh token
         if user and pbkdf2_sha256.verify(user_data["password"], user.password):
             access_token = create_access_token(identity=user.id)
-            return {"access_token": access_token}, 200
+            response = jsonify({"access_token": access_token})
+            set_access_cookies(response, access_token)
+            return response, 200
 
         abort(401, message="Invalid credentials.")
 
