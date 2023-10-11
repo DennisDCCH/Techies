@@ -1,29 +1,29 @@
-import React, { useRef, useState, useEffect, useContext } from "react"
-import { Link, Form, redirect, useNavigate, useLocation } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { Link, Form, redirect } from "react-router-dom"
 import LoginSidebar from "./loginSidebar"
 import "./loginUI.css"
 
 import useAuth from '../hooks/useAuth' // global state with a useContext
 import axios from '../api/axios'
-const LOGIN_URL = '/auth'
+const LOGIN_URL = '/login'
 
 export default function loginUI() {
     const { setAuth } = useAuth();
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/"
+    // const navigate = useNavigate();
+    // const location = useLocation();
+    // const from = location.state?.from?.pathname || "/"
 
-    const userRef = useRef();
-    const errRef = useRef();
+    // const userRef = useRef();
+    // const errRef = useRef();
 
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
 
-    useEffect(() => {
-        userRef.current.focus();
-    }, [])
+    // useEffect(() => {
+    //     userRef.current.focus();
+    // }, [])
 
     useEffect(() => {
         setErrMsg('');
@@ -48,7 +48,7 @@ export default function loginUI() {
             setAuth({ user, pwd, roles, accessToken });  // update local state
             setUser('');                                 // reset input fields
             setPwd('');
-            navigate(from, { replace: true });
+            // navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('NoServerResponse');
@@ -59,7 +59,7 @@ export default function loginUI() {
             } else {
                 setErrMsg('Login Failed');
             }
-            errRef.current.focus();
+            // errRef.current.focus();
         }
     }
 
@@ -67,34 +67,19 @@ export default function loginUI() {
         <div className = "login-background"> 
             <LoginSidebar /> 
             <div className = "loginUI">
-                <Form onLogin={handleLogin} className = "login-form" method = "post" action = "/">
+                <form onClick = {handleLogin} className = "login-form" action = "/">
                     <h1 className = "login-form-text">Log-in</h1>
                     <div className = "login-form-username">
                         <label className = "login-form-username-text">Username</label>
-                        <input 
-                            className = "login-form-username-box" 
-                            type = "text" 
-                            name = "username" 
-                            ref = {userRef}
-                            onChange = {(e) => setUser(e.target.value)}
-                            value = {user}
-                            required
-                        />
+                        <input className = "login-form-username-box" type = "text" name = "username" onChange = {(e) => setUser(e.target.value)} value = {user} required/>
                     </div>
                     <div className = "login-form-password"> 
                         <label className = "login-form-password-text">Password</label>
-                        <input 
-                            className = "login-form-password-box" 
-                            type = "password" 
-                            name = "password" 
-                            onChange = {(e) => setPwd(e.target.value)}
-                            value = {pwd}
-                            required
-                        />
+                        <input className = "login-form-password-box" type = "password" onChange = {(e) => setPwd(e.target.value)} value = {pwd} name = "password" required/>
                     </div>
-                    <Link className = "login-to-register" to = "/registration">Don't have an account? Register here!</Link>
+                    <Link className = "login-to-register" to = "/q">Don't have an account? Register here!</Link>
                     <button className = "login-button" type = "submit">Log in</button>
-                </Form>
+                </form>
             </div>
         </div> 
   )
