@@ -47,10 +47,8 @@ class LoginSchema(Schema):
     password = fields.Str(load_only=True)
     
 class CoachingServiceUpdateSchema(Schema):
-    sport = fields.Str()
     location = fields.Str()
-    price = fields.Float()
-    availability = fields.Str()
+    time = fields.Str()
     description = fields.Str()
 
 class ReviewSchema(PlainReviewSchema):
