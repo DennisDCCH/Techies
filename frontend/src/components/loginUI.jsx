@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext, useRef } from "react"
 import { Link, Form, redirect } from "react-router-dom"
 import LoginSidebar from "./loginSidebar"
 import "./loginUI.css"
 
-import useAuth from '../hooks/useAuth' // global state with a useContext
+import AuthContext from "../context/AuthProvider";
+// import useAuth from '../hooks/useAuth' // global state with a useContext
+
 import axios from '../api/axios'
 const LOGIN_URL = '/login'
 
 export default function loginUI() {
-    const { setAuth } = useAuth();
+    const { setAuth } = useContext(AuthContext);
 
     // const navigate = useNavigate();
     // const location = useLocation();
     // const from = location.state?.from?.pathname || "/"
 
-    // const userRef = useRef();
-    // const errRef = useRef();
+    const userRef = useRef();
+    const errRef = useRef();
 
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
 
-    // useEffect(() => {
-    //     userRef.current.focus();
-    // }, [])
+    useEffect(() => {
+        userRef.current.focus();
+    }, [])
 
     useEffect(() => {
         setErrMsg('');
@@ -49,6 +52,7 @@ export default function loginUI() {
             setUser('');                                 // reset input fields
             setPwd('');
             // navigate(from, { replace: true });
+            setSuccess(true);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('NoServerResponse');
@@ -59,28 +63,50 @@ export default function loginUI() {
             } else {
                 setErrMsg('Login Failed');
             }
-            // errRef.current.focus();
+            errRef.current.focus();
         }
     }
 
     return (
+        <>
+        {success ? (
+            <p>
+                <a href="\homepage">Go to Home</a>
+            </p>
+        ): (
         <div className = "login-background"> 
             <LoginSidebar /> 
             <div className = "loginUI">
-                <form onClick = {handleLogin} className = "login-form" action = "/">
+                <Form onSubmit = {handleLogin} className = "login-form" action = "/">
                     <h1 className = "login-form-text">Log-in</h1>
                     <div className = "login-form-username">
                         <label className = "login-form-username-text">Username</label>
-                        <input className = "login-form-username-box" type = "text" name = "username" onChange = {(e) => setUser(e.target.value)} value = {user} required/>
+                        <input 
+                            className = "login-form-username-box" 
+                            type = "text" 
+                            name = "username" 
+                            ref = {userRef}
+                            onChange = {(e) => setUser(e.target.value)} 
+                            value = {user} 
+                            required/>
                     </div>
                     <div className = "login-form-password"> 
                         <label className = "login-form-password-text">Password</label>
-                        <input className = "login-form-password-box" type = "password" onChange = {(e) => setPwd(e.target.value)} value = {pwd} name = "password" required/>
+                        <input 
+                            className = "login-form-password-box" 
+                            type = "password" 
+                            onChange = {(e) => setPwd(e.target.value)} 
+                            value = {pwd} 
+                            name = "password" 
+                            required
+                        />
                     </div>
-                    <Link className = "login-to-register" to = "/q">Don't have an account? Register here!</Link>
+                    <Link className = "login-to-register" to = "/registration">Don't have an account? Register here!</Link>
                     <button className = "login-button" type = "submit">Log in</button>
-                </form>
+                </Form>
             </div>
         </div> 
+        )}
+    </>
   )
 }

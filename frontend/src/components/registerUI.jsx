@@ -15,28 +15,57 @@ export default function RegisterUI() {
                     <div className = "register-form-name">
                         <div className = "register-form-firstname">
                                 <label className = "register-form-firstname-text">First Name</label>
-                                <input className = "register-form-firstname-box" type = "text" name = "firstname" required/>
+                                <input className = "register-form-firstname-box" 
+                                    type = "text" 
+                                    name = "firstname" 
+                                    required
+                                />
                         </div>
                         <div className = "register-form-lastname">
                                 <label className = "register-form-lastname-text">Last Name</label>
-                                <input className = "register-form-lastname-box" type = "text" name = "lastname" required/>
+                                <input 
+                                    className = "register-form-lastname-box" 
+                                    type = "text" 
+                                    name = "lastname" 
+                                    required
+                                />
                         </div>
                     </div>
                     <div className = "register-form-email">
                         <label className = "register-form-email-text">Email</label>
-                        <input className = "register-form-email-box" type = "email" name = "email" required/>
+                        <input 
+                            className = "register-form-email-box" 
+                            type = "email" 
+                            name = "email" 
+                            required
+                        />
                     </div>
                     <div className = "register-form-username">
                         <label className = "register-form-username-text">Username</label>
-                        <input className = "register-form-username-box" type = "text" name = "username" required/>
+                        <input 
+                            className = "register-form-username-box" 
+                            type = "text" 
+                            name = "username" 
+                            required
+                        />
                     </div>
                     <div className = "register-form-password">
                         <label className = "register-form-password-text">Password</label>
-                        <input className = "register-form-password-box" type = "password" name = "password" required/>
+                        <input 
+                            className = "register-form-password-box" 
+                            type = "password" 
+                            name = "password" 
+                            required
+                        />
                     </div>
                     <div className = "register-form-password2">
                         <label className = "register-form-password2-text">Re-enter Password</label>
-                        <input className = "register-form-password2-box" type = "password" name = "password2" required/>
+                        <input 
+                            className = "register-form-password2-box" 
+                            type = "password" 
+                            name = "password2" 
+                            required
+                        />
                     </div>
                     <div className = "register-form-miscellaneous">
                         <div className = "register-form-gender">
