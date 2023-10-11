@@ -32,7 +32,7 @@ class CoachingServiceSchema(PlainCoachingServiceSchema):
     athletes = fields.List(fields.Nested(PlainUserSchema()), dump_only=True)
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only=True)
     location = fields.Str(required=True)
-    price = fields.Float(required=True)
+    price = fields.Str(required=True)
     availability = fields.Str(required=True)
     description = fields.Str(required=True)
 
