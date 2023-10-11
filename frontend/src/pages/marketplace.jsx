@@ -1,12 +1,30 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import axios from "../api/axios.js"
 
 //temp data
 import data from "../data/listing.js"
-import Navbar from "../components/navbar"
+import Navbar from "../components/navbar.jsx"
 import Card from "../components/card"
 import "./marketplace.css"
 
 export default function Marketplace() {
+
+    
+    const [coachingServices, setCoachingServices] = useState([]);
+
+    useEffect(() => {
+        // Make a GET request to "/coaching_services" using Axios
+        axios.get("/coaching_services")
+            .then((response) => {
+                // Assuming the response data is an array, update the state with the data
+                console.log("Received data:", response.data);
+                setCoachingServices(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    }, []);
+
     const cards = data.map (item => {
         return (
             <Card
@@ -22,6 +40,7 @@ export default function Marketplace() {
             <section className="cards-list">
                 {cards}
             </section>
+            <button id = 'get-btn'>Get data</button>
         </div>
     )
 }

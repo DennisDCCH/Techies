@@ -1,7 +1,7 @@
 import { redirect } from "react-router-dom"
 import axios from "../api/axios"
 
-const LOGIN_URL = '/register'
+const REGISTER_URL = '/register'
 
 export const registerAction = async ({ request }) => {
     const data = await request.formData()
@@ -39,34 +39,21 @@ export const registerAction = async ({ request }) => {
     console.log(submission); 
 
     try {
-        const response = await axios.post(LOGIN_URL, // attaches itself to the baseUrl that we alr defined in the api directory
-            JSON.stringify({ submission }),           // sends the user's credentials (user and pwd) to the login URL
-            {
-                headers: { 'Content-Type:': 'application/json '},
-                withCredentials: true
-                // ensures that any cookies set by the server during this request are saved 
-                // and sent with subsequent requests, which is crucial for session-based authentication or when using HTTP-only cookies.
-            }
-        );
-        console.log(JSON.stringify(response?.data));  // store token in memory
-        const accessToken = response?.data?.accessToken;
-        const roles = response?.data?.roles;
-        setAuth({ submission });  // update local state
-        navigate(from, { replace: true });
-    } catch (err) {
+        const response = await axios.post(REGISTER_URL, submission);
 
-        return {err: "Password must have at least 1 special character"} 
-        // if (!err?.response) {
-        //     setErrMsg('NoServerResponse');
-        // } else if (err.response?.status === 400) {
-        //     setErrMsg('Missing Username or Password');
-        // } else if (err.response?.status === 401) {
-        //     setErrMsg('Unauthorized');
-        // } else {
-        //     setErrMsg('Login Failed');
-        // }
-        // errRef.current.focus();
+        // Check the response and handle it as needed
+        if (response.status === 200) {
+            // Registration was successful; you can perform any necessary actions here
+            // For example, you might want to redirect the user to a success page.
+            console.log("success")
+            return redirect("/");
+        } else {
+            // Handle other response statuses as needed
+            return { error: "Registration failed" };
+        }
+    } catch (error) {
+        // Handle any Axios request error, such as network issues or server unavailability
+        console.log(error)
+        return { error: "An error occurred while registering" };
     }
-
-    return redirect("/")
 }
