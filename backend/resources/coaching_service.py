@@ -16,6 +16,7 @@ blp = Blueprint("Coaching Service", "coachingservice", description="Operations o
 class CoachingServiceList(MethodView):
     @blp.response(200, CoachingServiceSchema(many=True))
     def get(self):
+        """ Retrieve all listing services """
         return CoachingServiceModel.query.all()
     
     
@@ -23,7 +24,7 @@ class CoachingServiceList(MethodView):
     @blp.response(201, CoachingServiceSchema)
     @jwt_required()
     def post(self, coaching_service_data):
-
+        """ List coaching service """
         user_id = get_jwt_identity()
         coaching_service = CoachingServiceModel(**coaching_service_data, coach_id = user_id)
         try:
@@ -45,12 +46,13 @@ class CoachingServiceList(MethodView):
 class Services(MethodView):
     @blp.response(200, CoachingServiceSchema)
     def get(self, listing_id):
+        """ Retrieve a specific listing given listing id """
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
         return coaching_service
     
     @jwt_required()
     def delete(self, listing_id):
-
+        """ Delete coaching services """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
@@ -65,7 +67,7 @@ class Services(MethodView):
     @jwt_required()
     @blp.arguments(CoachingServiceUpdateSchema)
     def put(self,coaching_service_data, listing_id):
-        
+        """ Edit coaching services listing """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
@@ -90,7 +92,7 @@ class Booking(MethodView):
     
     @jwt_required()
     def post(self, listing_id):
-        
+        """ Booking of coaching services listing """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get(listing_id)
@@ -108,7 +110,7 @@ class Booking(MethodView):
 
     @jwt_required()
     def delete(self, listing_id):
-        
+        """ Delete a booking of coaching services"""
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get(listing_id)
@@ -130,7 +132,7 @@ class Saving(MethodView):
     
     @jwt_required()
     def post(self, listing_id):
-        
+        """ Saving coaching services listing """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get(listing_id)
@@ -147,7 +149,7 @@ class Saving(MethodView):
 
     @jwt_required()
     def delete(self, listing_id):
-        
+        """ Delete the saved coaching service listing """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get(listing_id)
@@ -168,10 +170,12 @@ class Saving(MethodView):
 class GodMode(MethodView):
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self):
+        """ Retrieve all services """
         services = CoachingServiceModel.query.all()
         return services, 200
     
     def delete(self):
+        """ Delete all services """
         services = CoachingServiceModel.query.all()
         for service in services:
             db.session.delete(service)
