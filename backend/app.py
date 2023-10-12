@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, set_access_cookies, get_jwt
+from flask_cors import CORS, cross_origin
 
 from datetime import datetime
 from datetime import timedelta
@@ -15,6 +16,7 @@ from resources.taxiapi import blp as TaxiApiBlueprint
 
 def create_app(db_url=None):
     app = Flask(__name__)
+    CORS(app)
     app.config["API_TITLE"] = "SportSync REST API"
     app.config["API_VERSION"] = "v1"
     app.config["OPENAPI_VERSION"] = "3.0.3"
