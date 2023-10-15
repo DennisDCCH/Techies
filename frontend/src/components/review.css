@@ -1,0 +1,44 @@
+.review-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-user-container{
+    width: 250px;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+}
+
+.review-userimg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.review-username {
+    font-family: "Source Serif Pro";
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+.review-message {
+    font-family: "Alegraya Sans";
+    font-size: 30px;
+    color: black;
+}
+
+.review-rating {
+    font-family: "Source Serif Pro";
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+}

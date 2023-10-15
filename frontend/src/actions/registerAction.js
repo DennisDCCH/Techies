@@ -47,6 +47,11 @@ export const registerAction = async ({ request }) => {
             // For example, you might want to redirect the user to a success page.
             console.log("success")
             return redirect("/");
+        } else if (response.status === 409) {
+            // User with the same username already exists
+            const errorResponse = await response.json();
+            const errorMessage = errorResponse.message;
+            return { error: errorMessage };
         } else {
             // Handle other response statuses as needed
             return { error: "Registration failed" };
