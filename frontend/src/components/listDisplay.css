@@ -1,0 +1,131 @@
+.listdisplay-container {
+    display: flex;
+    gap: 118px;
+}
+
+.listdisplay-user-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listdisplay-user-container span{
+    color: black;
+    font-family: "Palanquin";
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.listdisplay-user-bio, 
+.listdisplay-service-info-price,
+.listdisplay-service-info-location,
+.listdisplay-service-info-time,
+.listdisplay-service-info-sport,
+.listdisplay-service-info-proficiency,
+.listdisplay-service-info-availability,
+.listdisplay-serivce-description{
+    display: flex;
+    flex-direction: column;
+}
+
+.listdisplay-user-bio label, 
+.listdisplay-service-info-price label,
+.listdisplay-service-info-location label,
+.listdisplay-service-info-time label,
+.listdisplay-service-info-sport label,
+.listdisplay-service-info-proficiency label,
+.listdisplay-service-info-availability label,
+.listdisplay-serivce-description label{
+    margin-left: 10px;
+    color: #4FA94D;
+    font-family: "Source Serif Pro";
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.listdisplay-user-bio-box{
+    display: inline-block;
+    width: 403px;
+    height: 318px;
+    padding-left: 10px;
+    line-height: 51px;
+    border: 2px solid #4FA94D;
+    border-radius: 10px;
+    color: black;
+    font-family: "Source Serif Pro";
+    font-size: 20px;
+    font-weight: 600;
+    
+}
+
+.listdisplay-service-picture{
+    width: 274px;
+    height: 238px;
+    border-radius: 50px;
+}
+
+
+.listdisplay-service-container {
+    display: flex;
+    flex-direction: column;
+    gap: 43px;
+}
+
+
+.listdisplay-service-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 20px;
+}
+
+.listdisplay-service-info-price span,
+.listdisplay-service-info-location span,
+.listdisplay-service-info-time span,
+.listdisplay-service-info-sport span,
+.listdisplay-service-info-proficiency span,
+.listdisplay-service-info-availability span{
+    display: inline-block;
+    width: 275px;
+    height: 48px;
+    padding-left: 10px;
+    line-height: 51px;
+    border: 2px solid #4FA94D;
+    border-radius: 10px;
+    color: black;
+    font-family: "Source Serif Pro";
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.listdisplay-serivce-description span{
+    display: inline-block;
+    width: 614px;
+    height: 189px;
+    padding-left: 10px;
+    line-height: 51px;
+    border: 2px solid #4FA94D;
+    border-radius: 10px;
+    color: black;
+    font-family: "Source Serif Pro";
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.listdisplay-serivce-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.listdisplay-serivce-buttons button {
+    width: 181px;
+    height: 51px;
+    border: none;
+    background: #37822B;
+    border-radius: 10px;
+    color: white;
+    font-family: "Source Serif Pro";
+    font-size: 28px;
+    font-weight: 600;
+}

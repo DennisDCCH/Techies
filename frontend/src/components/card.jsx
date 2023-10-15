@@ -14,7 +14,7 @@ export default function Card(props) {
             <img className = "card-coverImg" src = {`images/${props.item.coverImg}`} alt = "sport-pic"/>
             <h1 className = "card-sport">{props.item.sport}</h1>
             <button type="button" className="card-select-button">
-                    <Link className = "card-select-button-link">Select Listing</Link>
+                    <Link className = "card-select-button-link" to = {`/listing/${props.item.id}`}>Select Listing</Link>
             </button>
         </div>
     )

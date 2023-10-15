@@ -40,7 +40,6 @@ export default function Marketplace() {
             <section className="cards-list">
                 {cards}
             </section>
-            <button id = 'get-btn'>Get data</button>
         </div>
     )
 }

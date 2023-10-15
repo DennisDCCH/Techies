@@ -30,6 +30,7 @@ import { createListingAction } from "./actions/createListingAction"
 import { changePwAction } from "./actions/changePwAction"
 import { editProfileAction } from "./actions/editProfileAction"
 import { editListAction } from "./actions/editListAction"
+import { reviewAction } from "./actions/reviewAction"
 
 const router = createBrowserRouter([
     {
@@ -75,8 +76,9 @@ const router = createBrowserRouter([
         element: <BookedListing />
     },
     {
-        path: "/listing",
-        element: <Listing />
+        path: "/listing/:id",
+        element: <Listing />,
+        action: reviewAction
     },
     {
         path: "/create",

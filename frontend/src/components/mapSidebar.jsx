@@ -1,10 +1,14 @@
-import React from "react"
+import React, { useState }from "react"
 import { Link } from "react-router-dom"
+
 import MAGNIFYINGLOGO from "../images/magnifying-logo.png"
 
 import "./mapSidebar.css"
 
 export default function MapSidebar (props) {
+    const [address, setAddress] = useState(""); 
+    const [coordinates, setCoordinates] = useState(null);
+
     return (
         <div className = "mapsidebar-background">
             <div className = "mapsidebar-user-info"> 

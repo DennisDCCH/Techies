@@ -8,3 +8,7 @@ body, html {
 input[type = "file"] {
     display: none;
 }
+
+input[type="radio"] {
+    display: none;
+  }

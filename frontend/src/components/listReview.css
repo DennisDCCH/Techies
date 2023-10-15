@@ -1,0 +1,124 @@
+.listreview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.listreview-overall {
+    display: flex;
+    width: 1139px;
+    height: 92px;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    align-items: center;
+    padding: 0px 39px;
+    justify-content: space-between;
+}
+
+.listreview-overall-user{
+    display: flex;
+    gap: 22px;
+    align-items: center;
+}
+
+.listreview-overall-username{
+    font-family: "Source Serif Pro";
+    font-size: 32px;
+    font-weight: 600;
+    color: black;
+}
+
+.listreview-overall-userimg{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.listreview-overall-stats {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.listreview-overall-stats-rating{
+    font-family: "Source Serif Pro";
+    font-size: 50px;
+    font-weight: 600;
+    color: black;
+}
+
+.listreview-overall-stats-star {
+    width: 64px;
+    height: 64px;
+}
+
+.listreview-overall-stats-count{
+    font-family: "Source Serif Pro";
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+.listreview-individual{
+    display: flex;
+    flex-direction: column;
+    width: 1139px;
+    height: auto;
+    background-color: #B5DCBB;
+    border-radius: 20px;
+    padding: 20px 39px;
+    gap: 20px;
+}
+
+.listreview-individual-title{
+    font-family: "Source Serif Pro";
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+.listreview-reviews-container {
+    max-height: 300px; /* Set the initial height to your desired value */
+    overflow: auto;
+}
+
+.listreview-reviews-container::-webkit-scrollbar{
+    display: none;
+}
+
+.listreview-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    padding: 0px 20px;
+}
+
+.listreview-individual-input{
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    width: 700px;
+    font-weight: 600;
+    font-family: "Sora";
+}
+
+.listreview-miscallenous {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+}
+
+.listreview-miscallenous button {
+    border: none;
+    background-color: #37822B;
+    width: 127px;
+    height: 40px;
+    font-family: "Source Serif Pro";
+    font-size: 20px;
+    color: white;
+    border-radius: 20px;
+    
+}
