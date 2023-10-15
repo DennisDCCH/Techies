@@ -12,6 +12,12 @@ export default function MapSidebar (props) {
         getLocation()
     }, [])
 
+    const locationOptions = {
+        enableHighAccuracy: true, // Request high accuracy if available
+        timeout: 5000, // Maximum time to wait for a response (in milliseconds)
+        maximumAge: 0 // Do not use a cached location
+    }
+
     const getLocation = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             const { latitude, longitude} = position.coords
