@@ -1,13 +1,24 @@
-import React, { useState }from "react"
+import React, { useEffect, useState }from "react"
 import { Link } from "react-router-dom"
 
 import MAGNIFYINGLOGO from "../images/magnifying-logo.png"
 
 import "./mapSidebar.css"
+import axios from "axios";
 
 export default function MapSidebar (props) {
-    const [address, setAddress] = useState(""); 
-    const [coordinates, setCoordinates] = useState(null);
+    const [currLocation, setCurrLocation] = useState({})
+    useEffect(() => {
+        getLocation()
+    }, [])
+
+    const getLocation = () => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude} = position.coords
+            setCurrLocation({ latitude, longitude })
+            console.log(position.coords)
+        })
+    }
 
     return (
         <div className = "mapsidebar-background">
