@@ -5,6 +5,7 @@ import {
     RouterProvider,
     Route,
 } from "react-router-dom"
+import RequiredAuth from "react-auth-kit"
 
 //pages
 import Homepage from "./pages/homepage"
@@ -31,6 +32,7 @@ import { changePwAction } from "./actions/changePwAction"
 import { editProfileAction } from "./actions/editProfileAction"
 import { editListAction } from "./actions/editListAction"
 import { reviewAction } from "./actions/reviewAction"
+import { AuthProvider } from "./context/AuthProvider"
 
 const router = createBrowserRouter([
     {
@@ -45,7 +47,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/homepage",
-        element: <Homepage />
+        element: (
+            <RequiredAuth loginPath = "/">
+                <Homepage />
+            </RequiredAuth>
+        ),
     },
     {
         path: "/profile",
@@ -102,7 +108,19 @@ const router = createBrowserRouter([
     }
 ])
 
+function handleUnauthenticatedAccess() {
+    window.location.href = "/";
+  }
+
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
-    <RouterProvider router = {router} />
+    <AuthProvider
+        authType = {"cookie"}
+        authName = {"_auth"}
+        cookieDomain = {window.location.hostname}
+        cookieSecure = {false}
+        onUnauthenticatedAccess = {handleUnauthenticatedAccess}
+    >
+        <RouterProvider router = {router} />
+    </AuthProvider>
 )

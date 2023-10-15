@@ -8,15 +8,10 @@ import axios from "axios";
 
 export default function MapSidebar (props) {
     const [currLocation, setCurrLocation] = useState({})
+    
     useEffect(() => {
         getLocation()
     }, [])
-
-    const locationOptions = {
-        enableHighAccuracy: true, // Request high accuracy if available
-        timeout: 5000, // Maximum time to wait for a response (in milliseconds)
-        maximumAge: 0 // Do not use a cached location
-    }
 
     const getLocation = () => {
         navigator.geolocation.getCurrentPosition((position) => {

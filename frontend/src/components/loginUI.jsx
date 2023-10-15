@@ -77,7 +77,7 @@ export default function loginUI() {
         <div className = "login-background"> 
             <LoginSidebar /> 
             <div className = "loginUI">
-                <Form onSubmit = {handleLogin} className = "login-form" action = "/">
+                <Form className = "login-form" method = "post" action = "/">
                     <h1 className = "login-form-text">Log-in</h1>
                     <div className = "login-form-username">
                         <label className = "login-form-username-text">Username</label>
