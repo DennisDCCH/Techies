@@ -22,7 +22,15 @@ export default function Navbar() {
                 <button type="button" className="nav-button-logout">
                     <Link className = "nav-button-logout-link" to = "/">Logout</Link>
                 </button>
-                <img className = "nav-right-dropdown-menu" src = {DROPDOWNMENULOGO} alt = "dropdown-menu-logo"/>
+                <div className="dropdown">
+                    <img className = "nav-right-dropdown-icon" src = {DROPDOWNMENULOGO} alt = "dropdown-menu-logo"/>
+                    <ul className="dropdown-menu">
+                        <li><Link to = "/marketplace">Actvities</Link></li>
+                        <li><Link to = "/map">Map</Link></li>
+                        <li><Link to = "/chat">Chat</Link></li>
+                        <li><Link to = "#">FAQ</Link></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     )

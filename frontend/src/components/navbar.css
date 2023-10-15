@@ -52,9 +52,52 @@ nav {
     text-decoration: none;
 }
 
-.nav-right-dropdown-menu{
+.nav-right-dropdown-icon{
     width: 39px;
     height: 39px;
     position: relative; /* Add this to make the dropdown relative to the icon */
     cursor: pointer;
+    margin-bottom: 0;
+}
+
+/* hide dropdown menu */
+.dropdown-menu {
+    display: none; /* By default, the dropdown is hidden */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 0;
+
+}
+
+/* Position dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Show the dropdown menu when the container is hovered */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Style the dropdown links */
+.dropdown-menu a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s;
+}
+
+/* Change link color on hover */
+.dropdown-menu a:hover {
+    background-color: #ddd;
 }
