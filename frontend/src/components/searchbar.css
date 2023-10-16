@@ -53,7 +53,7 @@ section {
 }
 
 /* Show the dropdown menu when the container is hovered */
-.dropdown .dropdown-menu {
+.dropdown:hover > .dropdown-menu {
     display: block;
 }
 
