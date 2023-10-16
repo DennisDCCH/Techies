@@ -41,6 +41,7 @@ export default function Map() {
     if (!isLoaded) return <div>Loading...</div>
     let index = 0;
     const coordinatesObject = taxiData.features[0].geometry.coordinates
+    const totalTaxis = taxiData.features[0].properties.taxi_count
     // console.log(coordinatesObject)
     return (
         <div className = "map-page-container">
