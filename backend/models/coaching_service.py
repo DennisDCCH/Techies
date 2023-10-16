@@ -7,11 +7,13 @@ class CoachingServiceModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
     sport = db.Column(db.String(80), nullable=False)
-    time = db.Column(db.String(80), nullable=False)
+    datetime = db.Column(db.String(80), nullable=False)
     location = db.Column(db.String(120), nullable=False)
     price = db.Column(db.Float, nullable=False)
     availability = db.Column(db.String(255))
     description = db.Column(db.String(255))
+    coverImg = db.Column(db.String(255))
+    proficiency = db.Column(db.String(255))
 
     #many to many relation
     athletes = db.relationship("UserModel", back_populates="booked", secondary="athlete_service")
@@ -23,4 +25,4 @@ class CoachingServiceModel(db.Model):
     #one to many relation
     reviews = db.relationship("ReviewModel", back_populates="service", lazy="dynamic", cascade="all, delete")
 
-    __table_args__ = (db.UniqueConstraint('location', 'time', name='uq_location_time'),)
+    __table_args__ = (db.UniqueConstraint('location', 'datetime', name='uq_location_time'),)

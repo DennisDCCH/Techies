@@ -4,25 +4,33 @@ from marshmallow import Schema, fields
 class PlainUserSchema(Schema):
     id = fields.Int(dump_only=True)
     username = fields.Str(required=True)
+    userImg = fields.Str(required=True)
 
 class PlainCoachingServiceSchema(Schema):
     id = fields.Int(dump_only=True)
     coach_id = fields.Int(load_only=True)
     coach = fields.Nested(PlainUserSchema())
     sport = fields.Str(required=True)
-    time = fields.Str(required=True)
+    datetime = fields.Str(required=True)
+    coverImg = fields.Str(required=True)
+    proficiency = fields.Str(required=True)
 
 class PlainReviewSchema(Schema):
     id = fields.Int(dump_only=True)
     rating = fields.Int(required=True)
-    comment = fields.Str(required=True)
+    reviewMsg = fields.Str(required=True)
     reviewer = fields.Nested(PlainUserSchema())
     
 
 class UserSchema(PlainUserSchema):
     password = fields.Str(load_only=True)
     gender = fields.Str(required=True)
-    profile_picture = fields.Str(required=True)
+    firstname = fields.Str(required=True)
+    lastname = fields.Str(required=True)
+    email = fields.Str(required=True)
+    dob = fields.Str(required=True)
+    bio = fields.Str(required=True)
+
 
     booked = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
     saved = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
@@ -32,15 +40,21 @@ class CoachingServiceSchema(PlainCoachingServiceSchema):
     athletes = fields.List(fields.Nested(PlainUserSchema()), dump_only=True)
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only=True)
     location = fields.Str(required=True)
-    price = fields.Float(required=True)
+    price = fields.Str(required=True)
     availability = fields.Str(required=True)
     description = fields.Str(required=True)
 
 class UserUpdateSchema(Schema):
     username = fields.Str()
-    password = fields.Str(load_only=True)
-    gender = fields.Str()
-    profile_picture = fields.Str()
+    userImg = fields.Str()
+    email = fields.Str()
+    dob = fields.Str()
+    bio = fields.Str()
+
+class UserChangePasswordSchema(Schema):
+    password = fields.Str()
+    newpw = fields.Str()
+    newpw2 = fields.Str()
 
 class LoginSchema(Schema):
     username = fields.Str(required=True)
@@ -48,9 +62,14 @@ class LoginSchema(Schema):
     
 class CoachingServiceUpdateSchema(Schema):
     location = fields.Str()
-    time = fields.Str()
+    datetime = fields.Str()
     description = fields.Str()
-
+    sport = fields.Str()
+    price = fields.Str()
+    availability = fields.Str()
+    proficiency = fields.Str()
+    coverImg = fields.Str()
+         
 class ReviewSchema(PlainReviewSchema):
     service_id = fields.Int(load_only=True)
     service = fields.Nested(PlainCoachingServiceSchema())

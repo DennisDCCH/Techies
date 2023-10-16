@@ -7,7 +7,7 @@ from passlib.hash import pbkdf2_sha256
 
 from db import db
 from models import UserModel
-from schemas import UserSchema, UserUpdateSchema, LoginSchema, CoachingServiceSchema
+from schemas import UserSchema, UserUpdateSchema, LoginSchema, CoachingServiceSchema, UserChangePasswordSchema
 
 
 blp = Blueprint("Users", "users", description="Operations on users")
@@ -25,10 +25,16 @@ class UserRegister(MethodView):
             abort(409, message="A user with that username already exists.")
 
         user = UserModel(
+            firstname = user_data["firstname"],
+            lastname = user_data["lastname"],
+            email = user_data["email"],
             username=user_data["username"],
             password=pbkdf2_sha256.hash(user_data["password"]),
+            dob = user_data["dob"],
             gender = user_data["gender"],
-            profile_picture = user_data["profile_picture"]
+            userImg = user_data["userImg"],
+            bio = user_data["bio"]
+
         )
         db.session.add(user)
         db.session.commit()
@@ -68,6 +74,7 @@ class User(MethodView):
 
     @blp.arguments(UserUpdateSchema)
     @blp.response(200, UserSchema)
+    @jwt_required()
     def put(self, user_data):
         """ Edit user profile """
         user_id = get_jwt_identity()
@@ -76,10 +83,11 @@ class User(MethodView):
         if UserModel.query.filter(UserModel.username == user_data["username"]).first():
             abort(409, message="A user with that username already exists.")
 
+        user.email = user_data["email"]
+        user.dob = user_data["dob"]
+        user.bio = user_data["bio"]
         user.username = user_data["username"]
-        user.password = user_data["password"]
-        user.gender = user_data["gender"]
-        user.profile_picture = user_data["profile_picture"]
+        user.userImg = user_data["userImg"]
         db.session.commit()
 
         return user, 201
@@ -90,8 +98,30 @@ class User(MethodView):
     #     db.session.commit()
     #     return {"message": "User deleted."}, 200
 
+
+@blp.route("/user/changepassword")
+class ChangePassword(MethodView):
+    @blp.arguments(UserChangePasswordSchema)
+    @jwt_required()
+    def put(self,user_data):
+        """ Change Password """
+        user_id = get_jwt_identity()
+        user = UserModel.query.get(user_id)
+        if pbkdf2_sha256.verify(user_data["password"], user.password) == False:
+            abort(400, message="Old password does not match current password")
+        
+        if pbkdf2_sha256.verify(user_data["newpw"], user.password):
+            abort(409, message="Password needs to be different from old password.")
+
+        user.password = pbkdf2_sha256.hash(user_data["newpw"])
+        db.session.commit()
+        return jsonify({"message": "password changed"}), 201
+
+
+
 @blp.route("/user/booked")
 class ViewBooked(MethodView):
+    @jwt_required()
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self):
         """ Retrieve User's booking services """
@@ -107,6 +137,7 @@ class ViewBooked(MethodView):
 
 @blp.route("/user/saved")
 class ViewSaved(MethodView):
+    @jwt_required()
     @blp.response(200, CoachingServiceSchema(many = True))
     def get(self):
         """ Retrieve user's saved coaching services """
