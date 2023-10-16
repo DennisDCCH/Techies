@@ -5,3 +5,5 @@ passlib
 marshmallow
 python-dotenv
 gunicorn
+flask_cors
+requirements
