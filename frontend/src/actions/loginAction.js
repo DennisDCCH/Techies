@@ -1,11 +1,9 @@
 import { redirect } from "react-router-dom"
-import { useSignIn } from "react-auth-kit"
 import axios from "../api/axios"
 
 const LOGIN_URL = '/login'
 export const loginAction = async ({ request }) => {
     const data = await request.formData()
-    const signIn = useSignIn();
 
     const submission = {
         username: data.get("username"),
@@ -21,13 +19,6 @@ export const loginAction = async ({ request }) => {
 
             console.log(response.data.access_token)
 
-            signIn({
-                token: response.data.access_token,
-                expiresIn: 3600, //exact value should align with the token's expiration policy
-                tokenType: "Bearer",
-                authState: { username: submission.username}
-            })
-            
             return redirect("/homepage");
         } else if (response.status === 409) {
 

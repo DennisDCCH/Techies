@@ -5,7 +5,6 @@ import {
     RouterProvider,
     Route,
 } from "react-router-dom"
-import RequiredAuth from "react-auth-kit"
 
 //pages
 import Homepage from "./pages/homepage"
@@ -47,11 +46,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/homepage",
-        element: (
-            <RequiredAuth loginPath = "/">
-                <Homepage />
-            </RequiredAuth>
-        ),
+        element: <Homepage />,
     },
     {
         path: "/profile",
