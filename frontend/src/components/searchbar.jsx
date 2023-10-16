@@ -28,20 +28,15 @@ export default function Searchbar() {
             <div className="nav-right">
                 <div className="dropdown">
                     <img className = "filter-icon" src = {FILTERLOGO} alt = "filter-logo"/>
-                            <ul className="dropdown-menu">
-                                <li>Sports
-                                    <ul className="dropdown-menu-sports" onClick={handleClick} value={query}>
-                                        <li>Basketball</li>
-                                        <li>Volleyball</li>
-                                    </ul>
-                                </li>
-                                <li>Proficiency
-                                    <ul className="dropdown-menu-proficiency" onClick={handleClick} value={query}>
-                                        <li>High</li>
-                                        <li>Low</li>
-                                    </ul>
-                                </li>
+                    <ul className="dropdown-menu">
+                        <li>Sports
+                            <ul className="dropdown-menu-sports" onClick={handleClick} value={query}>
+                                <li>Basketball</li>
+                                <li>Volleyball</li>
                             </ul>
+                        </li>
+                        <li>Proficiency</li>
+                    </ul>
                 </div>
             </div>
         </section>
