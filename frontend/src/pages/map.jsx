@@ -13,7 +13,7 @@ export default function Map() {
         googleMapsApiKey: "AIzaSyAqfV5D6spu0saYX6khc2BQJsoSsK8vAVA",
     })
 
-    const [apiData, setApiData] = useState([]);
+    const [taxiData, setTaxiData] = useState(null);
 
     useEffect(() => {
       // Fetch data from your API
@@ -21,7 +21,7 @@ export default function Map() {
         try {
           const response = await fetch("https://api.data.gov.sg/v1/transport/taxi-availability");
           const data = await response.json();
-          setApiData(data);
+          setTaxiData(data);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -42,12 +42,17 @@ export default function Map() {
                     center = {center}
                     mapContainerClassName="map-size"
                 >
-                    {apiData.map((item, index) => (
+                    {taxiData &&
+                    taxiData.features.map((feature, index) => (
                         <Marker
                         key={index}
-                        position={{ lat: item.latitude, lng: item.longitude }}
+                        position={
+                            { lat: feature.geometry.coordinates[index][1],
+                              lng: feature.geometry.coordinates[index][0], }
+                            }
                         />
                     ))}
+                    <Marker position={center} />
                 </GoogleMap>
             </div>
         </div>
