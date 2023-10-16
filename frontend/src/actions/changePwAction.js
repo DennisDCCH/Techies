@@ -4,7 +4,7 @@ export const changePwAction = async ({ request }) => {
     const data = await request.formData()
 
     const submission = {
-        password: data.get("oldpw"),
+        oldpw: data.get("oldpw"),
         newpw: data.get("newpw"),
         newpw2: data.get("newpw2")
     }
