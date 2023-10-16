@@ -1,58 +1,25 @@
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 30px 25px;
-    background-color: #37822B; 
-    background-image: url(../images/Vector3.png);
-    background-repeat: repeat-x; 
-    background-size: cover; 
-    height: 120px;
-    align-items: center;
-    max-width: 100%;
-}
-
-.nav-left {
+.search-box {
     display: flex;
     align-items: center; 
     gap: 24px;
+    margin: 20px;
+    padding: 5px 20px;
+    width: 608px;
+    height: 51px;
+    border: solid #37822B;
+    border-radius: 10px;
+    font-size: 20px;
+    font: grey;
 }
 
-.nav-logo_name {
-    color: #FFFFFF;
-    font-size: 85px;
-    text-shadow: 7px 7px 5px #2c2c2c;
-    font-family: 'Source Serif Pro';
-    font-weight: 700;
-}
-
-.nav-right {
+section {
     display: flex;
     align-items: center;
-    gap: 20px;
-    margin-right: 60px;
+    border-radius: 10px;
+    width: 5px 5px 5px 5px;
 }
 
-.nav-button-logout {
-    width: 142px; 
-    height: 65px; 
-    font-size: 32px;
-    font-family: 'Source Serif Pro';
-    border: none;
-    text-align: center;
-    display: inline-block;
-    font-weight: bold;
-}
-
-.nav-button-logout {
-    background-color: #4FA94D;
-}
-
-.nav-button-logout-link{
-    color: white;  
-    text-decoration: none;
-}
-
-.nav-right-dropdown-icon{
+.filter-icon{
     width: 39px;
     height: 39px;
     position: relative; /* Add this to make the dropdown relative to the icon */
@@ -61,7 +28,8 @@ nav {
 }
 
 /* hide dropdown menu */
-.dropdown-menu {
+.dropdown-menu,
+.dropdown-menu-sports {
     display: none; /* By default, the dropdown is hidden */
     position: absolute;
     top: 100%;
@@ -88,8 +56,14 @@ nav {
     display: block;
 }
 
+/* 2nd dropdown menu appear when hovered */
+.dropdown-menu:hover .dropdown-menu-sports { /* UNCOMPLETE */
+    display: inline-block;
+}
+
 /* Style the dropdown links */
-.dropdown-menu li {
+.dropdown-menu li,
+.dropdown-menu li ul li {
     color: black;
     padding: 10px 16px;
     text-decoration: none;
@@ -98,6 +72,8 @@ nav {
 }
 
 /* Change link color on hover */
-.dropdown-menu li:hover {
+.dropdown-menu li:hover,
+.dropdown-menu li ul li:hover {
     background-color: #ddd;
 }
+

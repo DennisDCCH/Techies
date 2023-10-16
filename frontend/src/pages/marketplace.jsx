@@ -5,10 +5,10 @@ import axios from "../api/axios.js"
 import data from "../data/listing.js"
 import Navbar from "../components/navbar.jsx"
 import Card from "../components/card"
+import Searchbar from "../components/searchbar.jsx"
 import "./marketplace.css"
 
 export default function Marketplace() {
-
     
     const [coachingServices, setCoachingServices] = useState([]);
 
@@ -37,6 +37,7 @@ export default function Marketplace() {
     return (
         <div>
             <Navbar />
+            <Searchbar />
             <section className="cards-list">
                 {cards}
             </section>
