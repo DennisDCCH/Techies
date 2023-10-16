@@ -16,7 +16,6 @@ blp = Blueprint("Users", "users", description="Operations on users")
 @blp.route("/register")
 class UserRegister(MethodView): 
     @blp.arguments(UserSchema)
-    @blp.response(201)
     def post(self, user_data):
         """ Registers a user given a JSON input of their details"""
         # NEED TO CHECK THAT PASSWORD FULFILLS REQUIREMENTS
@@ -39,7 +38,7 @@ class UserRegister(MethodView):
         db.session.add(user)
         db.session.commit()
 
-        return {"message": "User created successfully."}, 201
+        return {"message": "User created successfully."}, 200
 
 @blp.route("/login")
 class UserLogin(MethodView):

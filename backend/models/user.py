@@ -9,11 +9,11 @@ class UserModel(db.Model):
     lastname = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(80), nullable=False)
     dob = db.Column(db.String(80), nullable=False)
-    bio = db.Column(db.String(80), nullable=False)
+    bio = db.Column(db.String(80), nullable=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
     gender = db.Column(db.String(80), nullable=False)
-    userImg = db.Column(db.String(80), nullable=False)
+    userImg = db.Column(db.String(80), nullable=True)
 
 
 

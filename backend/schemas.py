@@ -4,7 +4,7 @@ from marshmallow import Schema, fields
 class PlainUserSchema(Schema):
     id = fields.Int(dump_only=True)
     username = fields.Str(required=True)
-    userImg = fields.Str(required=True)
+    userImg = fields.Str() #required = True
 
 class PlainCoachingServiceSchema(Schema):
     id = fields.Int(dump_only=True)
@@ -29,9 +29,7 @@ class UserSchema(PlainUserSchema):
     lastname = fields.Str(required=True)
     email = fields.Str(required=True)
     dob = fields.Str(required=True)
-    bio = fields.Str(required=True)
-
-
+    bio = fields.Str() #required = True
     booked = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
     saved = fields.List(fields.Nested(PlainCoachingServiceSchema()), dump_only=True)
     
