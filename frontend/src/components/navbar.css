@@ -84,7 +84,7 @@ nav {
 }
 
 /* Show the dropdown menu when the container is hovered */
-.dropdown:hover .dropdown-menu {
+.dropdown li:hover > .dropdown-menu {
     display: block;
 }
 
