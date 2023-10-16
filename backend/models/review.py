@@ -6,7 +6,7 @@ class ReviewModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
-    comment = db.Column(db.String(255))
+    reviewMsg = db.Column(db.String(255))
     picture = db.Column(db.String(255))
 
     #many to one relationships

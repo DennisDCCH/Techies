@@ -5,10 +5,15 @@ class UserModel(db.Model):
     __tablename__ = "user"
 
     id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(80), nullable=False)
+    lastname = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(80), nullable=False)
+    dob = db.Column(db.String(80), nullable=False)
+    bio = db.Column(db.String(80), nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
     gender = db.Column(db.String(80), nullable=False)
-    profile_picture = db.Column(db.String(80), nullable=False)
+    userImg = db.Column(db.String(80), nullable=False)
 
 
 
