@@ -39,8 +39,11 @@ class CoachingServiceSchema(PlainCoachingServiceSchema):
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only=True)
     location = fields.Str(required=True)
     price = fields.Str(required=True)
-    availability = fields.Str(required=True)
+    available = fields.Int(dump_only=True)
+    maximum = fields.Int(load_only = True)
     description = fields.Str(required=True)
+    overallRating = fields.Float(dump_only=True) 
+    numReviews = fields.Int(dump_only=True)
 
 class UserUpdateSchema(Schema):
     username = fields.Str()

@@ -10,10 +10,15 @@ class CoachingServiceModel(db.Model):
     datetime = db.Column(db.String(80), nullable=False)
     location = db.Column(db.String(120), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    availability = db.Column(db.String(255))
     description = db.Column(db.String(255))
     coverImg = db.Column(db.String(255))
     proficiency = db.Column(db.String(255))
+    overallRating = db.Column(db.Float(precision=2)) 
+    numReviews = db.Column(db.Integer)
+
+    
+    maximum = db.Column(db.Integer)
+    available = db.Column(db.Integer)
 
     #many to many relation
     athletes = db.relationship("UserModel", back_populates="booked", secondary="athlete_service")

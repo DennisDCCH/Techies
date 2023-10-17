@@ -79,14 +79,15 @@ class User(MethodView):
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
 
-        if UserModel.query.filter(UserModel.username == user_data["username"]).first():
-            abort(409, message="A user with that username already exists.")
+        # if UserModel.query.filter(UserModel.username == user_data["username"]).first() and user.username != user_data["username"]:
+        #     abort(409, message="A user with that username already exists.")
 
         user.email = user_data["email"]
         user.dob = user_data["dob"]
         user.bio = user_data["bio"]
         user.username = user_data["username"]
-        user.userImg = user_data["userImg"]
+        if user_data["userImg"] != "":
+            user.userImg = user_data["userImg"]
         db.session.commit()
 
         return user, 201
