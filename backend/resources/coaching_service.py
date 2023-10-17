@@ -17,6 +17,8 @@ class CoachingServiceList(MethodView):
     @blp.response(200, CoachingServiceSchema(many=True))
     def get(self):
         """ Retrieve all listing services """
+
+        # Order it from last service to first service
         return CoachingServiceModel.query.all()
     
     
@@ -26,7 +28,8 @@ class CoachingServiceList(MethodView):
     def post(self, coaching_service_data):
         """ List coaching service """
         user_id = get_jwt_identity()
-        coaching_service = CoachingServiceModel(**coaching_service_data, coach_id = user_id)
+        
+        coaching_service = CoachingServiceModel(**coaching_service_data, coach_id = user_id, numReviews = 0, overallRating = 0, available = coaching_service_data["maximum"])
         try:
             db.session.add(coaching_service)
             db.session.commit()
@@ -107,6 +110,8 @@ class Booking(MethodView):
             return {'message': 'You have already booked this service'}, 400
         user.booked.append(coaching_service)
         coaching_service.athletes.append(user)
+        
+        coaching_service.available -= 1
         db.session.commit()
 
         return {'message': 'Service booked successfully'}, 200
@@ -124,6 +129,7 @@ class Booking(MethodView):
         if coaching_service not in user.booked:
             return {'message': 'You have not booked this service yet'}, 400
         user.booked.remove(coaching_service)
+        coaching_service.available += 1
         db.session.commit()
 
         return {'message': 'Service removed successfully from bookings'}

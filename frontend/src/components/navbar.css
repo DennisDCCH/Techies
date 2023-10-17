@@ -60,44 +60,60 @@ nav {
     margin-bottom: 0;
 }
 
-/* hide dropdown menu */
-.dropdown-menu {
-    display: none; /* By default, the dropdown is hidden */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 180px;
-    background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 4px;
-    list-style-type: none;
-    padding: 0;
-    margin-top: 0;
 
+
+
+
+
+
+
+
+
+
+
+/* CSS for the dropdown container */
+.dropdown-container {
+  position: relative; 
+  display: inline-block;
 }
 
-/* Position dropdown container */
-.dropdown {
-    position: relative;
-    display: inline-block;
+/* Default styles for the dropdown menu */
+.dropdown-menu-nav {
+  display: none; 
+  position: absolute;
+  top: 100%;
+  right: 15%;
+  min-width: 180px;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 4px;
+  list-style-type: none;
+  padding: 0; 
+  margin-top: 0;
 }
 
-/* Show the dropdown menu when the container is hovered */
-.dropdown li:hover > .dropdown-menu {
-    display: block;
+/* Hover effect for the dropdown menu */
+.dropdown-container:hover > .dropdown-menu-nav {
+  display: block; 
 }
 
-/* Style the dropdown links */
-.dropdown-menu li {
-    color: black;
-    padding: 10px 16px;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.2s;
+/* Style for the dropdown menu items */
+.dropdown-menu-nav li {
+  color: black;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s}
+
+/* Style for the links in the dropdown menu */
+.dropdown-menu-nav li:hover {
+  background-color: #ddd;
 }
 
-/* Change link color on hover */
-.dropdown-menu li:hover {
-    background-color: #ddd;
+/* Style the links in the dropdown items (optional) */
+.dropdown-menu-nav a {
+  text-decoration: none;
+  color: #333;
 }
+ 

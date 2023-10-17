@@ -35,6 +35,9 @@ class Review(MethodView):
         review = ReviewModel(**review_data, reviewer_id = user_id)
         reviewList.append(review)
 
+        coaching_service.numReviews += 1 
+        coaching_service.overallRating = (coaching_service.overallRating * (coaching_service.numReviews - 1)+ review.rating)/coaching_service.numReviews
+
         try:
             db.session.add(review)
             db.session.commit()
