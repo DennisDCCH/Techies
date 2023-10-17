@@ -27,11 +27,24 @@ section {
     margin-bottom: 0;
 }
 
+
+
+
+
+
+
+
+/* Position dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 /* hide dropdown menu */
 .dropdown-menu,
 .dropdown-menu-sports,
 .dropdown-menu-proficiency{
-    display: none; /* By default, the dropdown is hidden */
+    display: none; 
     position: absolute;
     top: 0;
     left: 100%;
@@ -46,12 +59,6 @@ section {
 
 }
 
-/* Position dropdown container */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
 /* Show the dropdown menu when the container is hovered */
 .dropdown:hover > .dropdown-menu {
     display: block;
@@ -59,18 +66,11 @@ section {
 
 /* 2nd dropdown menu appear when hovered */
 .dropdown-menu li:hover > .dropdown-menu-sports {
-     /* UNCOMPLETE */
     display: block;
 }
 
 .dropdown-menu li:hover > .dropdown-menu-proficiency  {
-    /* UNCOMPLETE */
    display: block;
-}
-
-
-.double-dropdown-position{
-    display: flexbox;
 }
 
 /* Style the dropdown links */

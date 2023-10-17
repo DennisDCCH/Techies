@@ -33,11 +33,16 @@ export default function Searchbar() {
                                     <ul className="dropdown-menu-sports" onClick={handleClick} value={query}>
                                         <li>Basketball</li>
                                         <li>Volleyball</li>
+                                        <li>Badminton</li>
+                                        <li>Mountain Biking</li>
+                                        <li>Soccer</li>
+                                        <li>Table Tennis</li>
                                     </ul>
                                 </li>
                                 <li>Proficiency
                                     <ul className="dropdown-menu-proficiency" onClick={handleClick} value={query}>
                                         <li>High</li>
+                                        <li>Medium</li>
                                         <li>Low</li>
                                     </ul>
                                 </li>
