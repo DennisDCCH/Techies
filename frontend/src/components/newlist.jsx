@@ -10,7 +10,7 @@ export default function NewListing() {
                 <div className = "create-form-info">
                     <div className = "create-form-price">
                         <label className = "create-form-price-label">Price</label>
-                        <input className = "create-form-price-input" type = "text" name = "price" placeholder = "$50/hr" required/>
+                        <input className = "create-form-price-input" type = "number" name = "price" placeholder = "$50/hr" required/>
                     </div>
                     <div className = "create-form-location">
                         <label className = "create-form-location-label">Location</label>

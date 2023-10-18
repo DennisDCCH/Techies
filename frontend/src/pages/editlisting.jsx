@@ -34,7 +34,7 @@ export default function EditListing() {
         .catch((error) => {
             console.log(error)
         })
-    }, [])
+    }, [id])
     
 
     return (

@@ -13,7 +13,7 @@ export default function ListInfo(props) {
                 <div className = "listinfo-form-info">
                     <div className = "listinfo-form-price">
                         <label className = "listinfo-form-price-label">Price</label>
-                        <input className = "listinfo-form-price-input" type = "text" name = "price" defaultValue = {props.item.price}/>
+                        <input className = "listinfo-form-price-input" type = "number" name = "price" defaultValue = {props.item.price}/>
                     </div>
                     <div className = "listinfo-form-location">
                         <label className = "listinfo-form-location-label">Location</label>

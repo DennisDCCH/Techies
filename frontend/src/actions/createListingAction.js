@@ -6,7 +6,7 @@ export const createListingAction = async ({ request }) => {
     const data = await request.formData()
 
     const submission = {
-        price: data.get("price"),
+        price: parseFloat(data.get("price")),
         location: data.get("location"),
         datetime: data.get("datetime"),
         sport: data.get("sport"),

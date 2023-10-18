@@ -12,6 +12,7 @@ export default function ListDisplay(props) {
             if(response.status === 200) {
                 console.log("success")
                 console.log(response.message)
+                props.fetchListingData()
             } else if (response.status === 404) {
                 console.log(response.message)
             } else if (response.status === 400) {
@@ -48,43 +49,43 @@ export default function ListDisplay(props) {
             <div className = "listdisplay-user">
                 <div className = "listdisplay-user-container">
                     <img className = "listdisplay-service-picture" src = "/images/mountain-bike.png"/>
-                    <span>insert username</span>
+                    <span>{props.item.coach.username}</span>
                 </div>
                 <div className = "listdisplay-user-bio">
                     <label className = "listdisplay-user-bio-label">Coach Bio</label>
-                    <span className = "listdisplay-user-bio-box">insert bio</span>
+                    <span className = "listdisplay-user-bio-box">{props.item.coach.bio}</span>
                 </div>
             </div>
             <div className = "listdisplay-service-container">
                 <div className = "listdisplay-service-info">
                     <div className = "listdisplay-service-info-price">
                         <label>Price</label>
-                        <span>insert price</span>
+                        <span>{props.item.price}</span>
                     </div>
                     <div className = "listdisplay-service-info-location">
                         <label>Location</label>
-                        <span>insert location</span>
+                        <span>{props.item.location}</span>
                     </div>
                     <div className = "listdisplay-service-info-time">
                         <label>Time</label>
-                        <span>insert time</span>
+                        <span>{props.item.datetime}</span>
                     </div>
                     <div className = "listdisplay-service-info-sport">
                         <label>Sport</label>
-                        <span>insert sport</span>
+                        <span>{props.item.sport}</span>
                     </div>
                     <div className = "listdisplay-service-info-proficiency">
                         <label>Proficiency</label>
-                        <span>insert proficiency</span>
+                        <span>{props.item.proficiency}</span>
                     </div>
                     <div className = "listdisplay-service-info-availability">
                         <label>Availability</label>
-                        <span>insert availability</span>
+                        <span>{props.item.available}</span>
                     </div>
                 </div>
                 <div className = "listdisplay-serivce-description">
                     <label>Description</label>
-                    <span>insert description</span>
+                    <span>{props.item.description}</span>
                 </div>
                 <div className = "listdisplay-serivce-buttons">
                     <button onClick = {handleSaving}>Save Listing</button>
