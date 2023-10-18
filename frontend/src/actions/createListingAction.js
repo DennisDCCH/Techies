@@ -13,7 +13,7 @@ export const createListingAction = async ({ request }) => {
         proficiency: data.get("proficiency"),
         description: data.get("description"),
         coverImg: data.get("file"),
-        maximum: data.get("slots")
+        maximum: parseInt(data.get("slots"))
     }
 
     //submit new listing to backend

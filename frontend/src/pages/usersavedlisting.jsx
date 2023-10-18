@@ -45,10 +45,12 @@ export default function SavedListing() {
     
     if(Array.isArray(userSaved) && userSaved.length > 0) {
         content = userSaved.map((item) => {
-            <Card3
-                key = {item.id}
-                item = {item}
-            />
+            return (
+                <Card3
+                    key = {item.id}
+                    item = {item}
+                />
+            )
         })
     } else {
         content = <p>{message}</p>;

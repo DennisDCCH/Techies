@@ -1,4 +1,5 @@
 import { redirect } from "react-router-dom"
+import axios from "../api/axios"
 
 export const editListAction = async ({ request }) => {
     const data = await request.formData()
@@ -10,10 +11,18 @@ export const editListAction = async ({ request }) => {
         sport: data.get("sport"),
         proficiency: data.get("proficiency"),
         description: data.get("description"),
-        coverImg: data.get("file")
+        coverImg: data.get("file"),
+        availability: ""
     }
 
     console.log(submission)
-
-    return redirect("/mylisting")
+    try {
+        const response = await axios.put(`/services/${data.get("id")}`, submission)
+        if(response.status === 200) {
+            return redirect("/mylisting")
+        }
+    } catch (error) {
+        console.log(error)
+        return null
+    }
 }

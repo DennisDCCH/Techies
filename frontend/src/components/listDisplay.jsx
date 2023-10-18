@@ -3,6 +3,46 @@ import React from "react"
 import "./listDisplay.css"
 
 export default function ListDisplay(props) {
+    const handleBooking = async () => {
+        try {
+            const bookingURL = `/book/${props.item.id}`
+            response = await axios.post(bookingURL)
+
+            if(response.status === 200) {
+                console.log("success")
+                console.log(response.message)
+            } else if (response.status === 404) {
+                console.log(response.message)
+            } else if (response.status === 400) {
+                console.log(response.message)
+            } else {
+                console.log(response.message)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleSaving = async () => {
+        try {
+            const bookingURL = `/save/${props.item.id}`
+            response = await axios.post(bookingURL)
+
+            if(response.status === 200) {
+                console.log("success")
+                console.log(response.message)
+            } else if (response.status === 404) {
+                console.log(response.message)
+            } else if (response.status === 400) {
+                console.log(response.message)
+            } else {
+                console.log(response.message)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div className = "listdisplay-container">
             <div className = "listdisplay-user">
@@ -47,8 +87,8 @@ export default function ListDisplay(props) {
                     <span>insert description</span>
                 </div>
                 <div className = "listdisplay-serivce-buttons">
-                    <button>Save Listing</button>
-                    <button>Book Listing</button>
+                    <button onClick = {handleSaving}>Save Listing</button>
+                    <button onClick = {handleBooking}>Book Listing</button>
                 </div>
             </div>
         </div>
