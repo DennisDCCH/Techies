@@ -3,14 +3,15 @@ import { redirect } from "react-router-dom"
 export const changePwAction = async ({ request }) => {
     const data = await request.formData()
 
+    const newpw2 = data.get("newpw2")
+
     const submission = {
         password: data.get("oldpw"),
         newpw: data.get("newpw"),
-        newpw2: data.get("newpw2")
     }
 
     // password checker function 
-    if (submission.password != submission.password2)
+    if (submission.password != newpw2)
         return {error: "Password is not the same"};
     if (submission.password.length < 8)
         return {error: "Password must at least 8 characters long"};

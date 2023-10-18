@@ -1,10 +1,12 @@
 import React from "react"
-import { Form } from "react-router-dom"
+import { Form, useActionData } from "react-router-dom"
 
 import "./profileinfo.css"
 
 
 export default function ProfileInfo(props) {
+    const data = useActionData()
+
     return (
         <div>
             <h1 className = "profileinfo-title">Edit Profile</h1>
@@ -27,7 +29,7 @@ export default function ProfileInfo(props) {
                     <span className = "profileinfo-form-file-text">Select a file:</span>
                     <label className = "profileinfo-form-file-label">
                         <span>Choose file</span>
-                        <input type = "file" name = "file" accept = "image/*"/>
+                        <input type = "file" name = "file" accept = "image/*" />
                     </label>
                 </div>
                 <div className = "profileinfo-form-bio">
@@ -35,6 +37,9 @@ export default function ProfileInfo(props) {
                     <textarea className = "profileinfo-form-bio-input" type = "text" name = "bio" defaultValue = {props.item.bio} />
                 </div>
                 <button className = "profileinfo-form-button" type = "submit">Edit Profile</button>
+
+                {data && data.error && <p className = "profileinfo-error">{data.error}</p>}
+
             </Form>
         </div>
     )

@@ -85,3 +85,12 @@
     font-family: "Source Serif Pro";
     font-size: 28px;
 }
+
+.login-error{
+    width: 608px;
+    text-align: justify;
+    font-family: 'Source Serif Pro';
+    font-size: 28px;
+    font-weight: bold;
+    color: red;
+}

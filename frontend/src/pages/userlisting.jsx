@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 // temp data
@@ -11,9 +11,23 @@ import Card2 from "../components/card2.jsx"
 
 //css
 import "./userlisting.css"
+import axios from "../api/axios.js"
 
 
 export default function MyListing() {
+    const [userData, setUserData] = useState([]);
+    const [userListing, setUserListing] = useState([])
+
+    useEffect(() => {
+        axios.get("/user")
+        .then((response) => {
+            setUserData(response.data);
+        })
+        .catch((error) => {
+            console.error("Error fetching user data:", error);
+        });
+    }, []);
+
     const cards = listing.map (item => {
         return (
             <Card2
@@ -26,8 +40,8 @@ export default function MyListing() {
     return (
         <div className = "mylisting-container">
             <Sidebar 
-                key = {data.id}
-                item = {data}
+                key = {`sidebar_${userData.id}`}
+                item = {userData}
             />
             <div className = "mylisting">
                 <h1 className = "mylisting-title">My Listing</h1>

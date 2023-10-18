@@ -97,7 +97,7 @@ const router = createBrowserRouter([
         action: editProfileAction,
     },
     {
-        path: "/edit-listing",
+        path: "/edit-listing/:id",
         element: <EditListing />,
         action: editListAction,
     }

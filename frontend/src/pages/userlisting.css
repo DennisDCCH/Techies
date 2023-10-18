@@ -16,6 +16,8 @@
 }
 
 .mylisting-list {
+    display: flex;
+    flex-direction: column;
     height: 500px;
     overflow-y: auto;
     margin-bottom: 93px;

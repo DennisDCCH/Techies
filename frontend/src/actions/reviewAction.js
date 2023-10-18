@@ -5,7 +5,7 @@ export const reviewAction = async ({ request }) => {
 
     const submission = {
         reviewMsg: data.get("reviewMsg"),
-        rate: data.get("rate") !== null ? data.get("rate") : "0",
+        rate: data.get("rate") !== null ? parseInt(data.get("rate")) : 0,
     }
 
     console.log(submission)

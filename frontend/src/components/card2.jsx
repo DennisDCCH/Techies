@@ -8,7 +8,7 @@ export default function Card2(props) {
         <div className = "card2">
             <h1 className = "card2-title">{props.item.sport}</h1>
             <button className = "card2-edit-button">
-                <Link className = "card2-edit-link" to = "/edit-listing">Edit</Link>
+                <Link className = "card2-edit-link" to = {`/edit-listing/${props.item.id}`}>Edit</Link>
             </button>
             <button className = "card2-delete-button">Delete</button>
         </div>

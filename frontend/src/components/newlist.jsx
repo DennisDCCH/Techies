@@ -17,10 +17,17 @@ export default function NewListing() {
                         <input className = "create-form-location-input" type = "text" name = "location" required/>
                     </div>
                 </div>
-                <div className = "create-form-datetime">
-                    <label className = "create-form-datetime-label">Date and Time</label>
-                    <input className = "create-form-datetime-input" type = "text" name = "datetime" placeholder = "Tuesday, 5-7pm" required/>
+                <div className = "create-form-info">
+                    <div className = "create-form-datetime">
+                        <label className = "create-form-datetime-label">Date and Time</label>
+                        <input className = "create-form-datetime-input" type = "text" name = "datetime" placeholder = "Tuesday, 5-7pm" required/>
+                    </div>
+                    <div className = "create-form-slots">
+                        <label className = "create-form-slots-label">Number of Slots</label>
+                        <input className = "create-form-slots-input" type = "text" name = "slots" required/>
+                    </div>
                 </div>
+                
                 <div className = "create-form-sport">
                     <label className = "create-form-sport-label">Sport</label>
                     <input className = "create-form-sport-input" type = "text" name = "sport" required/>
