@@ -20,20 +20,18 @@ class CoachingServiceSearch(MethodView):
     @blp.response(201, CoachingServiceSchema(many = True))
     def post(self, filters):
         """ Gets a list of filtered coaching services """
-        #services = CoachingServiceModel.query.filter_by(**filters).all()
-        #services = CoachingServiceModel.query.filter_by(sport = filters["sport"], proficiency = filters["proficiency"]).all()
-        services = db.session.query(CoachingServiceModel).filter(CoachingServiceModel.sport == filters["sport"], 
-        CoachingServiceModel.proficiency == filters["proficiency"])
+        query = db.session.query(CoachingServiceModel).order_by(CoachingServiceModel.price.desc()).all()
 
-        # query = db.session.query(CoachingServiceModel).all()
-        # if "proficiency" in filters:
-        #     query = query.filter(CoachingServiceModel.proficiency == filters["proficiency"])
-        # # if "price" in filters:
-        # #     query = query.filter(CoachingServiceModel.price <= filters["price"])
-        # if "sport" in filters:
-        #     query = query.filter(CoachingServiceModel.sport == filters["sport"])
+        if "proficiency" in filters:
+            query = [service for service in query if service.proficiency == filters["proficiency"]]
 
-        return services
+        if "price" in filters:
+            query = [service for service in query if service.price <= filters["price"]]
+
+        if "sport" in filters:
+            query = [service for service in query if service.sport == filters["sport"]]
+
+        return query
 
 
 @blp.route("/coaching_services")
@@ -43,7 +41,7 @@ class CoachingServiceList(MethodView):
         """ Retrieve all listing services """
 
         # Order it from last service to first service
-        return CoachingServiceModel.query.all()
+        return CoachingServiceModel.query.order_by(CoachingServiceModel.id.desc()).all()
     
     
     @blp.arguments(CoachingServiceSchema)
