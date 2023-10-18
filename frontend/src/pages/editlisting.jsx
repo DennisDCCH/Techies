@@ -8,9 +8,12 @@ import ListInfo from "../components/listinfo"
 
 import "./editlisting.css"
 import axios from "../api/axios"
+import { useParams } from "react-router-dom"
 
 export default function EditListing() {
+    const { id } = useParams()
     const [userData, setUserData] = useState([]);
+    const [listingData, setListingData] = useState([])
 
     useEffect(() => {
         axios.get("/user")
@@ -22,6 +25,18 @@ export default function EditListing() {
         });
     }, []);
 
+    useEffect(() => {
+        const URL = `/services/${id}`
+        axios.get(URL)
+        .then((response) => {
+            setListingData(response.data)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }, [])
+    
+
     return (
         <div className = "editlist-container">
             <Sidebar 
@@ -30,8 +45,8 @@ export default function EditListing() {
             />
             <div className = "editlist-form-container">
                 <ListInfo
-                    key = {list.id}
-                    item = {list}
+                    key = {listingData.id}
+                    item = {listingData}
                 />
             </div>
         </div>

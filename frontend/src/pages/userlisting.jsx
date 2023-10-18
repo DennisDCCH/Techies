@@ -12,7 +12,6 @@ import axios from "../api/axios.js"
 export default function MyListing() {
     const [userData, setUserData] = useState([]);
     const [userListing, setUserListing] = useState([]);
-    const [message, setMessage] = useState(null);
 
     useEffect(() => {
         axios.get("/user")
@@ -24,18 +23,18 @@ export default function MyListing() {
         });
     }, []);
 
-    useEffect(() => {
+    const fetchUserListing = () => {
         axios.get("/user/listings")
         .then((response) => {
-            if(Array.isArray(response.data)) {
-                setUserListing(response.data);
-            } else {
-                setMessage(response.data.message);
-            }
+            setUserListing(response.data); 
         })
         .catch((error) => {
             console.error("Error fetching user data:", error);
         });
+    }
+
+    useEffect(() => {
+        fetchUserListing();
     }, []);
 
     let content 
@@ -46,11 +45,12 @@ export default function MyListing() {
                 <Card2
                     key = {item.id}
                     item = {item}
+                    updateListing = {fetchUserListing}
                 />
             )
         })
     } else {
-        content = <p>{message}</p>;
+        content = <p>You have not created any listing</p>;
     }
 
 

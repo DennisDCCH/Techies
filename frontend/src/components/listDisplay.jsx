@@ -1,12 +1,13 @@
 import React from "react"
 
 import "./listDisplay.css"
+import axios from "../api/axios"
 
 export default function ListDisplay(props) {
     const handleBooking = async () => {
         try {
             const bookingURL = `/book/${props.item.id}`
-            response = await axios.post(bookingURL)
+            const response = await axios.post(bookingURL)
 
             if(response.status === 200) {
                 console.log("success")
@@ -26,11 +27,10 @@ export default function ListDisplay(props) {
     const handleSaving = async () => {
         try {
             const bookingURL = `/save/${props.item.id}`
-            response = await axios.post(bookingURL)
+            const response = await axios.post(bookingURL)
 
             if(response.status === 200) {
                 console.log("success")
-                console.log(response.message)
             } else if (response.status === 404) {
                 console.log(response.message)
             } else if (response.status === 400) {
