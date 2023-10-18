@@ -1,9 +1,7 @@
 import React from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Link, useLocation } from "react-router-dom"
 
 import "./card3.css"
-import axios from "../api/axios";
 import axios from "../api/axios";
 
 export default function Card3(props) {
