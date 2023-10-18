@@ -8,8 +8,8 @@ export default function Card(props) {
     return (
         <div className="card">
             <div className = "card-coach">
-                <img className = "card-coach-img" src = {`images/${props.item.coach.userImg}`} alt = "coach-pic" />
-                <h1 className = "card-coach-username">{props.item.coach.username}</h1>
+                <img className = "card-coach-img" src = {`images/${props.item.userImg}`} alt = "coach-pic" />
+                <h1 className = "card-coach-username">{props.item.coachName}</h1>
             </div>
             <img className = "card-coverImg" src = {`images/${props.item.coverImg}`} alt = "sport-pic"/>
             <h1 className = "card-sport">{props.item.sport}</h1>

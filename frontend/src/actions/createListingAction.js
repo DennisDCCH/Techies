@@ -21,8 +21,8 @@ export const createListingAction = async ({ request }) => {
     try {
         const response = await axios.post(CREATE_SERVICE_URL, submission);
 
-        if(response.status === 201) {
-            return redirect("/mylisting")
+        if(response.status === 200) {
+            return redirect("/marketplace")
         } else {
             // Handle any problems
             return { error: "Creation of service failed"}

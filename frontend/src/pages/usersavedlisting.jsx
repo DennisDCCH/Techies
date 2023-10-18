@@ -27,25 +27,18 @@ export default function SavedListing() {
         });
     }, []);
 
-    const fetchUserListing = () => {
-        console.log("fetching user saved")
-        axios.get("/user/saved")
+    useEffect(() => {
+        axios.get("/user/booked")
         .then((response) => {
-            console.log(response.data)
             if(Array.isArray(response.data)) {
                 setUserSaved(response.data);
             } else {
-                setUserSaved([])
                 setMessage(response.data.message);
             }
         })
         .catch((error) => {
             console.error("Error fetching user data:", error);
         });
-    }
-
-    useEffect(() => {
-        fetchUserListing();
     }, []);
 
     let content 
@@ -56,7 +49,6 @@ export default function SavedListing() {
                 <Card3
                     key = {item.id}
                     item = {item}
-                    updateListing = {fetchUserListing}
                 />
             )
         })

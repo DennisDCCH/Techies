@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react"
 import axios from "../api/axios.js"
+
+//temp data
+import data from "../data/listing.js"
 import Navbar from "../components/navbar.jsx"
 import Card from "../components/card"
 import Searchbar from "../components/searchbar.jsx"
