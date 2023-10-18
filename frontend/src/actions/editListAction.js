@@ -12,8 +12,10 @@ export const editListAction = async ({ request }) => {
         proficiency: data.get("proficiency"),
         description: data.get("description"),
         coverImg: data.get("file"),
+        availability: ""
     }
 
+    console.log(submission)
     try {
         const response = await axios.put(`/services/${data.get("id")}`, submission)
         if(response.status === 200) {

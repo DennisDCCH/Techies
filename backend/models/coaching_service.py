@@ -15,8 +15,7 @@ class CoachingServiceModel(db.Model):
     proficiency = db.Column(db.String(255))
     overallRating = db.Column(db.Float(precision=2)) 
     numReviews = db.Column(db.Integer)
-
-    
+ 
     maximum = db.Column(db.Integer)
     available = db.Column(db.Integer)
 
