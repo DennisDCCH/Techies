@@ -7,7 +7,7 @@ from passlib.hash import pbkdf2_sha256
 
 from db import db
 from models import UserModel
-from schemas import UserSchema, UserUpdateSchema, LoginSchema, CoachingServiceSchema, UserChangePasswordSchema
+from schemas import UserSchema, UserUpdateSchema, LoginSchema, CoachingServiceSchema, UserChangePasswordSchema, PlainCoachingServiceSchema
 
 
 blp = Blueprint("Users", "users", description="Operations on users")
@@ -122,7 +122,7 @@ class ChangePassword(MethodView):
 @blp.route("/user/booked")
 class ViewBooked(MethodView):
     @jwt_required()
-    @blp.response(200, CoachingServiceSchema(many = True))
+    @blp.response(200, PlainCoachingServiceSchema(many = True))
     def get(self):
         """ Retrieve User's booking services """
         user_id = get_jwt_identity()
@@ -138,7 +138,7 @@ class ViewBooked(MethodView):
 @blp.route("/user/saved")
 class ViewSaved(MethodView):
     @jwt_required()
-    @blp.response(200, CoachingServiceSchema(many = True))
+    @blp.response(200, PlainCoachingServiceSchema(many = True))
     def get(self):
         """ Retrieve user's saved coaching services """
         user_id = get_jwt_identity()
@@ -150,7 +150,19 @@ class ViewSaved(MethodView):
             return jsonify({"message": "You have not saved any services"}), 200
 
 
-
+@blp.route("/user/listings")
+class ViewListings(MethodView):
+    @jwt_required()
+    @blp.response(200, PlainCoachingServiceSchema(many = True))
+    def get(self):
+        """ Retrieve user's listed coaching services """
+        user_id = get_jwt_identity()
+        user = UserModel.query.get(user_id)
+        listings = user.listings
+        if listings:
+            return user.listings
+        else:
+            return jsonify({"message": "You have not listed any services"}), 200
 """THIS IS ALL THE ADMIN STUFF, EASIER FOR DEVELOPMENT ONLY! DO NOT USE IN PRODUCTION"""
 @blp.route("/user/godmode")
 class GodMode(MethodView):
