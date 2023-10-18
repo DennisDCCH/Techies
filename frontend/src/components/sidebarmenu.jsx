@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import "./sidebarmenu.css"
 
 export default function Sidebar(props) {
+    console.log(props.item)
     const userImgSrc = props.item.userImg !== "" ? `images/${props.item.userImg}` : "images/human-logo.png";
 
     return (

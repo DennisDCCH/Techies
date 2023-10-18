@@ -25,21 +25,29 @@ export default function Marketplace() {
             });
     }, []);
 
-    const cards = data.map (item => {
-        return (
-            <Card
-                key = {item.id}
-                item = {item}
-            />
-        )
-    })
+    let content 
+
+    if(coachingServices.length != 0) {
+        content = coachingServices.map (item => {
+            return (
+                <Card
+                    key = {item.id}
+                    item = {item}
+                />
+            )
+        })
+    } else {
+        content = <p>Currently there is no services</p>
+    }
+
+    
 
     return (
         <div>
             <Navbar />
             <Searchbar />
             <section className="cards-list">
-                {cards}
+                {content}
             </section>
         </div>
     )

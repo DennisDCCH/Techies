@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-
-// temp data
-import data from "../data/user.js"
-import listing from "../data/listing.js"
-
 //components
 import Sidebar from "../components/sidebarmenu"
 import Card2 from "../components/card2.jsx"
@@ -16,7 +11,8 @@ import axios from "../api/axios.js"
 
 export default function MyListing() {
     const [userData, setUserData] = useState([]);
-    const [userListing, setUserListing] = useState([])
+    const [userListing, setUserListing] = useState([]);
+    const [message, setMessage] = useState(null);
 
     useEffect(() => {
         axios.get("/user")
@@ -28,14 +24,35 @@ export default function MyListing() {
         });
     }, []);
 
-    const cards = listing.map (item => {
-        return (
-            <Card2
-                key = {item.id}
-                item = {item}
-            />
-        )
-    })
+    useEffect(() => {
+        axios.get("/user/listings")
+        .then((response) => {
+            if(Array.isArray(response.data)) {
+                setUserListing(response.data);
+            } else {
+                setMessage(response.data.message);
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching user data:", error);
+        });
+    }, []);
+
+    let content 
+    
+    if(Array.isArray(userListing) && userListing.length > 0) {
+        content = userListing.map((item) => {
+            return (
+                <Card2
+                    key = {item.id}
+                    item = {item}
+                />
+            )
+        })
+    } else {
+        content = <p>{message}</p>;
+    }
+
 
     return (
         <div className = "mylisting-container">
@@ -46,7 +63,7 @@ export default function MyListing() {
             <div className = "mylisting">
                 <h1 className = "mylisting-title">My Listing</h1>
                 <section className = "mylisting-list">
-                    {cards}
+                    {content}
                 </section>
                 <button className = "mylisting-newlist-button">
                     <Link className = "mylisting-newlist-link" to = "/create">Create New Listing</Link>

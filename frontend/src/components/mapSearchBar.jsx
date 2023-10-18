@@ -8,7 +8,6 @@ import PlacesAutocomplete, {
   } from "react-places-autocomplete";
 
 export default function MapSidebar({ updateUserCentre}) {
-    //const [currLocation, setCurrLocation] = useState({});
     const [address, setAddress] = useState("");
 
     useEffect(() => {
@@ -19,7 +18,6 @@ export default function MapSidebar({ updateUserCentre}) {
     navigator.geolocation.getCurrentPosition((position) => {
         console.log(position);
         updateUserCentre(position.coords);
-        //console.log(position.coords, currLocation);
     });
     }
 
@@ -34,7 +32,6 @@ export default function MapSidebar({ updateUserCentre}) {
             console.log("Success", latLng, address)
             setAddress(address);
             updateUserCentre(latLng);
-            //console.log(currLocation)
         })
           .catch((error) => console.error("Error", error));
       }

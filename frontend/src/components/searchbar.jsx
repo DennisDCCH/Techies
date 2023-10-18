@@ -1,19 +1,41 @@
 import React, { useState } from "react"
 import "./searchbar.css"
 import FILTERLOGO from "../images/filter-logo.png"
-import data from "../data/listing.js"
+// FILTER_URL = backend endpoint
 
 export default function Searchbar() {
 
-    const [query, setQuery] = useState(" "); // define the query state variable
+    const handleClick = async (filterField, filterValue) => {
 
-    const handleClick = (e) => {
-        const clickedItem = e.target.textContent;
-        setQuery(clickedItem);
-        // perform functions based on the input change here
-        const activity = data.filter((item) => item.sport === value)
-        return activity;
+        const filter = [
+            {
+                field: filterField,
+                op: 'like',
+                value: filterValue
+            }
+        ]
+
+        const payload = {
+            filter: [filter]
+        }
+        
+        try {
+            const response = await axios.post(FILTER_URL, JSON.stringify(payload))
+
+            if (response.status === 200) {
+                console.log(response.data);
+
+            } else {
+                return { error: "Filter failed" };
+            }
+        } catch (error) {
+            console.log(error.response.data.message)
+            const errorMessage = error.response.data.message
+            return { error: errorMessage };
+        }
     }
+       
+
 
     return (
         <section>
@@ -28,22 +50,22 @@ export default function Searchbar() {
             <div className="nav-right">
                 <div className="dropdown">
                     <img className = "filter-icon" src = {FILTERLOGO} alt = "filter-logo"/>
-                            <ul className="dropdown-menu">
+                            <ul className="dropdown-menu" id="filter-item">
                                 <li>Sports
-                                    <ul className="dropdown-menu-sports" onClick={handleClick} value={query}>
-                                        <li>Basketball</li>
-                                        <li>Volleyball</li>
-                                        <li>Badminton</li>
-                                        <li>Mountain Biking</li>
-                                        <li>Soccer</li>
-                                        <li>Table Tennis</li>
+                                    <ul className="dropdown-menu-sports">
+                                        <li onClick={() => handleClick('Sport', 'Basketball')}>Basketball</li>
+                                        <li onClick={() => handleClick('Sport', 'Volleyball')}>Volleyball</li>
+                                        <li onClick={() => handleClick('Sport', 'Badminton')}>Badminton</li>
+                                        <li onClick={() => handleClick('Sport', 'Mountain Biking')}>Mountain Biking</li>
+                                        <li onClick={() => handleClick('Sport', 'Soccer')}>Soccer</li>
+                                        <li onClick={() => handleClick('Sport', 'Table Tennis')}>Table Tennis</li>
                                     </ul>
                                 </li>
                                 <li>Proficiency
-                                    <ul className="dropdown-menu-proficiency" onClick={handleClick} value={query}>
-                                        <li>High</li>
-                                        <li>Medium</li>
-                                        <li>Low</li>
+                                    <ul className="dropdown-menu-proficiency" onClick={handleClick} >
+                                        <li onClick={() => handleClick('Proficiency', 'High')}>High</li>
+                                        <li onClick={() => handleClick('Proficiency', 'Medium')}>Medium</li>
+                                        <li onClick={() => handleClick('Proficiency', 'Low')}>Low</li>
                                     </ul>
                                 </li>
                             </ul>

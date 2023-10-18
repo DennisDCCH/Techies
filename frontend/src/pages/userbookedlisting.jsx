@@ -45,10 +45,12 @@ export default function BookedListing() {
     
     if(Array.isArray(userBooked) && userBooked.length > 0) {
         content = userBooked.map((item) => {
-            <Card3
-                key = {item.id}
-                item = {item}
-            />
+            return (
+                <Card3
+                    key = {item.id}
+                    item = {item}
+                />
+            )
         })
     } else {
         content = <p>{message}</p>;
