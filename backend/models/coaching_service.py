@@ -9,7 +9,7 @@ class CoachingServiceModel(db.Model):
     sport = db.Column(db.String(80), nullable=False)
     datetime = db.Column(db.String(80), nullable=False)
     location = db.Column(db.String(120), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    price = db.Column(db.String(120), nullable=False)
     description = db.Column(db.String(255))
     coverImg = db.Column(db.String(255))
     proficiency = db.Column(db.String(255))

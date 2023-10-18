@@ -8,9 +8,33 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from db import db
 from models import CoachingServiceModel
 from models import UserModel
-from schemas import CoachingServiceSchema, CoachingServiceUpdateSchema
+from schemas import CoachingServiceSchema, CoachingServiceUpdateSchema, CoachingServiceFilterSchema
 
 blp = Blueprint("Coaching Service", "coachingservice", description="Operations on CoachingService")
+
+
+@blp.route("/coaching_services/filter")
+class CoachingServiceSearch(MethodView):
+
+    @blp.arguments(CoachingServiceFilterSchema)
+    @blp.response(201, CoachingServiceSchema(many = True))
+    def post(self, filters):
+        """ Gets a list of filtered coaching services """
+        #services = CoachingServiceModel.query.filter_by(**filters).all()
+        #services = CoachingServiceModel.query.filter_by(sport = filters["sport"], proficiency = filters["proficiency"]).all()
+        services = db.session.query(CoachingServiceModel).filter(CoachingServiceModel.sport == filters["sport"], 
+        CoachingServiceModel.proficiency == filters["proficiency"])
+
+        # query = db.session.query(CoachingServiceModel).all()
+        # if "proficiency" in filters:
+        #     query = query.filter(CoachingServiceModel.proficiency == filters["proficiency"])
+        # # if "price" in filters:
+        # #     query = query.filter(CoachingServiceModel.price <= filters["price"])
+        # if "sport" in filters:
+        #     query = query.filter(CoachingServiceModel.sport == filters["sport"])
+
+        return services
+
 
 @blp.route("/coaching_services")
 class CoachingServiceList(MethodView):
@@ -81,7 +105,6 @@ class Services(MethodView):
             coaching_service.sport = coaching_service_data["sport"]
             coaching_service.location = coaching_service_data["location"]
             coaching_service.price = coaching_service_data["price"]
-            coaching_service.availability = coaching_service_data["availability"]
             coaching_service.description = coaching_service_data["description"]
             coaching_service.proficiency = coaching_service_data['proficiency']
             coaching_service.coverImg = coaching_service_data['coverImg']

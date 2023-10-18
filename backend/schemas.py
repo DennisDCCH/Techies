@@ -67,9 +67,13 @@ class CoachingServiceUpdateSchema(Schema):
     description = fields.Str()
     sport = fields.Str()
     price = fields.Str()
-    availability = fields.Str()
     proficiency = fields.Str()
     coverImg = fields.Str()
+
+class CoachingServiceFilterSchema(Schema):
+    sport = fields.Str()
+    proficiency = fields.Str()
+    #price = fields.Str()
          
 class ReviewSchema(PlainReviewSchema):
     service_id = fields.Int(load_only=True)

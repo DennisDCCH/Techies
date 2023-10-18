@@ -38,7 +38,7 @@ def create_app(db_url=None):
     app.config["JWT_COOKIE_SECURE"] = False
     app.config['JWT_COOKIE_CSRF_PROTECT'] = False
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=10)
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=10)
     jwt = JWTManager(app)
 
 

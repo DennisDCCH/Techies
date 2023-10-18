@@ -163,6 +163,7 @@ class ViewListings(MethodView):
             return user.listings
         else:
             return jsonify({"message": "You have not listed any services"}), 200
+
 """THIS IS ALL THE ADMIN STUFF, EASIER FOR DEVELOPMENT ONLY! DO NOT USE IN PRODUCTION"""
 @blp.route("/user/godmode")
 class GodMode(MethodView):
