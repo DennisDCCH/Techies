@@ -107,6 +107,7 @@ class Services(MethodView):
             coaching_service.proficiency = coaching_service_data['proficiency']
             coaching_service.coverImg = coaching_service_data['coverImg']
             coaching_service.datetime = coaching_service_data['datetime']
+       
             db.session.commit()
             return {"message": "Service Edited"}, 200
         else:

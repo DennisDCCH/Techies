@@ -11,7 +11,7 @@ class UserModel(db.Model):
     dob = db.Column(db.String(80), nullable=False)
     bio = db.Column(db.String(80), nullable=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
     gender = db.Column(db.String(80), nullable=False)
     userImg = db.Column(db.String(80), nullable=True)
 
