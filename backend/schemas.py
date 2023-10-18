@@ -5,7 +5,8 @@ class PlainUserSchema(Schema):
     id = fields.Int(dump_only=True)
     username = fields.Str(required=True)
     userImg = fields.Str() #required = True
-
+    bio = fields.Str() #required = True
+    
 class PlainCoachingServiceSchema(Schema):
     id = fields.Int(dump_only=True)
     coach_id = fields.Int(load_only=True)
