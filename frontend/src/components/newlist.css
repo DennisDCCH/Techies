@@ -10,6 +10,11 @@
     gap: 28px;
 }
 
+.create-form-datetime,
+.create-form-slots,
+.create-form-sport,
+.create-form-proficiency,
+.create-form-description,
 .create-form-price,
 .create-form-location {
     display: flex;
@@ -20,20 +25,10 @@
     font-size: 20px;
 }
 
-.create-form-datetime,
-.create-form-sport,
-.create-form-proficiency,
-.create-form-description {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 38px;
-    color: #9D8D8D;
-    font-family: 'Source Serif Pro';
-    font-size: 20px;
-}
-
 .create-form-price-input,
-.create-form-location-input {
+.create-form-location-input,
+.create-form-datetime-input,
+.create-form-slots-input  {
     width: 276px;
     height: 51px;
     border: solid #9D8D8D;
@@ -42,8 +37,7 @@
     padding-left: 10px;
 }
 
-.create-form-sport-input,
-.create-form-datetime-input {
+.create-form-sport-input{
     width: 598px;
     height: 51px;
     border: solid #9D8D8D;

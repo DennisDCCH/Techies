@@ -27,6 +27,7 @@ export default function NewListing() {
                         <input className = "create-form-slots-input" type = "text" name = "slots" required/>
                     </div>
                 </div>
+                
                 <div className = "create-form-sport">
                     <label className = "create-form-sport-label">Sport</label>
                     <input className = "create-form-sport-input" type = "text" name = "sport" required/>
