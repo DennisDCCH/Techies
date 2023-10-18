@@ -24,7 +24,7 @@ export default function Card3(props) {
 
     return (
         <div className = "card3">
-            <h1 className = "card3-title">{props.item.name}</h1>
+            <h1 className = "card3-title">{props.item.sport}</h1>
             <button className = "card3-select-button">
                 <Link className = "card3-select-link" to = {`/listing/${props.item.id}`}>Select</Link>
             </button>
