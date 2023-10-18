@@ -1,9 +1,7 @@
 import React from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Link, useLocation } from "react-router-dom"
 
 import "./card3.css"
-import axios from "../api/axios";
 import axios from "../api/axios";
 
 export default function Card3(props) {
@@ -14,7 +12,7 @@ export default function Card3(props) {
         try {
             //Choosing which endpoint
             const deleteURL = currentURL === '/bookedlisting' ? `/booking/${props.item.id}` : `/save/${props.item.id}`;
-        
+
             console.log(deleteURL)
             // Send the DELETE request
             await axios.delete(deleteURL);
