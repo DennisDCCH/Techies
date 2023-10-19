@@ -11,11 +11,12 @@ export default function Card3(props) {
     const handleDelete = async () => {
         try {
             //Choosing which endpoint
-            const deleteURL = currentURL === '/bookedlisting' ? `/booking/${props.item.id}` : `/save/${props.item.id}`;
+            const deleteURL = currentURL === '/bookedlisting' ? `/book/${props.item.id}` : `/save/${props.item.id}`;
 
             console.log(deleteURL)
             // Send the DELETE request
             await axios.delete(deleteURL);
+            props.fetchUserListing()
             console.log(`Item with id ${props.item.id} deleted successfully`);
         } catch (error) {
             console.error('Error deleting item:', error);

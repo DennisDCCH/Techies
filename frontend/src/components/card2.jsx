@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import "./card2.css"
+import axios from "../api/axios"
 
 
 export default function Card2(props) {
@@ -13,6 +14,7 @@ export default function Card2(props) {
             // Send the DELETE request
             await axios.delete(deleteURL);
             console.log(`Item with id ${props.item.id} deleted successfully`);
+            props.fetchUserListing()
         } catch (error) {
             console.error('Error deleting item:', error);
         }

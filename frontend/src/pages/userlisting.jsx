@@ -23,19 +23,24 @@ export default function MyListing() {
             console.error("Error fetching user data:", error);
         });
     }, []);
-
-    useEffect(() => {
+    
+    const fetchUserListing = () => {
         axios.get("/user/listings")
         .then((response) => {
             if(Array.isArray(response.data)) {
                 setUserListing(response.data);
             } else {
+                setUserListing([])
                 setMessage(response.data.message);
             }
         })
         .catch((error) => {
             console.error("Error fetching user data:", error);
         });
+    }
+
+    useEffect(() => {
+        fetchUserListing()
     }, []);
 
     let content 
@@ -46,11 +51,12 @@ export default function MyListing() {
                 <Card2
                     key = {item.id}
                     item = {item}
+                    fetchUserListing = {fetchUserListing}
                 />
             )
         })
     } else {
-        content = <p>{message}</p>;
+        content = <p>You have not created any listing</p>;
     }
 
 
