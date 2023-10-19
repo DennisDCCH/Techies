@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"
 import "./sidebarmenu.css"
 
 export default function Sidebar(props) {
-    const userImgSrc = props.item.userImg !== "" ? `images/${props.item.userImg}` : "images/human-logo.png";
+    const userImgSrc = props.item.userImg !== "" ? `/images/${props.item.userImg}` : "/images/human-logo.png";
 
     return (
         <div className = "sidebar-background">
-            <div className = "sidebar-user-info"> 
+            <div className = "sidebar-user-info">
                 <img className = "sidebar-user-info-pic" src= {userImgSrc} alt="Logo" />
                 <h1 className = "sidebar-user-info-username">{props.item.username}</h1>
             </div>

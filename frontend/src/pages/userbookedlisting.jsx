@@ -27,28 +27,36 @@ export default function BookedListing() {
         });
     }, []);
 
-    useEffect(() => {
+    const fetchUserBooked = () => {
         axios.get("/user/booked")
         .then((response) => {
             if(Array.isArray(response.data)) {
                 setUserBooked(response.data);
             } else {
+                setUserBooked([])
                 setMessage(response.data.message);
             }
         })
         .catch((error) => {
             console.error("Error fetching user data:", error);
         });
+    }
+
+    useEffect(() => {
+        fetchUserBooked()
     }, []);
 
     let content 
     
     if(Array.isArray(userBooked) && userBooked.length > 0) {
         content = userBooked.map((item) => {
-            <Card3
-                key = {item.id}
-                item = {item}
-            />
+            return (
+                <Card3
+                    key = {item.id}
+                    item = {item}
+                    fetchUserListing = {fetchUserBooked}
+                />
+            )
         })
     } else {
         content = <p>{message}</p>;

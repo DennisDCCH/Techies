@@ -130,7 +130,8 @@ class ViewBooked(MethodView):
 
         bookings = user.booked
         if bookings:
-            return user.booked
+            bookings.reverse()
+            return bookings
         else:
             return jsonify({"message": "You have not booked any services"}), 200
 
@@ -145,7 +146,8 @@ class ViewSaved(MethodView):
         user = UserModel.query.get(user_id)
         saved = user.saved
         if saved:
-            return user.saved
+            saved.reverse()
+            return saved
         else:
             return jsonify({"message": "You have not saved any services"}), 200
 
@@ -158,11 +160,13 @@ class ViewListings(MethodView):
         """ Retrieve user's listed coaching services """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
-        listings = user.listings
+        listings = user.listings.all()
         if listings:
-            return user.listings
+            listings.reverse()
+            return listings
         else:
             return jsonify({"message": "You have not listed any services"}), 200
+
 """THIS IS ALL THE ADMIN STUFF, EASIER FOR DEVELOPMENT ONLY! DO NOT USE IN PRODUCTION"""
 @blp.route("/user/godmode")
 class GodMode(MethodView):

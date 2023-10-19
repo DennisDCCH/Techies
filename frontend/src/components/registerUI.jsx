@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { Form, Link, redirect, useActionData } from "react-router-dom"
+import React from "react"
+import { Form, Link, useActionData } from "react-router-dom"
 import RegisterSidebar from "./registerSidebar.jsx"
 import "./registerUI.css"
 

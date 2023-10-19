@@ -25,21 +25,42 @@ export default function Marketplace() {
             });
     }, []);
 
-    const cards = data.map (item => {
-        return (
-            <Card
-                key = {item.id}
-                item = {item}
-            />
-        )
-    })
+    useEffect(() => {
+        axios.get("/coaching_services_filter")
+        .then((response) => {
+            console.log("Received data:", response.data);
+            setCoachingServices(response.data);
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        })
+    }, []);
+
+    let content 
+
+    if(coachingServices.length != 0) {
+        content = coachingServices.map (item => {
+            return (
+                <Card
+                    key = {item.id}
+                    item = {item}
+                />
+            )
+        })
+    } else {
+        content = <p>Currently there is no services</p>
+    }
+
+    
 
     return (
         <div>
             <Navbar />
-            <Searchbar />
+            <Searchbar 
+  
+            />
             <section className="cards-list">
-                {cards}
+                {content}
             </section>
         </div>
     )

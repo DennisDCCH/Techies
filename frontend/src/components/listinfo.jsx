@@ -1,16 +1,19 @@
 import React from "react"
-import { Form } from "react-router-dom"
+import { Form, useParams } from "react-router-dom"
 import "./listinfo.css"
 
 export default function ListInfo(props) {
+    const { id } = useParams(); 
+    const editActionURL = `/edit-listing/${id}`;
     return (
         <div className = "listinfo-container">
-            <Form className = "listinfo-form" method = "post" action = "/edit-listing">
+            <Form className = "listinfo-form" method = "post" action = {editActionURL}>
                 <h1 className = "listinfo-form-title">Edit Listing</h1>
+                <input type="hidden" name="id" value={props.item.id} />
                 <div className = "listinfo-form-info">
                     <div className = "listinfo-form-price">
                         <label className = "listinfo-form-price-label">Price</label>
-                        <input className = "listinfo-form-price-input" type = "text" name = "price" defaultValue = {props.item.price}/>
+                        <input className = "listinfo-form-price-input" type = "number" name = "price" defaultValue = {props.item.price}/>
                     </div>
                     <div className = "listinfo-form-location">
                         <label className = "listinfo-form-location-label">Location</label>
@@ -21,7 +24,7 @@ export default function ListInfo(props) {
                     <label className = "listinfo-form-datetime-label">Date and Time</label>
                     <input className = "listinfo-form-datetime-input" type = "text" name = "datetime" defaultValue = {props.item.datetime}/>
                 </div>
-                <div className = "listinfo-form-sport">
+                <div className = "listinfo-form-sport"> 
                     <label className = "listinfo-form-sport-label">Sport</label>
                     <input className = "listinfo-form-sport-input" type = "text" name = "sport" defaultValue = {props.item.sport}/>
                 </div>

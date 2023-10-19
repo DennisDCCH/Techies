@@ -5,7 +5,8 @@ class PlainUserSchema(Schema):
     id = fields.Int(dump_only=True)
     username = fields.Str(required=True)
     userImg = fields.Str() #required = True
-
+    bio = fields.Str() #required = True
+    
 class PlainCoachingServiceSchema(Schema):
     id = fields.Int(dump_only=True)
     coach_id = fields.Int(load_only=True)
@@ -38,7 +39,7 @@ class CoachingServiceSchema(PlainCoachingServiceSchema):
     athletes = fields.List(fields.Nested(PlainUserSchema()), dump_only=True)
     reviews = fields.List(fields.Nested(PlainReviewSchema()), dump_only=True)
     location = fields.Str(required=True)
-    price = fields.Str(required=True)
+    price = fields.Float(required=True)
     available = fields.Int(dump_only=True)
     maximum = fields.Int(load_only = True)
     description = fields.Str(required=True)
@@ -66,10 +67,14 @@ class CoachingServiceUpdateSchema(Schema):
     datetime = fields.Str()
     description = fields.Str()
     sport = fields.Str()
-    price = fields.Str()
-    availability = fields.Str()
+    price = fields.Float()
     proficiency = fields.Str()
     coverImg = fields.Str()
+
+class CoachingServiceFilterSchema(Schema):
+    sport = fields.Str()
+    proficiency = fields.Str()
+    price = fields.Float()
          
 class ReviewSchema(PlainReviewSchema):
     service_id = fields.Int(load_only=True)

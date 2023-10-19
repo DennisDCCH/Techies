@@ -9,14 +9,13 @@ class CoachingServiceModel(db.Model):
     sport = db.Column(db.String(80), nullable=False)
     datetime = db.Column(db.String(80), nullable=False)
     location = db.Column(db.String(120), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    price = db.Column(db.Float(precision=2), nullable=False)
     description = db.Column(db.String(255))
     coverImg = db.Column(db.String(255))
     proficiency = db.Column(db.String(255))
     overallRating = db.Column(db.Float(precision=2)) 
     numReviews = db.Column(db.Integer)
-
-    
+ 
     maximum = db.Column(db.Integer)
     available = db.Column(db.Integer)
 
@@ -28,6 +27,6 @@ class CoachingServiceModel(db.Model):
     coach = db.relationship("UserModel", back_populates="listings")
     
     #one to many relation
-    reviews = db.relationship("ReviewModel", back_populates="service", lazy="dynamic", cascade="all, delete")
+    reviews = db.relationship("ReviewModel", back_populates="service", cascade="all, delete")
 
-    __table_args__ = (db.UniqueConstraint('location', 'datetime', name='uq_location_time'),)
+    #__table_args__ = (db.UniqueConstraint('location', 'datetime', name='uq_location_time'),)

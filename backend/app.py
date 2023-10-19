@@ -6,6 +6,7 @@ from flask_cors import CORS, cross_origin
 from datetime import datetime
 from datetime import timedelta
 from datetime import timezone
+import os
 
 from db import db
 
@@ -14,7 +15,7 @@ from resources.coaching_service import blp as CoachingServiceBlueprint
 from resources.review import blp as ReviewBlueprint
 from resources.taxiapi import blp as TaxiApiBlueprint
 
-def create_app(db_url=None):
+def create_app(db_url="postgresql://postgres:techies@localhost:5432/postgres"):
     app = Flask(__name__)
     CORS(app, supports_credentials=True)
     app.config["API_TITLE"] = "SportSync REST API"
@@ -26,7 +27,7 @@ def create_app(db_url=None):
     app.config[
         "OPENAPI_SWAGGER_UI_URL"
     ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
-    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or "sqlite:///data.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(db_url, "sqlite:///data.db")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["PROPAGATE_EXCEPTIONS"] = True
     
@@ -38,7 +39,7 @@ def create_app(db_url=None):
     app.config["JWT_COOKIE_SECURE"] = False
     app.config['JWT_COOKIE_CSRF_PROTECT'] = False
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=10)
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=10)
     jwt = JWTManager(app)
 
 

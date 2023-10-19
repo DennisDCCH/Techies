@@ -27,28 +27,36 @@ export default function SavedListing() {
         });
     }, []);
 
-    useEffect(() => {
-        axios.get("/user/booked")
+    const userSavedListing = () => {
+        axios.get("/user/saved")
         .then((response) => {
             if(Array.isArray(response.data)) {
                 setUserSaved(response.data);
             } else {
+                setUserSaved([])
                 setMessage(response.data.message);
             }
         })
         .catch((error) => {
             console.error("Error fetching user data:", error);
         });
+    }
+
+    useEffect(() => {
+        userSavedListing()
     }, []);
 
     let content 
     
     if(Array.isArray(userSaved) && userSaved.length > 0) {
         content = userSaved.map((item) => {
-            <Card3
-                key = {item.id}
-                item = {item}
-            />
+            return (
+                <Card3
+                    key = {item.id}
+                    item = {item}
+                    fetchUserListing = {userSavedListing}
+                />
+            )
         })
     } else {
         content = <p>{message}</p>;

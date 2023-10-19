@@ -12,16 +12,22 @@ export default function Listing(props) {
 
     // Linkage to backend
     const [specificListing, setSpecificListing] = useState(null);
-    useEffect(() => {
+
+    const fetchListingData = () => {
         axios.get(`/services/${id}`)
-            .then((response) => {
-                console.log("Received data:", response.data);
-                setSpecificListing(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
-    }, [id]);
+        .then((response) => {
+            console.log("Received data:", response.data);
+            setSpecificListing(response.data);
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+    };
+
+    useEffect(() => {
+        fetchListingData()
+    }, [])
+        
 
     return (
         <div>
@@ -32,10 +38,12 @@ export default function Listing(props) {
                         <ListDisplay
                             key={`display_${specificListing.id}`}
                             item={specificListing}
+                            fetchListingData = {fetchListingData}
                         />
                         <ListReview
                             key={`review_${specificListing.id}`}
                             item={specificListing}
+                            fetchListingData = {fetchListingData}
                         />
                     </div>
                 </>

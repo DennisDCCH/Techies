@@ -8,9 +8,31 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from db import db
 from models import CoachingServiceModel
 from models import UserModel
-from schemas import CoachingServiceSchema, CoachingServiceUpdateSchema
+from schemas import CoachingServiceSchema, CoachingServiceUpdateSchema, CoachingServiceFilterSchema
 
 blp = Blueprint("Coaching Service", "coachingservice", description="Operations on CoachingService")
+
+
+@blp.route("/coaching_services/filter")
+class CoachingServiceSearch(MethodView):
+
+    @blp.arguments(CoachingServiceFilterSchema)
+    @blp.response(201, CoachingServiceSchema(many = True))
+    def post(self, filters):
+        """ Gets a list of filtered coaching services """
+        query = db.session.query(CoachingServiceModel).order_by(CoachingServiceModel.price.desc()).all()
+
+        if "proficiency" in filters:
+            query = [service for service in query if service.proficiency == filters["proficiency"]]
+
+        if "price" in filters:
+            query = [service for service in query if service.price <= filters["price"]]
+
+        if "sport" in filters:
+            query = [service for service in query if service.sport == filters["sport"]]
+
+        return query
+
 
 @blp.route("/coaching_services")
 class CoachingServiceList(MethodView):
@@ -19,7 +41,7 @@ class CoachingServiceList(MethodView):
         """ Retrieve all listing services """
 
         # Order it from last service to first service
-        return CoachingServiceModel.query.all()
+        return CoachingServiceModel.query.order_by(CoachingServiceModel.id.desc()).all()
     
     
     @blp.arguments(CoachingServiceSchema)
@@ -81,11 +103,11 @@ class Services(MethodView):
             coaching_service.sport = coaching_service_data["sport"]
             coaching_service.location = coaching_service_data["location"]
             coaching_service.price = coaching_service_data["price"]
-            coaching_service.availability = coaching_service_data["availability"]
             coaching_service.description = coaching_service_data["description"]
             coaching_service.proficiency = coaching_service_data['proficiency']
             coaching_service.coverImg = coaching_service_data['coverImg']
             coaching_service.datetime = coaching_service_data['datetime']
+       
             db.session.commit()
             return {"message": "Service Edited"}, 200
         else:
