@@ -82,7 +82,7 @@ export default function Map() {
 
   if(taxiData.features === undefined) return <div>Loading...</div>
 
-  const totalTaxis = taxiData.features[0].properties.taxi_count
+  const totalTaxis = filteredCoordinates.length
 
   return (
       <div className = "map-page-container">
@@ -90,7 +90,7 @@ export default function Map() {
               item = {userData}
           />
           <div className = "map-container">
-            <h1>There are {totalTaxis} available taxis!</h1>
+            <h1>There are {totalTaxis} available taxis in your area!</h1>
             <MapSearchBar  updateUserCentre={updateUserCentre} />
               <GoogleMap
                   zoom = {15}
