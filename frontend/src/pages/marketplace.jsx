@@ -25,16 +25,7 @@ export default function Marketplace() {
             });
     }, []);
 
-    useEffect(() => {
-        axios.get("/coaching_services_filter")
-        .then((response) => {
-            console.log("Received data:", response.data);
-            setCoachingServices(response.data);
-        })
-        .catch((error) => {
-            console.error("Error fetching data:", error);
-        })
-    }, []);
+    
 
     let content 
 
