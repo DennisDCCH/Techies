@@ -1,12 +1,12 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
 
 from db import db
-from models import CoachingServiceModel, ReviewModel
+from models import CoachingServiceModel, ReviewModel, UserModel
 from schemas import ReviewSchema
 
 blp = Blueprint("Review", "review", description="Operations on Review")
@@ -30,10 +30,22 @@ class Review(MethodView):
     def post(self, review_data, listing_id):
         """ Post a review for the coaching services """
         user_id = get_jwt_identity()
+        user = UserModel.query.get(user_id)
+
         coaching_service = CoachingServiceModel.query.get(listing_id)
         reviewList = coaching_service.reviews
+
+        if user not in coaching_service.athletes: 
+            response = make_response(jsonify({"message":"Not allowed to review as you did not book the service"}), 400)
+            return response
+        
+        for review in reviewList:
+            if user_id == review.reviewer_id:
+                response = make_response(jsonify({"message":"Not allowed to review as you have already reviewed the service"}), 400)
+                return response
+
         review = ReviewModel(**review_data, reviewer_id = user_id)
-        reviewList.append(review)
+        reviewList.insert(0, review)
 
         coaching_service.numReviews += 1 
         coaching_service.overallRating = (coaching_service.overallRating * (coaching_service.numReviews - 1)+ review.rating)/coaching_service.numReviews

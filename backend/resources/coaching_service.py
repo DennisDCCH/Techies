@@ -73,6 +73,7 @@ class Services(MethodView):
     def get(self, listing_id):
         """ Retrieve a specific listing given listing id """
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
+        coaching_service.reviews.reverse()
         return coaching_service
     
     @jwt_required()
