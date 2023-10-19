@@ -25,7 +25,7 @@ export const loginAction = async ({ request }) => {
         }
     } catch (error) {
         // Handle any Axios request error, such as network issues or server unavailability
-        console.log(error.response.data.message)
+        console.log(error)
         const errorMessage = error.response.data.message
         return { error: errorMessage };
     }

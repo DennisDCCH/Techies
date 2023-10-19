@@ -12,10 +12,11 @@ export const reviewAction = async ({ request }) => {
     console.log(submission)
     try {
         const URL = `/review/${data.get("id")}`
-        axios.post(URL, submission)
-        return true
+        await axios.post(URL, submission)
+        return null
     } catch (error) {
-        console.log(error)
-        return {error: "PROBLEM"}
+        console.log("Enter catch block")
+        const errorMessage = error.response.data.message
+        return errorMessage
     }
 }

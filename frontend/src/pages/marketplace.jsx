@@ -25,8 +25,6 @@ export default function Marketplace() {
             });
     }, []);
 
-    
-
     let content 
 
     if(coachingServices.length != 0) {
@@ -48,7 +46,7 @@ export default function Marketplace() {
         <div>
             <Navbar />
             <Searchbar 
-  
+                updateListing = {setCoachingServices}
             />
             <section className="cards-list">
                 {content}

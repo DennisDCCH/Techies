@@ -10,7 +10,7 @@ export default function NewListing() {
                 <div className = "create-form-info">
                     <div className = "create-form-price">
                         <label className = "create-form-price-label">Price</label>
-                        <input className = "create-form-price-input" type = "number" name = "price" placeholder = "$50/hr" required/>
+                        <input className = "create-form-price-input" type = "number" name = "price" required/>
                     </div>
                     <div className = "create-form-location">
                         <label className = "create-form-location-label">Location</label>
@@ -20,7 +20,7 @@ export default function NewListing() {
                 <div className = "create-form-info">
                     <div className = "create-form-datetime">
                         <label className = "create-form-datetime-label">Date and Time</label>
-                        <input className = "create-form-datetime-input" type = "text" name = "datetime" placeholder = "Tuesday, 5-7pm" required/>
+                        <input className = "create-form-datetime-input" type = "datetime-local" name = "datetime" placeholder = "Tuesday, 5-7pm" required/>
                     </div>
                     <div className = "create-form-slots">
                         <label className = "create-form-slots-label">Number of Slots</label>
@@ -51,7 +51,7 @@ export default function NewListing() {
                     <span className = "create-form-file-text">Select a file:</span>
                     <label className = "create-form-file-label">
                     <span>Choose file</span>
-                    <input type = "file" name = "file" accept = "image/*" required/>
+                    <input type = "file" name = "file" accept = "image/*"/>
                     </label>
                 </div>
                 <button className = "create-form-button" type = "submit">Create Listing</button>

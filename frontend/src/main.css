@@ -11,4 +11,12 @@ input[type = "file"] {
 
 input[type="radio"] {
     display: none;
-  }
+}
+
+.error {
+    text-align: justify;
+    font-family: 'Source Serif Pro';
+    font-size: 28px;
+    font-weight: bold;
+    color: red;
+}

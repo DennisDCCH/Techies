@@ -22,7 +22,7 @@ export default function ListInfo(props) {
                 </div>
                 <div className = "listinfo-form-datetime">
                     <label className = "listinfo-form-datetime-label">Date and Time</label>
-                    <input className = "listinfo-form-datetime-input" type = "text" name = "datetime" defaultValue = {props.item.datetime}/>
+                    <input className = "listinfo-form-datetime-input" type = "datetime-local" name = "datetime" defaultValue = {props.item.datetime}/>
                 </div>
                 <div className = "listinfo-form-sport"> 
                     <label className = "listinfo-form-sport-label">Sport</label>

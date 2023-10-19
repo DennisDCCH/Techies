@@ -49,9 +49,11 @@
 .mapsidebar-input {
     display: inline-flex;
     align-items:baseline;
+    justify-content: center;
     width: 410px;
     height: 0px;
     margin-bottom: 10px;
+
 }
 
 .mapsidebar-input-box {
@@ -68,4 +70,13 @@
 .mapsidebar-input-button {
     width: 35px;
     height: 36px;
+    background: transparent;
+    border: none;
+}
+
+.mapsidebar-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
 }

@@ -2,29 +2,29 @@ import axios from "../api/axios"
 
 export const filterAction = async ({ request }) => {
     const data = await request.formData()
+    const filterCriteria = {};
 
-    const filterCriteria = {
-        sport: data.get("sport"),
-        proficiency: data.get("prof"),
-        price: data.get("price"),
+    const sport = data.get("sport");
+    const prof = data.get("prof");
+    const price = data.get("price");
+
+    if (sport !== "") {
+        filterCriteria.sport = sport;
     }
 
+    if (prof !== "") {
+        filterCriteria.proficiency = prof;
+    }
 
+    if (price !== "") {
+        filterCriteria.price = parseFloat(price);
+    }
 
     try {
         const response = await axios.post('/coaching_services/filter', filterCriteria);
-
-        if (response.status === 200) {
-            console.log('Filter successful');
-            console.log (response.data);
-            
-        } else {
-            console.log(filterCriteria);
-            return { error: "Filter failed" };
-        }
+        console.log(response.data)
+        return response.data
     } catch (error) {
-
-        console.log(error.response.data.message)
         const errorMessage = error.response.data.message
         return { error: errorMessage };
     };

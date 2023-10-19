@@ -1,10 +1,16 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Form, useActionData } from "react-router-dom"
 import "./searchbar.css"
 import FILTERLOGO from "../images/filter-logo.png"
 
-export default function Searchbar() {
+export default function Searchbar(props) {
     const data = useActionData()
+
+    useEffect(() => {
+        if(data != undefined) {
+            props.updateListing(data)
+        }  
+    }, [data])
     
     return (
         <section>
@@ -26,15 +32,18 @@ export default function Searchbar() {
                             </div>
                             <div className = "dropdown-menu-prof">
                                 <label className = "dropdown-menu-prof-text">Proficiency</label>
-                                <input className = "dropdown-menu-prof-box" type = "text" name = "prof"></input>
+                                <select className = "dropdown-menu-prof-box" name = "prof">
+                                    <option value = "">All</option>
+                                    <option value = "low">Low</option>
+                                    <option value = "med">Medium</option>
+                                    <option value = "high">High</option>
+                                </select>
                             </div>
                             <div className = "dropdown-menu-price">
                                 <label className = "dropdown-menu-price-text">Price</label>
-                                <input className = "dropdown-menu-price-box" type = "number" name = "price"></input>
+                                <input className = "dropdown-menu-price-box" type = "number" name = "price" placeholder="Max Price"></input>
                             </div>
-
                             <button className = "filter-button" type = "submit">Select filter</button>
-                            
                         </Form>
                 </div>
             </div>

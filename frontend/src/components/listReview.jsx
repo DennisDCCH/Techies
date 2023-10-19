@@ -10,6 +10,7 @@ export default function ListReview(props) {
     const [rating, setRating] = useState(null)
     const [rateColor, setRateColor] = useState(null)
     const { id } = useParams()
+    const data = useActionData()
 
     const handleSubmit = () => {
         setTimeout(() => {
@@ -71,7 +72,9 @@ export default function ListReview(props) {
                         <button type = "submit" onClick={handleSubmit}>Add Review</button>
                     </div>
                 </Form>
+                <span className = "error">{data}</span>
             </div>
+            
         </div>
     )
 }
