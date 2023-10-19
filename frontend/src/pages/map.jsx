@@ -38,7 +38,7 @@ export default function Map() {
   const [filteredCoordinates,setFilteredCoordinates] = useState([]);
 
   const [coordinatesArray,setCoordinatesArray] = useState([]);
-  const radius = 5000;
+  const radius = 3000;
   let index=0;
 
   function updateUserCentre(newCenter) {
