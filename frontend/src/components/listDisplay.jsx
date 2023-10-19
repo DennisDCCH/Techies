@@ -57,7 +57,7 @@ export default function ListDisplay(props) {
         <div className = "listdisplay-container">
             <div className = "listdisplay-user">
                 <div className = "listdisplay-user-container">
-                    <img className = "listdisplay-service-picture" src = "/images/mountain-bike.png"/>
+                    <img className = "listdisplay-service-picture" src = {`/images/${props.item.coverImg}`}/>
                     <span>{props.item.coach.username}</span>
                 </div>
                 <div className = "listdisplay-user-bio">
