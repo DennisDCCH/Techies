@@ -31,6 +31,7 @@ import { changePwAction } from "./actions/changePwAction"
 import { editProfileAction } from "./actions/editProfileAction"
 import { editListAction } from "./actions/editListAction"
 import { reviewAction } from "./actions/reviewAction"
+import { filterAction } from "./actions/filterAction"
 import { AuthProvider } from "./context/AuthProvider"
 
 const router = createBrowserRouter([
@@ -54,7 +55,8 @@ const router = createBrowserRouter([
     },
     {
         path: "/marketplace",
-        element: <Marketplace />
+        element: <Marketplace />,
+        action: filterAction,
     },
     {
         path: "/map",
