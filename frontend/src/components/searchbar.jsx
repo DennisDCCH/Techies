@@ -1,54 +1,13 @@
 import React, { useState } from "react"
+import { Form, useActionData } from "react-router-dom"
 import "./searchbar.css"
 import FILTERLOGO from "../images/filter-logo.png"
 import axios from "../api/axios.js"
 
 
 export default function Searchbar() {
-
-    const [filterSports, setFilterSports] = useState('');
-    const [filterProficiency, setFilterProficiency] = useState('');
-    const [filterPrice, setFilterPrice] = useState(0);
+    const data = useActionData()
     
-    const handleSportClick = (sport) => {
-        setFilterSports(sport);
-    };
-    
-    const handleProficiencyClick = (proficiency) => {
-        setFilterProficiency(proficiency);
-    };
-
-    const handlePriceValue = (price) => {
-        setFilterPrice(price);
-    };
-
-    const handleClick = async ({ request }) => {
-
-        const filterCriteria = {
-            sports: filterSports,
-            proficiency: filterProficiency,
-            price: filterPrice
-        }
-
-        try {
-            const response = await axios.post('/coaching_services/filter', filterCriteria);
-    
-            if (response.status === 200) {
-                console.log('Filter successful');
-                // Handle how the filtered lists will be displayed
-                // You might update the state with the filtered data and display it.
-            } else {
-                return { error: "Filter failed" };
-            }
-        } catch (error) {
-            console.log(error)
-            const errorMessage = error.response.data.message
-            return { error: errorMessage };
-        };
-    }
-       
-
-
     return (
         <section>
             <div className="search">
@@ -62,33 +21,23 @@ export default function Searchbar() {
             <div className="nav-right">
                 <div className="dropdown">
                     <img className = "filter-icon" src = {FILTERLOGO} alt = "filter-logo"/>
-                            <ul className="dropdown-menu">
-                                <li>Sports
-                                    <ul className="dropdown-menu-sports">
-                                        <li onClick={() => handleSportClick('Basketball')}>Basketball</li>
-                                        <li onClick={() => handleSportClick('Volleyball')}>Volleyball</li>
-                                        <li onClick={() => handleSportClick('Badminton')}>Badminton</li>
-                                        <li onClick={() => handleSportClick('Mountain Biking')}>Mountain Biking</li>
-                                        <li onClick={() => handleSportClick('Soccer')}>Soccer</li>
-                                        <li onClick={() => handleSportClick('Table Tennis')}>Table Tennis</li>
-                                    </ul>
-                                </li>
-                                <li>Proficiency
-                                    <ul className="dropdown-menu-proficiency" onClick={handleClick} >
-                                        <li onClick={() => handleProficiencyClick('High')}>High</li>
-                                        <li onClick={() => handleProficiencyClick('Medium')}>Medium</li>
-                                        <li onClick={() => handleProficiencyClick('Low')}>Low</li>
-                                    </ul>
-                                </li>
-                                <li>Price
-                                    <input 
-                                        type="number" 
-                                        className="dropdown-menu-price" 
-                                        onChange={(e) => handlePriceValue(e.target.value)}
-                                        value={filterPrice}>
-                                    </input>
-                                </li>
-                            </ul>
+                        <Form className = "filter-form" method = "post" action = "/marketplace">
+                            <div className = "dropdown-menu-sport">
+                                <label className = "dropdown-menu-sport-text">Sport</label>
+                                <input className = "dropdown-menu-sport-box" type = "text" name = "sport"></input>
+                            </div>
+                            <div className = "dropdown-menu-prof">
+                                <label className = "dropdown-menu-prof-text">Proficiency</label>
+                                <input className = "dropdown-menu-prof-box" type = "text" name = "prof"></input>
+                            </div>
+                            <div className = "dropdown-menu-price">
+                                <label className = "dropdown-menu-price-text">Price</label>
+                                <input className = "dropdown-menu-price-box" type = "number" name = "price"></input>
+                            </div>
+
+                            <button className = "filter-button" type = "submit">Select filter</button>
+                            
+                        </Form>
                 </div>
             </div>
         </section>
