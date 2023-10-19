@@ -6,7 +6,7 @@ import Review from "./review.jsx"
 import "./listReview.css"
 
 export default function ListReview(props) {
-    const userImgSrc = props.item.coach.userImg !== "" ? `images/${props.item.coach.userImg}` : "images/human-logo.png";
+    const userImgSrc = props.item.coach.userImg !== "" ? `/images/${props.item.coach.userImg}` : "/images/human-logo.png";
     const [rating, setRating] = useState(null)
     const [rateColor, setRateColor] = useState(null)
     const { id } = useParams()
