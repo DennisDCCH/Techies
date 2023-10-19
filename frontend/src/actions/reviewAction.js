@@ -13,11 +13,9 @@ export const reviewAction = async ({ request }) => {
     try {
         const URL = `/review/${data.get("id")}`
         axios.post(URL, submission)
-        
+        return null
     } catch (error) {
         console.log(error)
         return {error: "PROBLEM"}
     }
-
-    return null
 }

@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { Form, useParams } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { Form, useActionData, useParams } from "react-router-dom"
 import { FaStar } from "react-icons/fa"
 import STARLOGO from "../images/star-logo.png"
 import Review from "./review.jsx"
@@ -10,6 +10,12 @@ export default function ListReview(props) {
     const [rating, setRating] = useState(null)
     const [rateColor, setRateColor] = useState(null)
     const { id } = useParams()
+
+    const handleSubmit = () => {
+        setTimeout(() => {
+            props.fetchListingData();
+        }, 500);
+    }
 
     const reviews = props.item.reviews.map (item => {
         return (
@@ -31,7 +37,7 @@ export default function ListReview(props) {
                     <span className = "listreview-overall-username">{props.item.coach.username}</span>
                 </div>
                 <div className = "listreview-overall-stats">
-                    <span className = "listreview-overall-stats-rating">{props.item.overallRating}</span>
+                    <span className = "listreview-overall-stats-rating">{props.item.overallRating.toFixed(2)}</span>
                     <img className = "listreview-overall-stats-star" src = {STARLOGO} alt = "star-logo"/>
                     <span className = "listreview-overall-stats-count">[{props.item.numReviews}]</span>
                 </div>
@@ -62,7 +68,7 @@ export default function ListReview(props) {
                                 </>
                             )
                         })}
-                        <button type = "submit">Add Review</button>
+                        <button type = "submit" onClick={handleSubmit}>Add Review</button>
                     </div>
                 </Form>
             </div>

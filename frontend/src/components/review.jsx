@@ -3,7 +3,6 @@ import React from "react"
 import "./review.css"
 
 export default function Review(props) {
-    console.log("Review", props.item)
     return (
         <div className = "review-container">
             <div className = "review-user">

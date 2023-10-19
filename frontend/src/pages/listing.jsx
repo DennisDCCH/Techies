@@ -43,6 +43,7 @@ export default function Listing(props) {
                         <ListReview
                             key={`review_${specificListing.id}`}
                             item={specificListing}
+                            fetchListingData = {fetchListingData}
                         />
                     </div>
                 </>
