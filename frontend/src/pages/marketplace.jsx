@@ -25,6 +25,17 @@ export default function Marketplace() {
             });
     }, []);
 
+    useEffect(() => {
+        axios.get("/coaching_services_filter")
+        .then((response) => {
+            console.log("Received data:", response.data);
+            setCoachingServices(response.data);
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        })
+    }, []);
+
     let content 
 
     if(coachingServices.length != 0) {
@@ -45,7 +56,9 @@ export default function Marketplace() {
     return (
         <div>
             <Navbar />
-            <Searchbar />
+            <Searchbar 
+  
+            />
             <section className="cards-list">
                 {content}
             </section>

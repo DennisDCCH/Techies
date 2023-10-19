@@ -1,9 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import { Form, useActionData } from "react-router-dom"
 import "./searchbar.css"
 import FILTERLOGO from "../images/filter-logo.png"
-import axios from "../api/axios.js"
-
 
 export default function Searchbar() {
     const data = useActionData()
