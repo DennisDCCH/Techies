@@ -18,9 +18,6 @@ export const registerAction = async ({ request }) => {
         userImg: "",
         bio: "",
     }
-
-    //username checker function
-
     // password checker function 
     if (submission.password != password2)
         return {error: "Password is not the same"};
@@ -35,16 +32,12 @@ export const registerAction = async ({ request }) => {
     if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(submission.password)))
         return {error: "Password must have at least 1 special character"};
 
-
-    console.log(submission); 
-
     try {
         const response = await axios.post(REGISTER_URL, submission);
 
         // Check the response and handle it as needed
         if (response.status === 200) {
             // Registration was successful; you can perform any necessary actions here
-            // For example, you might want to redirect the user to a success page.
             console.log("success")
             return redirect("/");
         } else {

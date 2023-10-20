@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom"
 import axios from "../api/axios.js"
 import "./listing.css"
 
-export default function Listing(props) {
+export default function Listing() {
     const { id } = useParams() //coaching services id
 
     // Linkage to backend

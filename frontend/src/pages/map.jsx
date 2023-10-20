@@ -96,7 +96,7 @@ export default function Map() {
   // console.log(taxiData);
   // console.log(filteredCoordinates);
 
-  if (!isLoaded) return <div>meow Loading...</div>
+  if (!isLoaded) return <div>now Loading...</div>
 
   if(taxiData.features === undefined) return <div>Loading...</div>
 
