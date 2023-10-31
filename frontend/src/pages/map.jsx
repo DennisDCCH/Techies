@@ -30,28 +30,24 @@ export default function Map() {
       googleMapsApiKey: "AIzaSyAqfV5D6spu0saYX6khc2BQJsoSsK8vAVA",
       libraries: ["places"],
   })
-  const mapRef = useRef();
-  const [selectedMarker, setSelectedMarker] = useState({lat: 1.36, lng: 103.8});
-
-
+  const [selectedMarker, setSelectedMarker] = useState(null);
   const [taxiData, setTaxiData] = useState({});
   const [userCenter, setUserCenter] = useState({ lat: 1.3600, lng: 103.8000 });
-
   const [filteredCoordinates,setFilteredCoordinates] = useState([]);
-
   const [coordinatesArray,setCoordinatesArray] = useState([]);
-
   const [userData, setUserData] = useState([]);
+  const [message, setMessage] = useState("")
+  let content = null;
 
-    useEffect(() => {
-        axios.get("/user")
-        .then((response) => {
-            setUserData(response.data);
-        })
-        .catch((error) => {
-            console.error("Error fetching user data:", error);
-        });
-    }, []);
+  useEffect(() => {
+      axios.get("/user")
+      .then((response) => {
+          setUserData(response.data);
+      })
+      .catch((error) => {
+          console.error("Error fetching user data:", error);
+      });
+  }, []);
 
   const radius = 3000;
 
@@ -85,6 +81,23 @@ export default function Map() {
     }
   };
 
+  function chooseRandomTaxi() {
+    if(selectedMarker) {
+      setMessage("You have previously booked a taxi already");
+    } else {
+      const randomIndex = Math.floor(Math.random() * filteredCoordinates.length);
+      const selectedTaxi = filteredCoordinates[randomIndex];
+      const updatedFilteredCoordinates = filteredCoordinates.filter(
+        (coord, index) => index !== randomIndex
+      )
+      setFilteredCoordinates(updatedFilteredCoordinates);
+      const taxiCoord = {lat: selectedTaxi[1], lng: selectedTaxi[0]}
+      setSelectedMarker(taxiCoord);
+      setMessage("You have successfully booked a taxi");
+    }
+    console.log(message)
+  }
+
   useEffect(() => {
     fetchData();
     const intervalId = setInterval(() => {
@@ -95,10 +108,6 @@ export default function Map() {
       clearInterval(intervalId);
     };
   }, [userCenter]);
-
-  //sanity check that all taxis are showing up
-  // console.log(taxiData);
-  // console.log(filteredCoordinates);
 
   if (!isLoaded) return <div>now Loading...</div>
 
@@ -117,21 +126,8 @@ export default function Map() {
     scaledSize: new window.google.maps.Size(40, 40),
     origin: new window.google.maps.Point(0, 0),
     anchor: new window.google.maps.Point(20, 20),
+    zIndex: 1,
   };
-
-  function chooseRandomTaxi() {
-    const randomIndex = Math.floor(Math.random() * filteredCoordinates.length);
-    const selectedTaxi = filteredCoordinates[randomIndex];
-    console.log(selectedTaxi);
-    const taxiCoord = {lat: selectedTaxi[1], lng: selectedTaxi[0]}
-    // filteredCoordinates.splice(randomIndex, 1);
-    //setSelectedMarker(taxiCoord);
-    setSelectedMarker({
-      ...taxiCoord,
-      options: { ...taxiCoord.options, icon: icon },
-    });
-    console.log(selectedMarker);
-  }
 
   return (
       <div className = "map-page-container">
@@ -142,34 +138,43 @@ export default function Map() {
             <h1>There are {totalTaxis} available taxis in your area!</h1>
             <MapSearchBar
               updateUserCentre={updateUserCentre}
-              />
-              <button onClick={chooseRandomTaxi}>Grab a Taxi!</button>
-              <GoogleMap
-                  zoom = {15}
-                  center = {userCenter}
-                  mapContainerClassName="map-size"
-              >
-                {/* render the markers within the circle */}
-                  {filteredCoordinates &&
-                    filteredCoordinates.map((coord, index) => (
-                      <Marker
-                        key={index}
-                        position={{ lat: coord[1], lng: coord[0] }}
-                      />
-                    ))
-                  }
-                  <Marker icon={myLocation} position={userCenter} />
-                  <Circle center={userCenter}
-                    radius={radius}
-                    options={{
-                    fillColor: "green",
-                    fillOpacity: 0.35,
-                    strokeColor: "green",
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                  }}
-                  />
-              </GoogleMap>
+            />
+            <div className="map-booktaxi"> 
+              <div>
+                <button onClick={chooseRandomTaxi}>Grab a Taxi!</button>
+              </div> 
+              <h2>{message}</h2>
+            </div>
+            <GoogleMap
+                zoom = {15}
+                center = {userCenter}
+                mapContainerClassName="map-size"
+            >
+              {/* render the markers within the circle */}
+                {filteredCoordinates &&
+                  filteredCoordinates.map((coord, index) => (
+                    <Marker
+                      key={index}
+                      position={{ lat: coord[1], lng: coord[0] }}
+                    />
+                  ))
+                }
+                <Marker
+                  icon = {icon}
+                  position = {selectedMarker}
+                />
+                <Marker icon={myLocation} position={userCenter} />
+                <Circle center={userCenter}
+                  radius={radius}
+                  options={{
+                  fillColor: "green",
+                  fillOpacity: 0.35,
+                  strokeColor: "green",
+                  strokeOpacity: 0.8,
+                  strokeWeight: 2,
+                }}
+                />
+            </GoogleMap>
           </div>
       </div>
   )
