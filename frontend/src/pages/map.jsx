@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect,useRef } from "react"
 import { GoogleMap, useLoadScript, Marker, MarkerF, Circle } from "@react-google-maps/api"
 import MAN from "../images/man.png"
+import TAXI from "../images/taxi.png"
 import MapSidebar from "../components/mapSidebar"
 import MapSearchBar from "../components/mapSearchBar"
 import "./map.css"
@@ -29,6 +30,9 @@ export default function Map() {
       googleMapsApiKey: "AIzaSyAqfV5D6spu0saYX6khc2BQJsoSsK8vAVA",
       libraries: ["places"],
   })
+  const mapRef = useRef();
+  const [selectedMarker, setSelectedMarker] = useState({lat: 1.36, lng: 103.8});
+
 
   const [taxiData, setTaxiData] = useState({});
   const [userCenter, setUserCenter] = useState({ lat: 1.3600, lng: 103.8000 });
@@ -103,11 +107,37 @@ export default function Map() {
   const totalTaxis = filteredCoordinates.length
 
   const myLocation = {
-    url: MAN, 
-    scaledSize: new window.google.maps.Size(40, 40), 
+    url: MAN,
+    scaledSize: new window.google.maps.Size(40, 40),
     origin: new window.google.maps.Point(0, 0),
     anchor: new window.google.maps.Point(20, 20),
   };
+  const changeMarkerIcon = (marker) => {
+    const icon = {
+      url: TAXI,
+      scaledSize: new window.google.maps.Size(40, 40),
+      origin: new window.google.maps.Point(0, 0),
+      anchor: new window.google.maps.Point(20, 20),
+    };
+
+    // Use setSelectedMarker to trigger a re-render
+    setSelectedMarker({
+      ...marker,
+      options: { ...marker.options, icon: icon },
+    });
+    console.log(selectedMarker);
+
+  };
+
+  function chooseRandomTaxi() {
+    const randomIndex = Math.floor(Math.random() * filteredCoordinates.length);
+    const selectedTaxi = filteredCoordinates[randomIndex];
+    console.log(selectedTaxi);
+    const taxiCoord = {lat: selectedTaxi[1], lng: selectedTaxi[0]}
+    // filteredCoordinates.splice(randomIndex, 1);
+    //setSelectedMarker(taxiCoord);
+    changeMarkerIcon(taxiCoord);
+  }
 
   return (
       <div className = "map-page-container">
@@ -116,9 +146,10 @@ export default function Map() {
           />
           <div className = "map-container">
             <h1>There are {totalTaxis} available taxis in your area!</h1>
-            <MapSearchBar  
+            <MapSearchBar
               updateUserCentre={updateUserCentre}
-            />
+              />
+              <button onClick={chooseRandomTaxi}>Grab a Taxi!</button>
               <GoogleMap
                   zoom = {15}
                   center = {userCenter}
