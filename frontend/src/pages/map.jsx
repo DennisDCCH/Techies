@@ -112,21 +112,11 @@ export default function Map() {
     origin: new window.google.maps.Point(0, 0),
     anchor: new window.google.maps.Point(20, 20),
   };
-  const changeMarkerIcon = (marker) => {
-    const icon = {
-      url: TAXI,
-      scaledSize: new window.google.maps.Size(40, 40),
-      origin: new window.google.maps.Point(0, 0),
-      anchor: new window.google.maps.Point(20, 20),
-    };
-
-    // Use setSelectedMarker to trigger a re-render
-    setSelectedMarker({
-      ...marker,
-      options: { ...marker.options, icon: icon },
-    });
-    console.log(selectedMarker);
-
+  const icon = {
+    url: TAXI,
+    scaledSize: new window.google.maps.Size(40, 40),
+    origin: new window.google.maps.Point(0, 0),
+    anchor: new window.google.maps.Point(20, 20),
   };
 
   function chooseRandomTaxi() {
@@ -136,7 +126,11 @@ export default function Map() {
     const taxiCoord = {lat: selectedTaxi[1], lng: selectedTaxi[0]}
     // filteredCoordinates.splice(randomIndex, 1);
     //setSelectedMarker(taxiCoord);
-    changeMarkerIcon(taxiCoord);
+    setSelectedMarker({
+      ...taxiCoord,
+      options: { ...taxiCoord.options, icon: icon },
+    });
+    console.log(selectedMarker);
   }
 
   return (
