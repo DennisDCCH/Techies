@@ -18,6 +18,7 @@ class CoachingServiceModel(db.Model):
  
     maximum = db.Column(db.Integer)
     available = db.Column(db.Integer)
+    haveNotification = db.Column(db.Boolean, default = False, nullable = False)
 
     #many to many relation
     athletes = db.relationship("UserModel", back_populates="booked", secondary="athlete_service")

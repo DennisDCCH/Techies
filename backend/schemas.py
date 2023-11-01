@@ -15,6 +15,7 @@ class PlainCoachingServiceSchema(Schema):
     datetime = fields.Str(required=True)
     coverImg = fields.Str(required=True)
     proficiency = fields.Str(required=True)
+    haveNotification = fields.Bool(dump_only=True)
 
 class PlainReviewSchema(Schema):
     id = fields.Int(dump_only=True)

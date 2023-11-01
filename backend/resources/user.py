@@ -12,6 +12,19 @@ from schemas import UserSchema, UserUpdateSchema, LoginSchema, CoachingServiceSc
 
 blp = Blueprint("Users", "users", description="Operations on users")
 
+@blp.route("/homepage")
+class HomePage(MethodView): 
+    @jwt_required()
+    def get(self):
+        user_id = get_jwt_identity()
+        user = UserModel.query.get(user_id)
+        listings = user.listings.all()
+        overallNotification = False
+        for listing in listings:
+            if listing.haveNotification == True:
+                overallNotification = True
+        return jsonify({"overallNotification": overallNotification})
+
 
 @blp.route("/register")
 class UserRegister(MethodView): 
@@ -69,6 +82,8 @@ class User(MethodView):
         """ Retrieve user id """
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
+
+        #return value of whether have stuff booked
         return user
 
     @blp.arguments(UserUpdateSchema)

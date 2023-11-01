@@ -69,10 +69,15 @@ class CoachingServiceList(MethodView):
 
 @blp.route("/services/<string:listing_id>")
 class Services(MethodView):
+    @jwt_required()
     @blp.response(200, CoachingServiceSchema)
     def get(self, listing_id):
         """ Retrieve a specific listing given listing id """
+        user_id = get_jwt_identity()
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
+        if coaching_service.coach_id == user_id:
+            coaching_service.haveNotification = False
+            db.session.commit()
         coaching_service.reviews.reverse()
         return coaching_service
     
@@ -128,13 +133,20 @@ class Booking(MethodView):
         
         if user is None or coaching_service is None:
             return {'message': 'User or service not found'}, 404
+
+        if coaching_service.coach_id == user_id:
+            return {'message': 'You cannot book your own listing'}, 400
         
         if coaching_service in user.booked:
             return {'message': 'You have already booked this service'}, 400
+        if coaching_service.available == 0:
+            return {'message': 'There are no more available slots'}, 400
+        
         user.booked.append(coaching_service)
         coaching_service.athletes.append(user)
         
         coaching_service.available -= 1
+        coaching_service.haveNotification = True
         db.session.commit()
 
         return {'message': 'Service booked successfully'}, 200
