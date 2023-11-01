@@ -6,7 +6,11 @@ import { Link } from "react-router-dom"
 import "./navbar.css"
 
 
-export default function Navbar() {
+export default function Navbar(props) {
+    if (props.notification == true) {
+        var notificationMessage = "NEW!"
+    }
+
     return (
         <nav>
             <div className="nav-left">
@@ -16,6 +20,7 @@ export default function Navbar() {
                 <h3 className="nav-logo_name">SportSync</h3>
             </div>
             <div className="nav-right">
+                <p className = "error">{notificationMessage}</p>
                 <Link className = "nav-profile" to = "/profile">
                     <img src={HUMANLOGO} alt = "human-logo" width = "98px" height = "97px" />
                 </Link>

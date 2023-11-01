@@ -6,6 +6,7 @@
 
 .card2-title {
     display: flex;
+    justify-content: space-between;
     width: 461px;
     height: 51px;
     border: 1px solid #37822B;
@@ -16,6 +17,29 @@
     align-items: center;
     padding-left: 12px;
     margin-right: 72px;
+}
+
+.card2-title span {
+    margin-right: 15px;
+    color: red;
+}
+
+.card2-select-button {
+    width: 120px;
+    height: 51px;
+    background-color: #FFD700
+    ;
+    border: none;
+    border-radius: 10px;
+    font-family: "Source Serif Pro";
+    font-size: 28px;
+    font-weight: 600;
+    margin-right: 37px;
+}
+
+.card2-select-link {
+    color: white;
+    text-decoration: none;
 }
 
 .card2-edit-button {
