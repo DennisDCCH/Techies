@@ -1,5 +1,6 @@
 import React from "react"
 import Navbar from "../components/navbar"
+import { PrettyChatWindow } from "react-chat-engine-pretty";
 
 export default function Chat() {
     return (
