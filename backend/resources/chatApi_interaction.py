@@ -16,6 +16,7 @@ class ChatAPI:
                                 })
         return response.json()
 
+
     @staticmethod
     def create_user(user_data):
         response = requests.post('https://api.chatengine.io/users/',
