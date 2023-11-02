@@ -35,7 +35,7 @@ export default function ListReview(props) {
             <div className = "listreview-overall">
                 <div className = "listreview-overall-user">
                     <img className = "listreview-overall-userimg" src = {userImgSrc} alt = "user-profile-pic"/>
-                    <span className = "listreview-overall-username">{props.item.coach.username}</span>
+                    <span className = "listreview-overall-username">{props.item.coach.username} ({props.item.coach.firstname} {props.item.coach.lastname})</span>
                 </div>
                 <div className = "listreview-overall-stats">
                     <span className = "listreview-overall-stats-rating">{props.item.overallRating.toFixed(2)}</span>

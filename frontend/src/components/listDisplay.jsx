@@ -46,7 +46,7 @@ export default function ListDisplay(props) {
                 <div className = "listdisplay-user">
                     <div className = "listdisplay-user-container">
                         <img className = "listdisplay-service-picture" src = {coverImgSrc}/>
-                        <span>{props.item.coach.username}</span>
+                        <span>{props.item.coach.username} ({props.item.coach.firstname} {props.item.coach.lastname})</span>
                     </div>
                     <div className = "listdisplay-user-bio">
                         <label className = "listdisplay-user-bio-label">Coach Bio</label>
