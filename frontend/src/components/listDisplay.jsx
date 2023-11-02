@@ -4,6 +4,7 @@ import "./listDisplay.css"
 import axios from "../api/axios"
 
 export default function ListDisplay(props) {
+    console.log(props.item)
     const coverImgSrc = props.item.coverImg !== "" ? `/images/${props.item.coverImg}` : "/images/listing-coverimg.png"
     const [content, setContent] = useState(null)
 
