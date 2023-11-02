@@ -6,6 +6,8 @@ class PlainUserSchema(Schema):
     username = fields.Str(required=True)
     userImg = fields.Str() #required = True
     bio = fields.Str() #required = True
+    firstname = fields.Str(required=True)
+    lastname = fields.Str(required=True)
     
 class PlainCoachingServiceSchema(Schema):
     id = fields.Int(dump_only=True)
@@ -27,8 +29,6 @@ class PlainReviewSchema(Schema):
 class UserSchema(PlainUserSchema):
     password = fields.Str(load_only=True)
     gender = fields.Str(required=True)
-    firstname = fields.Str(required=True)
-    lastname = fields.Str(required=True)
     email = fields.Str(required=True)
     dob = fields.Str(required=True)
     bio = fields.Str() #required = True
