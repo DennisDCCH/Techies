@@ -4,12 +4,15 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity, set_access_cookies, set_refresh_cookies
 from flask import request, jsonify
 from passlib.hash import pbkdf2_sha256
+import requests, os
+from dotenv import load_dotenv
 
 from db import db
 from models import UserModel
 from schemas import UserSchema, UserUpdateSchema, LoginSchema, CoachingServiceSchema, UserChangePasswordSchema, PlainCoachingServiceSchema
+from resources.chatApi_interaction import ChatAPI
 
-
+load_dotenv()
 blp = Blueprint("Users", "users", description="Operations on users")
 
 @blp.route("/homepage")
@@ -20,6 +23,9 @@ class HomePage(MethodView):
         user = UserModel.query.get(user_id)
         listings = user.listings.all()
         overallNotification = False
+
+        #overallNotification also should return true when there is a message (need to check API how to check for message)
+
         for listing in listings:
             if listing.haveNotification == True:
                 overallNotification = True
@@ -31,7 +37,6 @@ class UserRegister(MethodView):
     @blp.arguments(UserSchema)
     def post(self, user_data):
         """ Registers a user given a JSON input of their details"""
-        # NEED TO CHECK THAT PASSWORD FULFILLS REQUIREMENTS
         
         if UserModel.query.filter(UserModel.username == user_data["username"]).first():
             abort(409, message="A user with that username already exists.")
@@ -51,7 +56,20 @@ class UserRegister(MethodView):
         db.session.add(user)
         db.session.commit()
 
-        return {"message": "User created successfully."}, 200
+        #call chatAPI to create user in their database
+        response = ChatAPI.create_user(user_data)
+
+        return {"message": "User created successfully.", "chat_api_response":response}, 200
+
+@blp.route("/mychats")
+class UserChats(MethodView):
+    @jwt_required()
+    def get(self):
+        """ Returns user info (ChatAPI)"""
+        user_id = get_jwt_identity()
+        user = UserModel.query.get(user_id)
+        response = ChatAPI.get_user(user)
+        return response
 
 @blp.route("/login")
 class UserLogin(MethodView):
@@ -83,7 +101,6 @@ class User(MethodView):
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
 
-        #return value of whether have stuff booked
         return user
 
     @blp.arguments(UserUpdateSchema)
@@ -94,9 +111,6 @@ class User(MethodView):
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
 
-        # if UserModel.query.filter(UserModel.username == user_data["username"]).first() and user.username != user_data["username"]:
-        #     abort(409, message="A user with that username already exists.")
-
         user.email = user_data["email"]
         user.dob = user_data["dob"]
         user.bio = user_data["bio"]
@@ -106,12 +120,6 @@ class User(MethodView):
         db.session.commit()
 
         return user, 201
-
-    # def delete(self, user_id):
-    #     user = UserModel.query.get_or_404(user_id)
-    #     db.session.delete(user)
-    #     db.session.commit()
-    #     return {"message": "User deleted."}, 200
 
 
 @blp.route("/user/changepassword")
@@ -185,7 +193,7 @@ class ViewListings(MethodView):
 """THIS IS ALL THE ADMIN STUFF, EASIER FOR DEVELOPMENT ONLY! DO NOT USE IN PRODUCTION"""
 @blp.route("/user/godmode")
 class GodMode(MethodView):
-    @blp.response(200, UserSchema(many = True))
+    @blp.response(200, UserSchema(many=True))
     def get(self):
         users = UserModel.query.all()
         return users, 200
@@ -195,4 +203,14 @@ class GodMode(MethodView):
         for user in users:
             db.session.delete(user)
         db.session.commit()
+        return jsonify({"message":"all users deleted"})
+
+@blp.route("/chatapi/godmode")
+class ChatAPIGodMode(MethodView):
+    def get(self):
+        user_list = ChatAPI.get_all_users()
+        return user_list, 200
+    
+    def delete(self):
+        ChatAPI.delete_all_users()
         return jsonify({"message":"all users deleted"})

@@ -6,6 +6,7 @@ class CoachingServiceModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     
+    
     sport = db.Column(db.String(80), nullable=False)
     datetime = db.Column(db.String(80), nullable=False)
     location = db.Column(db.String(120), nullable=False)
@@ -15,6 +16,7 @@ class CoachingServiceModel(db.Model):
     proficiency = db.Column(db.String(255))
     overallRating = db.Column(db.Float(precision=2)) 
     numReviews = db.Column(db.Integer)
+    chat_id = db.Column(db.Integer, nullable=False)
  
     maximum = db.Column(db.Integer)
     available = db.Column(db.Integer)

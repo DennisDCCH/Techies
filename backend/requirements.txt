@@ -7,3 +7,4 @@ python-dotenv
 gunicorn
 flask_cors
 requests
+python-dotenv==0.21.0

@@ -9,6 +9,7 @@ from db import db
 from models import CoachingServiceModel
 from models import UserModel
 from schemas import CoachingServiceSchema, CoachingServiceUpdateSchema, CoachingServiceFilterSchema
+from resources.chatApi_interaction import ChatAPI
 
 blp = Blueprint("Coaching Service", "coachingservice", description="Operations on CoachingService")
 
@@ -50,16 +51,15 @@ class CoachingServiceList(MethodView):
     def post(self, coaching_service_data):
         """ List coaching service """
         user_id = get_jwt_identity()
+        user = UserModel.query.get(user_id)
         
         coaching_service = CoachingServiceModel(**coaching_service_data, coach_id = user_id, numReviews = 0, overallRating = 0, available = coaching_service_data["maximum"])
+        response, createdChat = ChatAPI.create_grp_chat(user, coaching_service_data["description"])
+        coaching_service.chat_id = response["id"]
         try:
             db.session.add(coaching_service)
             db.session.commit()
-        except IntegrityError:
-            abort(
-                400,
-                message="A service with that time and location already exists.",
-            )
+
         except SQLAlchemyError:
             abort(500, message="An error occurred creating the service.")
 
@@ -87,11 +87,13 @@ class Services(MethodView):
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get_or_404(listing_id)
+        
 
         if coaching_service in user.listings:
             db.session.delete(coaching_service)
             db.session.commit()
-            return {"message": "Item deleted."}
+            response, deleted = ChatAPI.delete_grp_chat(coaching_service)
+            return {"message": "Item and Group Chat deleted.", "Group chat deletion status": deleted}
         else:
             return {"message": "You do not have the rights to delete this listing."}
 
@@ -133,10 +135,8 @@ class Booking(MethodView):
         
         if user is None or coaching_service is None:
             return {'message': 'User or service not found'}, 404
-
         if coaching_service.coach_id == user_id:
-            return {'message': 'You cannot book your own listing'}, 400
-        
+            return {'message': 'You cannot book your own listing'}, 400        
         if coaching_service in user.booked:
             return {'message': 'You have already booked this service'}, 400
         if coaching_service.available == 0:
@@ -144,16 +144,19 @@ class Booking(MethodView):
         
         user.booked.append(coaching_service)
         coaching_service.athletes.append(user)
+
+        #add user into as chat member for coaching service grp chat
+        joined = ChatAPI.join_grp_chat(user.username, coaching_service)
         
         coaching_service.available -= 1
         coaching_service.haveNotification = True
         db.session.commit()
 
-        return {'message': 'Service booked successfully'}, 200
+        return {'message': 'Service booked successfully', "Joined group chat status": joined}, 200
 
     @jwt_required()
     def delete(self, listing_id):
-        """ Delete a booking of coaching services"""
+        """ Cancel a booking of coaching services"""
         user_id = get_jwt_identity()
         user = UserModel.query.get(user_id)
         coaching_service = CoachingServiceModel.query.get(listing_id)
@@ -166,8 +169,9 @@ class Booking(MethodView):
         user.booked.remove(coaching_service)
         coaching_service.available += 1
         db.session.commit()
+        left = ChatAPI.leave_grp_chat(user.username, coaching_service)
 
-        return {'message': 'Service removed successfully from bookings'}
+        return {'message': 'Service removed successfully from bookings', "Left group chat status": left}
 
 
     
@@ -205,6 +209,7 @@ class Saving(MethodView):
             return {'message': 'You have not booked this service yet'}, 400
         user.saved.remove(coaching_service)
         db.session.commit()
+        
 
         return {'message': 'Service removed successfully from saved listings'}
 
