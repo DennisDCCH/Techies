@@ -31,4 +31,19 @@ To run the backend server:
 - run ```flask run``` to start the flask server
 - You should now be able to communicate with the server through the frontend at localhost:5173
 
+## File Structure of important files and directories
+
+    Techies
+    ├── frontend
+    ├── backend               # Backend files and folder
+    │   ├── resources         # Contains files for endpoints
+    │   ├── models            # Contains files for tables in the sqlite datbase 
+    │   ├── scripts           # Scripts to create base users and listings
+    │   ├── instance          # Instance of the sqlite database
+    │   ├── db.py             # Database code
+    │   ├── schemas.py        # File containing all schemas
+    │   ├── requirements.txt  # File containing all backend dependencies
+    │   └── app.py            # Main app configuration
+    └── ...
+
 
