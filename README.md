@@ -11,7 +11,7 @@ We aspire to become the go-to resource for sporty individuals in Singapore. User
 Beyond just facilitating green space discovery and training session bookings, we aim to foster a sense of community among users. Our platform will allow individuals to connect with like-minded individuals, arrange joint training sessions, and share their fitness journeys, further encouraging active and social lifestyles.
 
 ### Seamless Transportation Integration: 
-To enhance the overall user experience, we are committed to integrating with the Taxi API and Car Park API. This integration will allow users to locate alternative transportation options quickly, making it easier to reach their chosen training venues. Additionally, our platform will assist drivers in identifying nearby parking facilities, ensuring hassle-free commutes.
+To enhance the overall user experience, we are committed to integrating with the Taxi Availability API. This integration will allow users to locate nearby taxis quickly, making it easier to reach their chosen training venues. 
 
 ## Frontend
 To run the frontend website:
