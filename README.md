@@ -14,27 +14,28 @@ Beyond just facilitating green space discovery and training session bookings, we
 To enhance the overall user experience, we are committed to integrating with the Taxi API and Car Park API. This integration will allow users to locate alternative transportation options quickly, making it easier to reach their chosen training venues. Additionally, our platform will assist drivers in identifying nearby parking facilities, ensuring hassle-free commutes.
 
 ## Frontend
-Our frontend is developed with React 18.2.0 & Vite 4.4.11
-
 To run the frontend website:
 - Ensure that node.js is installed on your computer:
 - run ```npm install``` to install dependencies
 - run ```npm run dev```to test the program and go to localhost:5173 to view the frontend
 
 ## Backend
-Our backend is developed with Flask 2.3.3. 
-
-Our database connected is sqlite
-
 To run the backend server:
 - run ```pip install -r requirements.txt```
 - run ```flask run``` to start the flask server
 - You should now be able to communicate with the server through the frontend at localhost:5173
 
+## Languages
+- Frontend: React 18.2.0 & Vite 4.4.11
+- Backend: Flask 2.3.3.
+- Database: Sqlite
+
 ## File Structure of important files and directories
 
     Techies
     ├── frontend
+    │   ├── example frontend         # Contains files for endpoints
+    │   └── last file            # Main app configuration
     ├── backend               # Backend files and folder
     │   ├── resources         # Contains files for endpoints
     │   ├── models            # Contains files for tables in the sqlite datbase 
@@ -44,6 +45,6 @@ To run the backend server:
     │   ├── schemas.py        # File containing all schemas
     │   ├── requirements.txt  # File containing all backend dependencies
     │   └── app.py            # Main app configuration
-    └── ...
+    └── README.md
 
 
