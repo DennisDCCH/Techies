@@ -115,6 +115,7 @@ class User(MethodView):
         user.dob = user_data["dob"]
         user.bio = user_data["bio"]
         user.username = user_data["username"]
+
         if user_data["userImg"] != "":
             user.userImg = user_data["userImg"]
         db.session.commit()

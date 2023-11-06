@@ -16,7 +16,6 @@ class ChatAPI:
                                 })
         return response.json()
 
-
     @staticmethod
     def create_user(user_data):
         response = requests.post('https://api.chatengine.io/users/',
@@ -57,7 +56,7 @@ class ChatAPI:
     def create_grp_chat(user, title="Group Chat"):
         response = requests.post('https://api.chatengine.io/chats/', data={"title": title, "is_direct_chat": False},
                                  headers={"Project-ID": ChatAPI.project_id, "User-Name": user.username, "User-Secret": user.username})
-        
+
         if response.status_code == 201:
             return response.json(), True
         else:
@@ -78,8 +77,8 @@ class ChatAPI:
     def join_grp_chat(username, coaching_service):
         coach_username = coaching_service.coach.username
         chat_id = coaching_service.chat_id
-        response = requests.post(f'https://api.chatengine.io/chats/{chat_id}/people/', data = {"username":username},
-                      headers={"Project-ID": ChatAPI.project_id, "User-Name": coach_username, "User-Secret": coach_username})
+        response = requests.post(f'https://api.chatengine.io/chats/{chat_id}/people/', data={"username": username},
+                                 headers={"Project-ID": ChatAPI.project_id, "User-Name": coach_username, "User-Secret": coach_username})
         if response.status_code == 201:
             return True
         else:
@@ -89,10 +88,28 @@ class ChatAPI:
     def leave_grp_chat(username, coaching_service):
         coach_username = coaching_service.coach.username
         chat_id = coaching_service.chat_id
-        response = requests.put(f'https://api.chatengine.io/chats/{chat_id}/people/', data = {"username":username},
-                      headers={"Project-ID": ChatAPI.project_id, "User-Name": coach_username, "User-Secret": coach_username})
+        response = requests.put(f'https://api.chatengine.io/chats/{chat_id}/people/', data={"username": username},
+                                headers={"Project-ID": ChatAPI.project_id, "User-Name": coach_username, "User-Secret": coach_username})
         print(response.json())
         if response.status_code == 200:
             return True
         else:
             return False
+
+#     @staticmethod
+#     def update_user(user, new_user_data):
+#         response = requests.patch('https://api.chatengine.io/users/me/', data={
+#     "username": new_user_data["username"],
+#     "email": new_user_data["email"],
+#     "first_name": user.firstname,
+#     "last_name": user.lastname,
+#     "custom_json": {
+#         "custom_json": 2001
+#     }
+# },
+#             headers={"Project-ID": ChatAPI.project_id, "User-Name": user.username, "User-Secret": "maguire"})
+#         print(response.json())
+#         if response.status_code == 200:
+#             return True
+#         else:
+#             return False
