@@ -34,17 +34,18 @@ To run the backend server:
 
     Techies
     ├── frontend
-    │   ├── example frontend         # Contains files for endpoints
-    │   └── last file            # Main app configuration
-    ├── backend               # Backend files and folder
-    │   ├── resources         # Contains files for endpoints
-    │   ├── models            # Contains files for tables in the sqlite datbase 
-    │   ├── scripts           # Scripts to create base users and listings
-    │   ├── instance          # Instance of the sqlite database
-    │   ├── db.py             # Database code
-    │   ├── schemas.py        # File containing all schemas
-    │   ├── requirements.txt  # File containing all backend dependencies
-    │   └── app.py            # Main app configuration
+    │   ├── example frontend          # Contains files for endpoints
+    │   └── last file                 # Main app configuration
+    ├── backend                       # Backend files and folder
+    │   ├── resources                 # Contains files for endpoints
+    │   ├── models                    # Contains files for tables in the sqlite datbase 
+    │   ├── scripts                   # Scripts to create base users and listings
+    │   ├── instance                  # Instance of the sqlite database
+    │   ├── db.py                     # Database code
+    │   ├── schemas.py                # File containing all schemas
+    │   ├── requirements.txt          # File containing all backend dependencies
+    │   ├── Insomnia_2023-10-10.json  # Insomnia file used for testing
+    │   └── app.py                    # Main app configuration
     └── README.md
 
 
