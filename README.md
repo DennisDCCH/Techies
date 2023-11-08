@@ -36,7 +36,7 @@ To run the backend server:
     ├── frontend
     │   ├── actions                   # Contains all the javascript files which have actions used by components
     │   ├── api                       # Contains the axios api configuration file
-    │   ├── components                # Contains all the jsx files used by pages
+    │   ├── components                # Contains all the components jsx files used by pages
     │   ├── images                    # Contains all images used in the website that is not in the public folder
     │   ├── pages                     # Contains all the jsx files which are pages in the website
     │   └── index.jsx                 # Starting jsx file
@@ -51,4 +51,7 @@ To run the backend server:
     │   └── app.py                    # Main app configuration
     └── README.md
 
-
+## Documentation and Video
+- (Video)[]
+- (Documentation)[]
+- (Slides)[]  
