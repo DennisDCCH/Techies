@@ -52,6 +52,6 @@ To run the backend server:
     └── README.md
 
 ## Documentation and Video
-- (Video)[]
-- (Documentation)[]
-- (Slides)[]  
+-[Video]()
+-[Documentation]()
+-[Slides](https://github.com/DennisDCCH/Techies/blob/main/SportSync%20Presentation.pptx)
