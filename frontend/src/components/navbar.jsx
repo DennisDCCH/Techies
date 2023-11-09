@@ -30,10 +30,9 @@ export default function Navbar(props) {
                 <div className="dropdown-container">
                     <img className = "nav-right-dropdown-icon" src = {DROPDOWNMENULOGO} alt = "dropdown-menu-logo"/>
                     <ul className="dropdown-menu-nav">
-                        <li><Link to = "/marketplace">Actvities</Link></li>
+                        <li><Link to = "/marketplace">Activities</Link></li>
                         <li><Link to = "/map">Map</Link></li>
                         <li><Link to = "/chat">Chat</Link></li>
-                        <li><Link to = "#">FAQ</Link></li>
                     </ul>
                 </div>
             </div>
