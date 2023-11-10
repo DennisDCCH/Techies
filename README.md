@@ -50,6 +50,16 @@ To run the backend server:
     │   ├── Insomnia_2023-10-10.json  # Insomnia file used for testing
     │   └── app.py                    # Main app configuration
     └── README.md
+    
+## Designs consideration
+When designing our website, we made used of the following consideration
+1. Observer Pattern
+2. Strategy Design
+3. Factory Design
+4. Dynamic Loading
+5. Facade Structural Pattern
+
+For more information, please refer to our presentation slides whereby this will be further discussed in detailed.
 
 ## Documentation and Video
 - [Video]() (View here)
