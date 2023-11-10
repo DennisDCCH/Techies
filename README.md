@@ -50,6 +50,7 @@ To run the backend server:
     │   ├── Insomnia_2023-10-10.json  # Insomnia file used for testing
     │   └── app.py                    # Main app configuration
     └── README.md
+    └── SportSync Presentation.pptx
     
 ## Designs consideration
 When designing our website, we made used of the following consideration
