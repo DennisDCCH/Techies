@@ -49,7 +49,8 @@ To run the backend server:
     │   ├── requirements.txt          # File containing all backend dependencies
     │   ├── Insomnia_2023-10-10.json  # Insomnia file used for testing
     │   └── app.py                    # Main app configuration
-    └── README.md
+    ├── README.md
+    ├── SRS.pdf
     └── SportSync Presentation.pptx
     
 ## Designs consideration
