@@ -113,8 +113,9 @@ class Services(MethodView):
             coaching_service.price = coaching_service_data["price"]
             coaching_service.description = coaching_service_data["description"]
             coaching_service.proficiency = coaching_service_data['proficiency']
-            coaching_service.coverImg = coaching_service_data['coverImg']
             coaching_service.datetime = coaching_service_data['datetime']
+            if coaching_service_data["coverImg"] != "":
+                coaching_service.coverImg = coaching_service_data['coverImg']
        
             db.session.commit()
             return {"message": "Service Edited"}, 200
