@@ -37,7 +37,9 @@ export default function RegisterUI() {
                     <div className = "register-form-password2">
                         <label className = "register-form-password2-text">Re-enter Password</label>
                         <input className = "register-form-password2-box" type = "password" name = "password2" required/>
+                        <span className = "msg">Password should be at least 8 characters long and a combination of uppercase letters, lowercase <br />letters, numbers, and symbols.</span>
                     </div>
+                    
                     <div className = "register-form-miscellaneous">
                         <div className = "register-form-gender">
                             <label className = "register-form-gender-text">Gender</label>
@@ -57,11 +59,6 @@ export default function RegisterUI() {
                     <button className = "register-button" type = "submit">Register New Account</button>
 
                     {data && data.error && <p className = "register-error">{data.error}</p>}
-
-                    {/* To do for fun if got time -Dennis
-                    https://www.youtube.com/watch?v=AF6vGYIyV8M&ab_channel=GreatStack
-                    {data && data.error && <Popup message = {data.error}/>}
-                    */}
                 </Form>
             </div>
         </div>

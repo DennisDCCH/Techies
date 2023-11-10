@@ -5,6 +5,7 @@ import "./card.css"
 
 
 export default function Card(props) {
+    console.log(props.item)
     const userImgSrc = props.item.coach.userImg !== "" ? `/images/${props.item.coach.userImg}` : "/images/human-logo.png"
     const coverImgSrc = props.item.coverImg !== "" ? `/images/${props.item.coverImg}` : "/images/listing-coverimg.png"
     return (
@@ -14,7 +15,7 @@ export default function Card(props) {
                 <h1 className = "card-coach-username">{props.item.coach.username}</h1>
             </div>
             <img className = "card-coverImg" src = {coverImgSrc} alt = "sport-pic"/>
-            <h1 className = "card-sport">{props.item.sport}</h1>
+            <h1 className = "card-sport">{props.item.sport} (${props.item.price})</h1>
             <button type="button" className="card-select-button">
                     <Link className = "card-select-button-link" to = {`/listing/${props.item.id}`}>Select Listing</Link>
             </button>

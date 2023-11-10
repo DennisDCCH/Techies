@@ -22,9 +22,11 @@ export default function NewPassword() {
                 <div className = "changepw-form-newpw2">
                     <label className = "changepw-form-newpw2-label">Re-enter New Password</label>
                     <input className = "changepw-form-newpw2-input" type = "password" name = "newpw2" required/>
+                    <span className = "msg">Password should be at least 8 characters long and a combination of uppercase letters, lowercase <br />letters, numbers, and symbols.</span>
                 </div>
                 <button className = "changepw-form-button" type = "submit">Change Password</button>
             </Form>
+            
 
             {data && data.error && <p className = "changepw-error">{data.error}</p>}
         </div>

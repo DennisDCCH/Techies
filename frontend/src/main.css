@@ -20,3 +20,14 @@ input[type="radio"] {
     font-weight: bold;
     color: red;
 }
+
+.display {
+    display: flex;
+    flex-direction: column;
+}
+
+.msg {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #9D8D8D;
+}
