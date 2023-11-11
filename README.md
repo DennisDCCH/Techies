@@ -65,7 +65,7 @@ For more information, please refer to our presentation slides whereby this will 
 
 ## Documentation and Video
 - [Video](https://www.youtube.com/watch?v=1rgdCgu9vcY) (View here)
-- [Documentation]() (Download here)
+- [Documentation](https://github.com/DennisDCCH/Techies/blob/main/Techies%20Software%20Requirements%20Specification.pdf) (Download here)
 - [Slides](https://github.com/DennisDCCH/Techies/blob/main/SportSync%20Presentation.pptx) (Download here)
 
 ## Notice
