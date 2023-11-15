@@ -69,5 +69,5 @@ For more information, please refer to our presentation slides whereby this will 
 - [Slides](https://github.com/DennisDCCH/Techies/blob/main/SportSync%20Presentation.pptx) (Download here)
 
 ## Notice
-Please note that all api keys used in the source code will no longer be valid after 2023. <br />
+Please note that all api keys used in the source code will no longer be valid after Nov 2023. <br />
 For your own personal use, please use your own [Google Maps Platform API Key](https://developers.google.com/maps) and [Chat Engine API Key](https://chatengine.io/)
